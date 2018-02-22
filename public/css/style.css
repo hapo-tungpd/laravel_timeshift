@@ -1,0 +1,13 @@
+.img-responsive {
+	margin-left: 0;
+}
+
+#uploadImg {
+	display: block;
+	max-width: 200px;
+	margin-bottom: 10px;
+}
+
+.form-group .input-warning {
+	color: red;
+}
