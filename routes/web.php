@@ -26,7 +26,7 @@ Route::group(['middleware' => ['web', 'auth']], function() {
 	});
 
 	Route::get('/home/information', function() {
-		$userinfo['userinfo'] = \App\User_info::all();
+		$userinfo['userinfos'] = \App\Userinfo::all();
 		return view('information', $userinfo);
 	});
 });
