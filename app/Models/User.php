@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name', 'email', 'password', 'phone', 'birthday', 'gender', 'address', 'image', 'JLPT',
     ];
 
+    protected $attributes = [
+        'gender' => 1,
+        'JLPT' => 'None',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
