@@ -21,6 +21,8 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('css/bootstrap3-wysihtml5.min.css')}}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -55,6 +57,7 @@
             </a>
 
             <div class="navbar-custom-menu">
+
                 <ul class="nav navbar-nav">
                     <!-- Messages: style can be found in dropdown.less-->
                     <!-- Notifications: style can be found in dropdown.less -->
@@ -62,11 +65,12 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <!-- Control Sidebar Toggle Button -->
                     <li>
-                        <form action="{{ route('admin.logout') }}" method="post">
+                        <form action="{{ route('user.logout') }}" method="post">
                             {{ csrf_field() }}
                             <button type="submit" id="logout-btn" class="btn btn-default btn-flat" ></button>
                         </form>
                         <a href="#"><i class="fa fa-sign-out"></i>Log out</a>
+
                     </li>
                 </ul>
             </div>

@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('gender')->nullable();
             $table->string('phone')->nullable();
-            $table->string('JLPT');
+            $table->string('JLPT')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

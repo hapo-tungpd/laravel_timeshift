@@ -14,16 +14,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*manage user*/
 Route::prefix('user')->group(function() {
     Route::get('login', 'Auth\LoginController@loginForm')->name('user.login-form');
     Route::post('login', 'Auth\LoginController@login')->name('user.login');
     Route::get('index', 'HomeController@index')->name('user.index');
+
     Route::middleware(['web.auth'])->group(function() {
         Route::post('logout', 'Auth\LoginController@logout')->name('user.logout');
-        Route::get('/', 'HomeController@index')->name('user.index');
+
+        /*update user*/
+        Route::resource('users','UpdateUserController', ['as' => 'user']);
     });
 });
 
+/*manage admin*/
 Route::prefix('admin')->group(function() {
     Route::get('login', 'Auth\AdminController@loginForm')->name('admin.login-form');
     Route::post('login', 'Auth\AdminController@login')->name('admin.login');
@@ -32,6 +37,5 @@ Route::prefix('admin')->group(function() {
         Route::get('/', 'AdminController@index')->name('admin.index');
     });
 });
-
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
