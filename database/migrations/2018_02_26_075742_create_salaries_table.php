@@ -18,6 +18,7 @@ class CreateSalariesTable extends Migration
             $table->integer('user_id');
             $table->double('basic_salary', 15, 2);
             $table->double('OT_salary', 15, 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

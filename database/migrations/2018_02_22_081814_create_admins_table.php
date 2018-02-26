@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 class CreateAdminsTable extends Migration
 {
     /**
@@ -17,6 +18,7 @@ class CreateAdminsTable extends Migration
             $table->increments('id');
             $table->string('username');
             $table->string('password');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

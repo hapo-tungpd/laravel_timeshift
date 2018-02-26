@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 class CreateRollCallsTable extends Migration
 {
     /**
@@ -18,8 +19,9 @@ class CreateRollCallsTable extends Migration
             $table->integer('user_id');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->date('date');
+            $table->date('roll_call_date');
             $table->integer('total_time');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

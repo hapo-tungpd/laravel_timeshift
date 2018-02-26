@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 class CreateUsersTable extends Migration
 {
     /**
@@ -24,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('JLPT')->nullable();
             $table->string('image')->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

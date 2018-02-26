@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 class CreateOvertimesTable extends Migration
 {
     /**
@@ -16,10 +17,11 @@ class CreateOvertimesTable extends Migration
         Schema::create('overtimes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->date('date');
+            $table->date('overtime_date');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->integer('total_time');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -24,33 +27,35 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'deleted_at',
     ];
 
-    protected $dates = ['birthday'];
+    protected $dates = [
+        'birthday', 'deleted_at',
+    ];
 
     public function absences()
     {
-        return $this->hasMany('App\Absence');
+        return $this->hasMany(Absence::class);
     }
 
     public function overtimes()
     {
-        return $this->hasMany('App\Overtime');
+        return $this->hasMany(Overtime::class);
     }
 
     public function reports()
     {
-        return $this->hasMany('App\Report');
+        return $this->hasMany(Report::class);
     }
 
     public function rollCalls()
     {
-        return $this->hasMany('App\RollCall');
+        return $this->hasMany(RollCall::class);
     }
 
     public function salaries()
     {
-        return $this->hasMany('App\Salary');
+        return $this->hasMany(Salary::class);
     }
 }
