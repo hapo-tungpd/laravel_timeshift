@@ -19,5 +19,11 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
+        'phone' => $faker->tollFreePhoneNumber(),
+        'birthday' => $faker->dateTime($max = '1998-1-1', $timezone = null),
+        'gender' => $faker->randomElement([0, 1]),
+        'address' => $faker->city,
+        'JLPT' => $faker->randomElement(['None', 'N1', 'N2', 'N3', 'N4', 'N5']),
+        'image' => str_random(20),
     ];
 });

@@ -10,8 +10,6 @@ class Salary extends Model
 {
     use SoftDeletes;
 
-    protected $table = "salaries";
-
     protected $fillable = [
         'user_id', 'basic_salary', 'OT_salary',
     ];

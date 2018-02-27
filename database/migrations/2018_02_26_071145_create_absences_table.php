@@ -18,9 +18,10 @@ class CreateAbsencesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->date('absence_date');
-            $table->integer('type');
+            $table->tinyInteger('type');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
+            $table->text('content');
             $table->softDeletes();
             $table->timestamps();
         });
