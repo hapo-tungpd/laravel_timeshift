@@ -5,12 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\AdminResetPasswordNotification;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Admin extends Model
 {
     use Notifiable;
 
     protected $guard = 'admin';
+
+    use SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -33,4 +37,5 @@ class Admin extends Model
     {
         $this->notify(new AdminResetPasswordNotification($token));
     }
+    protected $dates = ['deleted_at'];
 }
