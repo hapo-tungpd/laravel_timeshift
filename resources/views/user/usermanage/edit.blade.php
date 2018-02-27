@@ -20,6 +20,10 @@
                         @endif
                         <input type="text" class="form-control" id="" name="name" autocomplete="off" value="{{ $user->name }}" required>
                     </div>
+                    <div class="form-group upload-btn-wrapper form-group col-lg-2 control-label">
+                        <input type="file" name="avata" />
+                        <button type="submit" class="btn btn-default">Upload avata</button>
+                    </div>
                     <div class="form-group">
                         <label for="">Gender</label>
                         <div class="radio">
@@ -67,16 +71,15 @@
                     </div>
                 </div>
                 <!-- /.box-body -->
-                <div class="upload-btn-wrapper form-group col-lg-2 control-label">
-                    <button class="btn btn-success">Upload avata</button>
-                    <input type="file" name="avata" style="" />
-                </div>
-
                 <div class="box-footer">
+                    <a href="{{ route('user.index') }}" class="btn btn-primary">Back</a>
                     <button type="submit" class="btn btn-primary" >Submit</button>
                 </div>
             </form>
+            <form class="box-footer" role="form" action="{{ route('user.changePassword') }}" method="get">
+                {{ csrf_field() }}
+                <button type="submit" class="btn btn-primary">Change Password</button>
+            </form>
         </div>
     </section>
-
 @endsection

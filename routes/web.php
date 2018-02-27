@@ -25,6 +25,10 @@ Route::prefix('user')->group(function() {
 
         /*update user*/
         Route::resource('users','UpdateUserController', ['as' => 'user']);
+
+        /*change password user*/
+        Route::get('changePassword', 'HomeController@showChangePasswordForm')->name('user.changePassword');
+        Route::post('changePassword', 'HomeController@changePassword')->name('changePassword');
     });
 });
 
@@ -36,6 +40,12 @@ Route::prefix('admin')->group(function() {
         Route::post('logout', 'Auth\AdminController@logout')->name('admin.logout');
         Route::get('/', 'AdminController@index')->name('admin.index');
     });
+
+    //password reset route
+    Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+    Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+    Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
+    Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 });
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

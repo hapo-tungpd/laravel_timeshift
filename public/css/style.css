@@ -13,12 +13,7 @@
 }
 
 .form-create .upload-btn-wrapper {
-	position: relative;
 	overflow: hidden;
-	display: inline-block;
-	padding-left: 14px;
-	padding-bottom: 15px;
-	cursor: auto;
 }
 .form-create .upload-btn-wrapper .btn-upload {
 	border: 2px solid gray;
@@ -28,11 +23,9 @@
 	border-radius: 8px;
 	font-size: 15px;
 	font-weight: bold;
-	cursor: auto;
 }
 .form-create .upload-btn-wrapper input {
 	font-size: 15px;
-	position: absolute;
 	left: 0;
 	top: 0;
 	opacity: 0;
