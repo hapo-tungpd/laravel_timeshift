@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use App\Notifications\AdminResetPasswordNotification;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Admin extends Model
@@ -21,7 +20,7 @@ class Admin extends Model
      * @var array
      */
     protected $fillable = [
-        'username', 'password',
+        'username', 'password', 'email',
     ];
 
     /**
@@ -37,5 +36,8 @@ class Admin extends Model
     {
         $this->notify(new AdminResetPasswordNotification($token));
     }
-    protected $dates = ['deleted_at'];
+
+    protected $date = [
+        'deleted_at',
+    ];
 }

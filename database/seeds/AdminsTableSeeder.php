@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Admin;
-
+//use  App\Models\Admin;
 class AdminsTableSeeder extends Seeder
 {
     /**
@@ -15,6 +15,7 @@ class AdminsTableSeeder extends Seeder
         Admin::create([
             'username' => 'admin',
             'password' => bcrypt('123456'),
+            'email' => 'admin@gmail.com',
         ]);
 
     }

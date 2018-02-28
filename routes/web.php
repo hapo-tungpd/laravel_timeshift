@@ -21,16 +21,26 @@ Route::prefix('user')->group(function() {
     Route::post('login', 'Auth\LoginController@login')->name('user.login');
     Route::get('index', 'HomeController@index')->name('user.index');
 
-    Route::middleware(['web.auth'])->group(function() {
+    Route::middleware(['web.auth'])->group(function () {
         Route::post('logout', 'Auth\LoginController@logout')->name('user.logout');
 
-        /*update user*/
-        Route::resource('users','UpdateUserController', ['as' => 'user']);
+        /**
+         * update user
+         */
+        Route::resource('users', 'UpdateUserController', ['as' => 'user']);
 
-        /*change password user*/
+        /**
+         * change password user
+         */
         Route::get('changePassword', 'HomeController@showChangePasswordForm')->name('user.changePassword');
         Route::post('changePassword', 'HomeController@changePassword')->name('changePassword');
+
+        /**
+         * User Report
+         */
+        Route::resource('report', 'UserReportController');
     });
+});
 
 Route::prefix('admin')->group(function() {
     //Admin Log in
@@ -46,14 +56,20 @@ Route::prefix('admin')->group(function() {
        Route::resource('user','ManageUserController', ['as' => 'admin']);
        Route::put('user/{id}/update-image', 'ManageUserController@updateImage')->name('admin.user.update.image');
 
-        //password reset route
+        /**
+         * admin reset password
+         */
         Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
         Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
         Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
         Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
+
+        /**
+         * admin report controller
+         */
+        Route::resource('report', 'Admins\AdminReportController', ['as' => 'admin_report']);
    });
 });
 
-});
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
