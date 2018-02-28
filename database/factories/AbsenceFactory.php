@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 use Carbon\Carbon;
 
 $factory->define(\App\Absence::class, function (Faker $faker) {
-    $absenceDate = $faker->date($format = 'Y-m-d', $max = 'now');
+    $absenceDate = $faker->dateTimeThisYear($max = 'now', $timezone = null)->format('Y-m-d');
     $startTime = Carbon::createFromFormat('Y-m-d H:i:s', $faker->dateTimeBetween($absenceDate . ' 8:30:00', $absenceDate . ' 18:00:00')->format('Y-m-d H:i:s'));
     $endTime = Carbon::createFromFormat('Y-m-d H:i:s', $faker->dateTimeBetween($startTime->toDateTimeString(), $absenceDate . ' 18:00:00')->format('Y-m-d H:i:s'));
 

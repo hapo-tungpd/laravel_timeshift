@@ -16,8 +16,9 @@ class CreateSalariesTable extends Migration
         Schema::create('salaries', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->double('basic_salary', 15, 2);
-            $table->double('OT_salary', 15, 2);
+            $table->double('pay_per_hour', 15, 2);
+            $table->double('insurance_money', 15, 2);
+            $table->double('final_payment', 15, 2);
             $table->softDeletes();
             $table->timestamps();
         });
