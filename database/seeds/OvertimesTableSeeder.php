@@ -11,6 +11,6 @@ class OvertimesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Overtime::class, 20)->create();
+        factory(\App\Models\Overtime::class, 20)->create();
     }
 }

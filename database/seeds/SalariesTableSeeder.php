@@ -11,6 +11,6 @@ class SalariesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Salary::class, 20)->create();
+        factory(\App\Models\Salary::class, 20)->create();
     }
 }

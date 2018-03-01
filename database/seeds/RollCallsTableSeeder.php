@@ -11,6 +11,6 @@ class RollCallsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\RollCall::class, 40)->create();
+        factory(\App\Models\RollCall::class, 40)->create();
     }
 }
