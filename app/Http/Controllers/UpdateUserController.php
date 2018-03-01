@@ -85,13 +85,18 @@ class UpdateUserController extends Controller
             $user->image = $file->getClientOriginalName();
             $user->save();
         }
-        $user->name = $request->input('name');
-        $user->gender = $request->input('gender');
-        $user->phone = $request->input('phone');
-        $user->email = $request->input('email');
-        $user->address = $request->input('address');
-        $user->JLPT = $request->input('JLPT');
-        $user->save();
+//        $user->name = $request->input('name');
+//        $user->gender = $request->input('gender');
+//        $user->phone = $request->input('phone');
+//        $user->email = $request->input('email');
+//        $user->address = $request->input('address');
+//        $user->JLPT = $request->input('JLPT');
+//        $user->save();
+//        return redirect()->route('user.index');
+
+        $data = $request->all();
+        $data = array_slice($data, 2);
+        User::where('id', $id)->update($data);
         return redirect()->route('user.index');
     }
 

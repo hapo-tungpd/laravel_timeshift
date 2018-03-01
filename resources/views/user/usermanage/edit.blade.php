@@ -24,6 +24,7 @@
                         <input type="file" name="avata" />
                         <button type="submit" class="btn btn-default">Upload avata</button>
                     </div>
+
                     <div class="form-group">
                         <label for="">Gender</label>
                         <div class="radio">
