@@ -16,7 +16,7 @@ class UserReportController extends Controller
     public function index()
     {
         $report = Report::where('user_id', Auth::user()->id)->paginate(config('app.pagination'));
-        return view("user.report.index-report",['report' => $report]);
+        return view("user.report.index-report", ['report' => $report]);
     }
 
     /**
@@ -45,7 +45,6 @@ class UserReportController extends Controller
         $reports->problem = $request->input('problem');
         $reports->save();
         return redirect()->route('report.index');
-
     }
 
     /**

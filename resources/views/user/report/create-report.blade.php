@@ -26,7 +26,7 @@
                             <p class="input-warning">{{ $errors->first('today') }}</p>
                         @endif
                         {{--<input type="text" class="form-control" id="" name="today">--}}
-                        <textarea name="today" class="form-control"></textarea>
+                        <textarea rows="4" cols="50" name="today" class="form-control"></textarea>
                     </div>
                 </div>
 
@@ -36,7 +36,7 @@
                         @if ($errors->has('tomorrow'))
                             <p class="input-warning">{{ $errors->first('tomorrow') }}</p>
                         @endif
-                        <textarea name="tomorrow" class="form-control"></textarea>
+                        <textarea rows="4" cols="50" name="tomorrow" class="form-control"></textarea>
                         {{--<input type="text" class="form-control" id="" name="tomorrow">--}}
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                             <p class="input-warning">{{ $errors->first('problem') }}</p>
                         @endif
                         {{--<input type="text" class="form-control" id="" name="problem">--}}
-                        <textarea name="problem" class="form-control"></textarea>
+                        <textarea rows="4" cols="50" name="problem" class="form-control"></textarea>
                     </div>
                 </div>
 

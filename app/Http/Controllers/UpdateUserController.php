@@ -16,7 +16,7 @@ class UpdateUserController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -77,7 +77,7 @@ class UpdateUserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        if($request->hasFile('avata')) {
+        if ($request->hasFile('avata')) {
             $file1 = $user->image;
             File::delete('img/' . $file1);
             $file = $request->avata;

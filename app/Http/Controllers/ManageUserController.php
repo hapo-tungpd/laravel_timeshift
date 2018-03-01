@@ -15,7 +15,7 @@ class ManageUserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('updated_at','desc')->paginate(config('app.user_pagination'));
+        $users = User::orderBy('updated_at', 'desc')->paginate(config('app.user_pagination'));
         $data = [
             'users' => $users,
         ];
@@ -91,7 +91,7 @@ class ManageUserController extends Controller
     {
         $data = $request->all();
         $data = array_slice($data, 2);
-        User::where('id',$id)->update($data);
+        User::where('id', $id)->update($data);
         return redirect()->route('admin.user.index');
     }
 
@@ -108,8 +108,8 @@ class ManageUserController extends Controller
             'message' => 'Delete success'
         ]);
     }
-
-    public function updateImage(Request $request, $id) {
+    public function updateImage(Request $request, $id)
+    {
         if (!$request->hasFile('img')) {
             return redirect()->route('admin.user.show', [
                 'id' => $id,

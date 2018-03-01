@@ -17,7 +17,7 @@ class AdminReportController extends Controller
     public function index()
     {
         $report = Report::all();
-        return view("admin.report.index-report",['report' => $report]);
+        return view("admin.report.index-report", ['report' => $report]);
     }
 
     /**

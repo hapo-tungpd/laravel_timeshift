@@ -14,9 +14,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 //manage user
-Route::prefix('user')->group(function() {
+Route::prefix('user')->group(function () {
     Route::get('login', 'Auth\LoginController@loginForm')->name('user.login-form');
     Route::post('login', 'Auth\LoginController@login')->name('user.login');
     Route::get('index', 'HomeController@index')->name('user.index');
@@ -42,34 +41,36 @@ Route::prefix('user')->group(function() {
     });
 });
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->group(function () {
     //Admin Log in
     Route::get('login', 'Auth\AdminController@loginForm')->name('admin.login-form');
     Route::post('login', 'Auth\AdminController@login')->name('admin.login');
-    Route::middleware(['admin.auth'])->group(function() {
+    Route::middleware(['admin.auth'])->group(function () {
         Route::post('logout', 'Auth\AdminController@logout')->name('admin.logout');
         Route::get('/', 'AdminController@index')->name('admin.index');
 
        /**
         * Manage user
         */
-       Route::resource('user','ManageUserController', ['as' => 'admin']);
-       Route::put('user/{id}/update-image', 'ManageUserController@updateImage')->name('admin.user.update.image');
+        Route::resource('user', 'ManageUserController', ['as' => 'admin']);
+        Route::put('user/{id}/update-image', 'ManageUserController@updateImage')->name('admin.user.update.image');
 
         /**
          * admin reset password
          */
-        Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
-        Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+        Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')
+            ->name('admin.password.email');
+        Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')
+            ->name('admin.password.request');
         Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
-        Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
+        Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')
+            ->name('admin.password.reset');
 
         /**
          * admin report controller
          */
         Route::resource('report', 'Admins\AdminReportController', ['as' => 'admin_report']);
-   });
+    });
 });
-
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
