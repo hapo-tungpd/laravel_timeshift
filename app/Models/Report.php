@@ -11,11 +11,11 @@ class Report extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'report_date', 'today', 'tomorrow', 'problem',
+        'user_id', 'day', 'today', 'tomorrow', 'problem',
     ];
 
     protected $dates = [
-        'report_date', 'deleted_at',
+        'day', 'deleted_at',
     ];
 
     public function user()

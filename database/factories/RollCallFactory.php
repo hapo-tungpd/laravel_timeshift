@@ -10,7 +10,7 @@ $factory->define(\App\RollCall::class, function (Faker $faker) {
     return [
         'start_time' => $startTime->toDateTimeString(),
         'end_time' => $endTime->toDateTimeString(),
-        'roll_call_date' => $rollCallDate,
+        'day' => $rollCallDate,
         'total_time' => $endTime->diffInHours($startTime),
         'user_id' => function () {
             return factory(\App\User::class)->create()->id;

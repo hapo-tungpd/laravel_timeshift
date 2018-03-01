@@ -17,7 +17,7 @@ class CreateAbsencesTable extends Migration
         Schema::create('absences', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->date('absence_date');
+            $table->date('day');
             $table->tinyInteger('type');
             $table->dateTime('start_time');
             $table->dateTime('end_time');

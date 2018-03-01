@@ -11,7 +11,7 @@ $factory->define(\App\Absence::class, function (Faker $faker) {
     return [
         'start_time' => $startTime->toDateTimeString(),
         'end_time' => $endTime->toDateTimeString(),
-        'absence_date' => $absenceDate,
+        'day' => $absenceDate,
         'type' => $faker->randomElement([1, 2, 3]),
         'content' => $faker->text($maxNbChars = 100),
         'user_id' => function () {

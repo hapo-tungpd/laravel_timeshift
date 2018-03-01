@@ -11,11 +11,11 @@ class RollCall extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'start_time', 'end_time', 'roll_call_date', 'total_time'
+        'user_id', 'start_time', 'end_time', 'day', 'total_time'
     ];
 
     protected $dates = [
-        'start_time', 'end_time', 'roll_call_date', 'deleted_at',
+        'start_time', 'end_time', 'day', 'deleted_at',
     ];
 
     public function user()

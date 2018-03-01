@@ -10,11 +10,11 @@ class Absence extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'absence_date', 'start_time', 'end_time', 'total_time',
+        'user_id', 'day', 'start_time', 'end_time', 'total_time',
     ];
 
     protected $dates = [
-        'absence_date', 'start_time', 'end_time', 'deleted_at',
+        'day', 'start_time', 'end_time', 'deleted_at',
     ];
 
     public function user()

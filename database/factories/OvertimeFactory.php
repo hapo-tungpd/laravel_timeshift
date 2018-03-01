@@ -13,7 +13,7 @@ $factory->define(\App\Overtime::class, function (Faker $faker) {
         },
         'start_time' => $startTime->toDateTimeString(),
         'end_time' => $endTime->toDateTimeString(),
-        'overtime_date' => $overtimeDate,
+        'day' => $overtimeDate,
         'total_time' => $endTime->diffInHours($startTime),
     ];
 });
