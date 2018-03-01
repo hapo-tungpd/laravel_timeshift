@@ -14,6 +14,11 @@ class Salary extends Model
         'user_id', 'pay_per_hour', 'insurance_money', 'final_payment',
     ];
 
+    /**
+     * Connect to users table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

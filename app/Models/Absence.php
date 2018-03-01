@@ -17,6 +17,12 @@ class Absence extends Model
         'day', 'start_time', 'end_time', 'deleted_at',
     ];
 
+
+    /**
+     * Connect to users table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

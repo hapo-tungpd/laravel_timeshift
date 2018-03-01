@@ -18,6 +18,11 @@ class RollCall extends Model
         'start_time', 'end_time', 'day', 'deleted_at',
     ];
 
+    /**
+     * Connect to users table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
