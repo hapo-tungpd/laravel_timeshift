@@ -41,6 +41,13 @@
                         <input type="text" class="form-control" id="" placeholder="Enter phone number" name="phone"  autocomplete="off" value="{{ old('phone_number') }}" required>
                     </div>
                     <div class="form-group">
+                        <label for="">Birthday</label>
+                        @if ($errors->has('birthday'))
+                            <p class="input-warning">{{ $errors->first('birthday') }}</p>
+                        @endif
+                        <input type="date" class="form-control" id="" placeholder="Enter phone number" name="birthday"  autocomplete="off" value="{{ old('birthday') }}" required>
+                    </div>
+                    <div class="form-group">
                         <label for="">Password default</label>
                         <input type="password" class="form-control" id="" name="password" value="$2y$10$gK7IMAohSkA6vnXSmA1fEOq87d9cgRiIQDGmpyeIxJmFaeaGY/eGu" required>
                     </div>

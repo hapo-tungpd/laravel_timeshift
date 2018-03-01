@@ -35,13 +35,12 @@
                                 </thead>
                                 <tbody>
                                     <td>{{ Auth::user()->id }}</td>
-                                    {{--<td>{{ Auth::user()->image }}--}}
                                     <td><img width="50" src="{{ asset('img/'.Auth::user()->image) }}" class="img-home" alt=""></td>
                                     <td>{{ Auth::user()->name }}</td>
                                     <td>{{ Auth::user()->email }}</td>
-                                    <td>{{ Auth::user()->birthday }}</td>
+                                    <td>{{ Auth::user()->birthday->format('d/m/Y') }}</td>
                                     <td>{{ Auth::user()->address }}</td>
-                                    <td>{{ Auth::user()->gender }}</td>
+                                    <td>{{ Auth::user()->gender?"Male":"Female" }}</td>
                                     <td>{{ Auth::user()->phone }}</td>
                                     <td>{{ Auth::user()->JLPT }}</td>
                                 </tbody>

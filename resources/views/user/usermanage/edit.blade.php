@@ -24,7 +24,6 @@
                         <input type="file" name="avata" />
                         <button type="submit" class="btn btn-default">Upload avata</button>
                     </div>
-
                     <div class="form-group">
                         <label for="">Gender</label>
                         <div class="radio">
@@ -44,6 +43,13 @@
                             <p class="input-warning">{{ $errors->first('phone') }}</p>
                         @endif
                         <input type="text" class="form-control" id="" value="{{ $user->phone }}" name="phone" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Birthday</label>
+                        @if ($errors->has('birthday'))
+                            <p class="input-warning">{{ $errors->first('birthday') }}</p>
+                        @endif
+                        <input type="text" class="form-control" id="" value="{{ $user->birthday->format('d/m/Y') }}" name="birthday" required autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="">Email address</label>

@@ -11,10 +11,8 @@
 .form-group .input-warning {
 	color: red;
 }
-
 .form-create .upload-btn-wrapper {
 	overflow: hidden;
-
 }
 .form-create .upload-btn-wrapper .btn-upload {
 	border: 2px solid gray;
@@ -27,12 +25,8 @@
 }
 .form-create .upload-btn-wrapper input {
 	font-size: 15px;
+	position: absolute;
 	left: 0;
 	top: 0;
 	opacity: 0;
-}
-.img-home {
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
 }

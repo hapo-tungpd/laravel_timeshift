@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('user.layouts.master')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">Login</div>
+                <div class="card-header text-center"><strong>Login</strong></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

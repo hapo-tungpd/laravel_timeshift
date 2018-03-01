@@ -37,12 +37,10 @@
                             <tbody>
                             <td>{{ $reports->id }}</td>
                             <td>{{ $reports->user_id }}</td>
-                            <td>{{ $reports->report_date }}</td>
+                            <td>{{ $reports->report_date->format('d/m/Y') }}</td>
                             <td>{{ $reports->today }}</td>
                             <td>{{ $reports->tomorrow }}</td>
                             <td>{{ $reports->problem }}</td>
-
-
                             <td>
                                 <a href="{{ route('report.show', $reports->id) }}">
                                     <button class="btn btn-primary btn-sm">
@@ -64,7 +62,6 @@
                                     <button class="fa fa-trash-o btn btn-danger btn-sm"></button>
                                 </form>
                             </td>
-
                             </tbody>
                             @endforeach
                         </table>

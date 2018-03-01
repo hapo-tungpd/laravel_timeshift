@@ -18,7 +18,7 @@
                         @if ($errors->has('report_date'))
                             <p class="input-warning">{{ $errors->first('report_date') }}</p>
                         @endif
-                        <input type="date" class="form-control" id="" name="report_date" autocomplete="off" value="{{ $report->report_date }}">
+                        <input type="text" class="form-control" id="" name="report_date" autocomplete="off" value="{{ $report->report_date->format('d/m/Y') }}">
                     </div>
 
                     <div class="form-group">
