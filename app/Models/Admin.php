@@ -1,17 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Admin extends Model
 {
-    use Notifiable;
-
-    protected $guard = 'admin';
-
     use SoftDeletes;
 
     /**
@@ -20,7 +16,7 @@ class Admin extends Model
      * @var array
      */
     protected $fillable = [
-        'username', 'password', 'email',
+        'username', 'password',
     ];
 
     /**
@@ -32,12 +28,7 @@ class Admin extends Model
         'password', 'remember_token',
     ];
 
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new AdminResetPasswordNotification($token));
-    }
-
-    protected $date = [
+    protected $dates = [
         'deleted_at',
     ];
 }

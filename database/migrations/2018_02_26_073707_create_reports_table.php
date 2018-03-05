@@ -17,6 +17,7 @@ class CreateReportsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->date('report_date');
+            $table->date('day');
             $table->text('today');
             $table->text('tomorrow');
             $table->text('problem');

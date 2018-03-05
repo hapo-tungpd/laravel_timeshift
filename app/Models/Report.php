@@ -10,13 +10,18 @@ class Report extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'report_date', 'today', 'tomorrow', 'problem',
+        'user_id', 'day', 'today', 'tomorrow', 'problem',
     ];
 
     protected $dates = [
-        'report_date', 'deleted_at',
+        'day', 'deleted_at',
     ];
 
+    /**
+     * Connect to users table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,13 +11,18 @@ class User extends Authenticatable
     use Notifiable;
     use SoftDeletes;
 
+    const MALE = 1;
+    const FEMALE = 0;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'birthday', 'gender', 'address', 'image', 'JLPT',
+
+        'name', 'email', 'password', 'phone', 'birthday',
+        'gender', 'address', 'image', 'JLPT',
     ];
 
     protected $attributes = [
@@ -38,26 +43,51 @@ class User extends Authenticatable
         'birthday', 'deleted_at',
     ];
 
+    /**
+     * Connect with absences table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function absences()
     {
         return $this->hasMany(Absence::class);
     }
 
+    /**
+     * Connect with overtimes table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function overtimes()
     {
         return $this->hasMany(Overtime::class);
     }
 
+    /**
+     * Connect with overtimes table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function reports()
     {
         return $this->hasMany(Report::class);
     }
 
+    /**
+     * Connect with overtimes table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function rollCalls()
     {
         return $this->hasMany(RollCall::class);
     }
 
+    /**
+     * Connect with overtimes table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function salaries()
     {
         return $this->hasMany(Salary::class);

@@ -19,7 +19,6 @@ Route::prefix('user')->group(function () {
     Route::get('login', 'Auth\LoginController@loginForm')->name('user.login-form');
     Route::post('login', 'Auth\LoginController@login')->name('user.login');
     Route::get('index', 'HomeController@index')->name('user.index');
-
     Route::middleware(['web.auth'])->group(function () {
         Route::post('logout', 'Auth\LoginController@logout')->name('user.logout');
 
@@ -40,7 +39,6 @@ Route::prefix('user')->group(function () {
         Route::resource('report', 'UserReportController');
     });
 });
-
 Route::prefix('admin')->group(function () {
     //Admin Log in
     Route::get('login', 'Auth\AdminController@loginForm')->name('admin.login-form');

@@ -11,6 +11,6 @@ class AbsencesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Absence::class, 10)->create();
+        factory(\App\Models\Absence::class, 10)->create();
     }
 }
