@@ -28,6 +28,7 @@ class StoreUserRequest extends FormRequest
             "name" => "max:255|regex:/^[\p{L}\s'.-]+$/u",
             "phone" => "min:6|max:20|regex:/^[0-9]*$/",
             "address" => "max:255",
+            'password' => 'required|string|min:6|confirmed',
         ];
     }
 
@@ -46,6 +47,8 @@ class StoreUserRequest extends FormRequest
             "phone.min" => "Your phone number is too short",
             "phone.max" => "Your phone number is too long",
             "address.max" => "Your address is too long",
+            "password.min" => "Your password is too short",
+            "password.confirmed" => "Password confirmation incorrect",
         ];
     }
 }

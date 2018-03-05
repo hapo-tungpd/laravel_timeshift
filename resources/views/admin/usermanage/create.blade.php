@@ -14,6 +14,24 @@
                 {{csrf_field()}}
                 <div class="box-body">
                     <div class="form-group">
+                        <label for="">Email address</label>
+                        @if ($errors->has('email'))
+                            <p class="input-warning">{{ $errors->first('email') }}</p>
+                        @endif
+                        <input type="email" class="form-control" id="" placeholder="Enter email" name="email" autocomplete="off" value="{{ old('email') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password </label>
+                        @if ($errors->has('password'))
+                            <p class="input-warning">{{ $errors->first('password') }}</p>
+                        @endif
+                        <input type="password" class="form-control" id="" placeholder="Enter password" name="password" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Confirm password </label>
+                        <input type="password" class="form-control" id="" placeholder="Confirm password" name="password_confirmation" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
                         <label for="">Name</label>
                         @if ($errors->has('name'))
                             <p class="input-warning">{{ $errors->first('name') }}</p>
@@ -39,13 +57,6 @@
                             <p class="input-warning">{{ $errors->first('phone') }}</p>
                         @endif
                         <input type="text" class="form-control" id="" placeholder="Enter phone number" name="phone"  autocomplete="off" value="{{ old('phone_number') }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Email address</label>
-                        @if ($errors->has('email'))
-                            <p class="input-warning">{{ $errors->first('email') }}</p>
-                        @endif
-                        <input type="email" class="form-control" id="" placeholder="Enter email" name="email" autocomplete="off" value="{{ old('email') }}" required>
                     </div>
                     <div class="form-group">
                         <label for="">Address</label>
