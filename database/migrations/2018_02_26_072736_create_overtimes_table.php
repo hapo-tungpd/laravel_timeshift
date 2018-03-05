@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 
-class CreateAdminsTable extends Migration
+class CreateOvertimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,14 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('overtimes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username');
-            $table->string('password');
+            $table->integer('user_id');
+            $table->date('day');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
+            $table->integer('total_time');
             $table->softDeletes();
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('overtimes');
     }
 }
