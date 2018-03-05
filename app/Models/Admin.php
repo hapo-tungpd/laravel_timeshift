@@ -1,14 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+
+class Admin extends Model
 {
-    use Notifiable;
     use SoftDeletes;
 
     /**
@@ -17,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'birthday', 'image', 'address', 'gender', 'phone', 'JLPT',
+        'username', 'password',
     ];
 
     /**
@@ -29,9 +28,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $dates = ['birthday', 'deleted_at'];
-
-    protected $attributes = [
-        'password' => '1',
+    protected $dates = [
+        'deleted_at',
     ];
 }
