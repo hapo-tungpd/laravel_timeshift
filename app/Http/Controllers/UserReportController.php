@@ -38,6 +38,7 @@ class UserReportController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
         Report::create($data);
         return redirect()->route('report.index');
     }

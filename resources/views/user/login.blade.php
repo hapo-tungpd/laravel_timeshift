@@ -69,7 +69,7 @@
                     <label for="brand1">
                         <span></span>Remember me</label>
                 </div>
-                <a href="#">Forgot Password?</a>
+                <a href="{{ route('password.request') }}">Forgot Password?</a>
                 <div class="clear"></div>
             </div>
             <div class="right-w3l">

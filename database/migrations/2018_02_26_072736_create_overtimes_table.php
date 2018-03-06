@@ -18,9 +18,9 @@ class CreateOvertimesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->date('day');
-            $table->date('start_time');
-            $table->date('end_time');
-            $table->integer('total_time');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
+            $table->integer('total_time')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
