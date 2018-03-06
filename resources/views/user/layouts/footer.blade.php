@@ -20,16 +20,21 @@
 <script src="{{asset('js/bootstrap3-wysihtml5.all.min.js')}}"></script>
 {{--Bootstrap timepick--}}
 <script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
     });
 </script>
-
 <script>
     $(function() {
         $('.fa-sign-out').parent().on('click', function() {
             $('#logout-btn').trigger('click');
         });
+    });
+</script>
+<script>
+    $(".datetimepicker1").datetimepicker({
+        format: 'Y-m-d H:s:i',
     });
 </script>

@@ -42,6 +42,11 @@ Route::prefix('user')->group(function () {
          * User Overtime
          */
         Route::resource('overtime', 'User\OvertimeUserController');
+
+        /**
+         * User Absence
+         */
+        Route::resource('absence', 'User\AbsenceUserController');
     });
 });
 Route::prefix('admin')->group(function () {
