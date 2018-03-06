@@ -12,10 +12,10 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="">Date</label>
-                        @if ($errors->has('report_date'))
-                            <p class="input-warning">{{ $errors->first('report_date') }}</p>
+                        @if ($errors->has('day'))
+                            <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input type="date" class="form-control" id="" name="report_date">
+                        <input type="date" class="form-control" id="" name="day">
                     </div>
                 </div>
 

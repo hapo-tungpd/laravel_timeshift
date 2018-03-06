@@ -37,8 +37,9 @@ class OvertimeUserController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $data['start_time'] = $data['day'] . ' ' . $data['start_time'] . ':00';
+        $data['end_time'] = $data['day'] . ' ' . $data['end_time'] . ':00';
         Overtime::create($data);
-
         return redirect()->route('overtime.index');
     }
 

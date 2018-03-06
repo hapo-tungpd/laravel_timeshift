@@ -20,7 +20,7 @@ class CreateOvertimesTable extends Migration
             $table->date('day');
             $table->date('start_time');
             $table->date('end_time');
-            $table->integer('total_time');
+            $table->integer('total_time')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

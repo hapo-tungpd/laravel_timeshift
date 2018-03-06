@@ -37,13 +37,9 @@ class UserReportController extends Controller
      */
     public function store(Request $request)
     {
-        $reports = new Report();
-        $reports->user_id = Auth::user()->id;
-        $reports->report_date = $request->input('report_date');
-        $reports->today = $request->input('today');
-        $reports->tomorrow = $request->input('tomorrow');
-        $reports->problem = $request->input('problem');
-        $reports->save();
+        $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        Report::create($data);
         return redirect()->route('report.index');
     }
 
