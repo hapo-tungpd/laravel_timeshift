@@ -38,6 +38,7 @@ class OvertimeUserController extends Controller
     {
         $data = $request->all();
         Overtime::create($data);
+
         return redirect()->route('overtime.index');
     }
 
