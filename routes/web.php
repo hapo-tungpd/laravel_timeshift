@@ -37,6 +37,11 @@ Route::prefix('user')->group(function () {
          * User Report
          */
         Route::resource('report', 'UserReportController');
+
+        /**
+         * User Overtime
+         */
+        Route::resource('overtime', 'User\OvertimeUserController');
     });
 });
 Route::prefix('admin')->group(function () {
