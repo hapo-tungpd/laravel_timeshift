@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>Creative Login Form Responsive Widget Template :: w3layouts</title>
+    <title>Haposoft</title>
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Creative Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"
+    <meta name="keywords" content="Haposoft login"
     />
     <script type="application/x-javascript">
         addEventListener("load", function () {
@@ -19,9 +19,9 @@
     </script>
     <!-- Meta tag Keywords -->
     <!-- css files -->
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/style-login.css') }}" type="text/css" media="all" />
     <!-- Style-CSS -->
-    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet"  href="{{ asset('css/font-awesome.css') }}">
     <!-- Font-Awesome-Icons-CSS -->
     <!-- //css files -->
     <!-- online-fonts -->
@@ -33,7 +33,7 @@
 <!--header-->
 <div class="header-w3l">
     <h1>
-        <span>C</span>reative
+        <span>U</span>ser
         <span>L</span>ogin
         <span>F</span>orm</h1>
 </div>
@@ -41,14 +41,27 @@
 <div class="main-content-agile">
     <div class="sub-main-w3">
         <h2>Login Here</h2>
-        <form action="#" method="post">
+        <form action="{{ route('login') }}" method="post">
+            @csrf
             <div class="pom-agile">
                 <span class="fa fa-user-o" aria-hidden="true"></span>
-                <input placeholder="E-mail" name="Name" class="user" type="email" required="">
+                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="pom-agile">
                 <span class="fa fa-key" aria-hidden="true"></span>
-                <input placeholder="Password" name="Password" class="pass" type="password" required="">
+                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                @if ($errors->has('password'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="sub-w3l">
                 <div class="sub-agile">
@@ -68,8 +81,8 @@
 <!--//main-->
 <!--footer-->
 <div class="footer">
-    <p>&copy; 2018 Creative Login Form. All rights reserved | Design by
-        <a href="http://w3layouts.com">W3layouts</a>
+    <p>&copy; 2018 User login | Design by
+        <a href="https://haposoft.com/vi">Haposoft</a>
     </p>
 </div>
 <!--//footer-->

@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('user.layouts.master')
 
 @section('content')
 
@@ -15,10 +15,17 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="">Date</label>
-                        @if ($errors->has('report_date'))
-                            <p class="input-warning">{{ $errors->first('report_date') }}</p>
+                        @if ($errors->has('user_id'))
+                            <p class="input-warning">{{ $errors->first('user_id') }}</p>
                         @endif
-                        <input type="text" class="form-control" id="" name="report_date" autocomplete="off" value="{{ $report->report_date->format('d/m/Y') }}">
+                        <input type="text" class="form-control" name="user_id" autocomplete="off" value="{{ Auth::user()->id }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Date</label>
+                        @if ($errors->has('day'))
+                            <p class="input-warning">{{ $errors->first('day') }}</p>
+                        @endif
+                        <input type="date" class="form-control" name="day" autocomplete="off" value="{{ $report->day->format('d/m/Y') }}">
                     </div>
 
                     <div class="form-group">
@@ -26,7 +33,7 @@
                         @if ($errors->has('today'))
                             <p class="input-warning">{{ $errors->first('today') }}</p>
                         @endif
-                        <input type="text" class="form-control" id="" value="{{ $report->today }}" name="today" required autocomplete="off">
+                        <input type="text" class="form-control" value="{{ $report->today }}" name="today" required autocomplete="off">
                     </div>
 
                     <div class="form-group">
@@ -53,5 +60,4 @@
             </form>
         </div>
     </section>
-
 @endsection

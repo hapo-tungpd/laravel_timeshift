@@ -9,13 +9,24 @@
 
             <form class="form-create" role="form" action="{{ route('report.store') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
+
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="">Your ID</label>
+                        @if ($errors->has('user_id'))
+                            <p class="input-warning">{{ $errors->first('user_id') }}</p>
+                        @endif
+                        <input type="number" class="form-control" id="" name="user_id" value="{{ Auth::user()->id }}">
+                    </div>
+                </div>
+
                 <div class="box-body">
                     <div class="form-group">
                         <label for="">Date</label>
                         @if ($errors->has('report_date'))
-                            <p class="input-warning">{{ $errors->first('report_date') }}</p>
+                            <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input type="date" class="form-control" id="" name="report_date">
+                        <input type="date" class="form-control" id="" name="day">
                     </div>
                 </div>
 
