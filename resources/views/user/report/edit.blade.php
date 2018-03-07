@@ -1,60 +1,61 @@
 @extends('user.layouts.master')
 
 @section('content')
+
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title"> Create New Report</h3>
+                <h3 class="box-title">Update your report</h3>
             </div>
-
-            <form class="form-create" role="form" action="{{ route('report.store') }}" method="POST" enctype="multipart/form-data">
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" action="{{ route('report.update', $report->id) }}" method="post">
                 {{ csrf_field() }}
+                <input type="hidden" name="_method" value="PUT">
                 <div class="box-body">
+                    <div class="form-group">
+                        <label for="">Date</label>
+                        @if ($errors->has('user_id'))
+                            <p class="input-warning">{{ $errors->first('user_id') }}</p>
+                        @endif
+                        <input type="text" class="form-control" name="user_id" autocomplete="off" value="{{ Auth::user()->id }}">
+                    </div>
                     <div class="form-group">
                         <label for="">Date</label>
                         @if ($errors->has('day'))
                             <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input type="date" class="form-control" id="" name="day">
+                        <input type="date" class="form-control" name="day" autocomplete="off" value="{{ $report->day->format('d/m/Y') }}">
                     </div>
-                </div>
 
-                <div class="box-body">
                     <div class="form-group">
                         <label for="">Today</label>
                         @if ($errors->has('today'))
                             <p class="input-warning">{{ $errors->first('today') }}</p>
                         @endif
-                        {{--<input type="text" class="form-control" id="" name="today">--}}
-                        <textarea rows="4" cols="50" name="today" class="form-control"></textarea>
+                        <input type="text" class="form-control" value="{{ $report->today }}" name="today" required autocomplete="off">
                     </div>
-                </div>
 
-                <div class="box-body">
                     <div class="form-group">
                         <label for="">Tomorrow</label>
-                        @if ($errors->has('tomorrow'))
+                        @if ($errors->has('today'))
                             <p class="input-warning">{{ $errors->first('tomorrow') }}</p>
                         @endif
-                        <textarea rows="4" cols="50" name="tomorrow" class="form-control"></textarea>
-                        {{--<input type="text" class="form-control" id="" name="tomorrow">--}}
+                        <input type="text" class="form-control" id="" value="{{ $report->tomorrow }}" name="tomorrow" required autocomplete="off">
                     </div>
-                </div>
 
-                <div class="box-body">
                     <div class="form-group">
                         <label for="">Problem</label>
                         @if ($errors->has('problem'))
                             <p class="input-warning">{{ $errors->first('problem') }}</p>
                         @endif
-                        {{--<input type="text" class="form-control" id="" name="problem">--}}
-                        <textarea rows="4" cols="50" name="problem" class="form-control"></textarea>
+                        <input type="text" class="form-control" id="" value="{{ $report->problem }}" name="problem" required autocomplete="off">
                     </div>
                 </div>
+                <!-- /.box-body -->
 
                 <div class="box-footer">
-                    <a href="{{ route('report.index') }}" class="btn btn-primary">Back</a>
-                    <button type="submit" class="btn btn-primary" >Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>

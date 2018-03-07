@@ -37,7 +37,7 @@
                             <tbody>
                             <td>{{ $reports->id }}</td>
                             <td>{{ $reports->user_id }}</td>
-                            <td>{{ $reports->day }}</td>
+                            <td>{{ $reports->day->format('d/m/Y') }}</td>
                             <td>{{ $reports->today }}</td>
                             <td>{{ $reports->tomorrow }}</td>
                             <td>{{ $reports->problem }}</td>

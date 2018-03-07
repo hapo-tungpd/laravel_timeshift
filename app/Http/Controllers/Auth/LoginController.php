@@ -37,7 +37,7 @@ class LoginController extends Controller
     public function loginForm()
     {
         if (Auth::guard('web')->check()) {
-            return redirect()->route('user.usermanage.index');
+            return redirect()->route('user.index');
         }
         return view('user.login');
     }

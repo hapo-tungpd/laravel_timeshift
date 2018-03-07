@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Overtime;
+use Auth;
 
 class OvertimeUserController extends Controller
 {
@@ -15,7 +16,8 @@ class OvertimeUserController extends Controller
      */
     public function index()
     {
-        return view('user.overtime.index');
+        $overtime = Overtime::where('user_id', Auth::user()->id)->paginate(config('app.pagination'));
+        return view("user.overtime.index", ['overtime' => $overtime]);
     }
 
     /**
@@ -51,7 +53,11 @@ class OvertimeUserController extends Controller
      */
     public function show($id)
     {
-        //
+        $overtime = Overtime::findOrFail($id);
+        $data = [
+            'overtime' => $overtime,
+        ];
+        return view('user.overtime.show', $data);
     }
 
     /**
@@ -62,7 +68,11 @@ class OvertimeUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $overtime = Overtime::findOrFail($id);
+        $data = [
+            'overtime' => $overtime,
+        ];
+        return view('user.overtime.edit', $data);
     }
 
     /**
@@ -74,7 +84,12 @@ class OvertimeUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $data = array_slice($data, 2);
+        $data['start_time'] = $data['day'] . ' ' . $data['start_time'] . ':00';
+        $data['end_time'] = $data['day'] . ' ' . $data['end_time'] . ':00';
+        Overtime::where('id', $id)->update($data);
+        return redirect()->route('overtime.index');
     }
 
     /**
@@ -85,6 +100,7 @@ class OvertimeUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Overtime::findOrFail($id)->delete();
+        return redirect()->route('overtime.index');
     }
 }

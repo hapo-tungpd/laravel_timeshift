@@ -16,7 +16,7 @@ class UserReportController extends Controller
     public function index()
     {
         $report = Report::where('user_id', Auth::user()->id)->paginate(config('app.pagination'));
-        return view("user.report.index-report", ['report' => $report]);
+        return view("user.report.index", ['report' => $report]);
     }
 
     /**
@@ -26,7 +26,7 @@ class UserReportController extends Controller
      */
     public function create()
     {
-        return view('user.report.create-report');
+        return view('user.report.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class UserReportController extends Controller
         $data = [
             'report' => $report,
         ];
-        return view('user.report.show-report', $data);
+        return view('user.report.show', $data);
     }
 
     /**
@@ -70,7 +70,7 @@ class UserReportController extends Controller
         $data = [
             'report' => $report,
         ];
-        return view('user.report.edit-report', $data);
+        return view('user.report.edit', $data);
     }
 
     /**
@@ -82,13 +82,9 @@ class UserReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $reports = Report::findOrFail($id);
-        $reports->user_id = Auth::user()->id;
-        $reports->report_date = $request->report_date;
-        $reports->today = $request->today;
-        $reports->tomorrow = $request->tomorrow;
-        $reports->problem = $request->problem;
-        $reports->save();
+        $data = $request->all();
+        $data = array_slice($data, 2);
+        Report::where('id', $id)->update($data);
         return redirect()->route('report.index');
     }
 
