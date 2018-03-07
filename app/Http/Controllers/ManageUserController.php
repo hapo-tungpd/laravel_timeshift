@@ -90,8 +90,9 @@ class ManageUserController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
+        dd($data);
         $data = array_slice($data, 2);
-        User::where('id',$id)->update($data);
+        User::findOrFail($id)->update($data);
         return redirect()->route('admin.user.index');
     }
 
@@ -109,18 +110,4 @@ class ManageUserController extends Controller
         ]);
     }
 
-    public function updateImage(Request $request, $id) {
-        if (!$request->hasFile('img')) {
-            return redirect()->route('admin.user.show', [
-                'id' => $id,
-            ]);
-        }
-        $imgLink = $request->file('img')->store('public/images');
-        $imgLink = substr($imgLink, 7);
-        $data["image"] = $imgLink;
-        User::find($id)->update($data);
-        return redirect()->route('admin.user.show', [
-            'id' => $id,
-        ]);
-    }
 }
