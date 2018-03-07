@@ -24,11 +24,11 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            "email" => "unique:users,email,NULL,id,deleted_at,NULL|max:255",
+            "email" => "unique:users,email,".$this->route('user').",id,deleted_at,NULL|max:255",
             "name" => "max:255|regex:/^[\p{L}\s'.-]+$/u",
-            "phone" => "min:6|max:20|regex:/^[0-9]*$/",
+            "phone" => "min:6|max:20",
             "address" => "max:255",
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'string|min:6|confirmed',
         ];
     }
 

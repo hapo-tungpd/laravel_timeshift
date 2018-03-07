@@ -87,10 +87,9 @@ class ManageUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request, $id)
     {
         $data = $request->all();
-        dd($data);
         $data = array_slice($data, 2);
         User::findOrFail($id)->update($data);
         return redirect()->route('admin.user.index');

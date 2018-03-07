@@ -24,8 +24,6 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ route('admin.user.index') }}"><i class="fa fa-users"></i>User list</a></li>
                     <li><a href="{{ route('admin.user.create') }}"><i class="fa fa-user-plus"></i>Add new user</a></li>
-                    <li><a href=""><i class="fa fa-users"></i>User list</a></li>
-                    <li><a href=""><i class="fa fa-user-plus"></i>Add new user</a></li>
                 </ul>
             </li>
         </ul>
