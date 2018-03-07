@@ -17,9 +17,6 @@ class CreateRollCallsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->dateTime('start_time');
-            $table->dateTime('end_time');
-            $table->date('day');
-            $table->integer('total_time');
             $table->softDeletes();
             $table->timestamps();
         });

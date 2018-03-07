@@ -22,8 +22,7 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Your ID</th>
+                                <th>No.</th>
                                 <th>Date</th>
                                 <th>Today</th>
                                 <th>Tomorrow</th>
@@ -33,10 +32,12 @@
                                 <th></th>
                             </tr>
                             </thead>
+                            @php
+                                $temp = 1;
+                            @endphp
                             @foreach($report as $reports)
                             <tbody>
-                            <td>{{ $reports->id }}</td>
-                            <td>{{ $reports->user_id }}</td>
+                            <td>{{ $temp++ }}</td>
                             <td>{{ $reports->day->format('d/m/Y') }}</td>
                             <td>{{ $reports->today }}</td>
                             <td>{{ $reports->tomorrow }}</td>

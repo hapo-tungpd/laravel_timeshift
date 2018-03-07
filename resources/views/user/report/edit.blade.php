@@ -25,7 +25,7 @@
                         @if ($errors->has('day'))
                             <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input type="date" class="form-control" name="day" autocomplete="off" value="{{ $report->day->format('d/m/Y') }}">
+                        <input type="text" class="form-control report-time-picker" name="day" autocomplete="off" value="{{ $report->day->format('d/m/Y') }}">
                     </div>
 
                     <div class="form-group">

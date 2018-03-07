@@ -25,16 +25,32 @@
     $(document).ready(function () {
         $('.sidebar-menu').tree()
     });
-</script>
-<script>
     $(function() {
         $('.fa-sign-out').parent().on('click', function() {
             $('#logout-btn').trigger('click');
         });
     });
-</script>
-<script>
     $(".datetimepicker1").datetimepicker({
         format: 'Y-m-d H:s:i',
     });
+    $(".report-time-picker").datetimepicker({
+        format: 'Y-m-d',
+    });
+    $(".over-time-picker").datetimepicker({
+        format: 'Y-m-d',
+    });
+    $(".absence-time-picker").datetimepicker({
+        format: 'Y-m-d',
+    });
+</script>
+<script>
+    (function (){
+        var radios = document.getElementsByName('type');
+        console.log(radios);
+        for(var i = 0; i < radios.length; i++){
+            radios[i].onclick = function(){
+                document.getElementById('choiceLabel').innerText = this.value;
+            }
+        }
+    })();
 </script>

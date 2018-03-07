@@ -34,15 +34,15 @@
                         <label for="">Type</label>
                         <div class="radio">
                             <label class="radio-inline">
-                                <input type="radio" name="type" id="optionsRadios1" value="0" checked >
+                                <input type="radio" name="type" id="" value="1" checked >
                                 Full time
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="type" id="optionsRadios2" value="1" >
+                                <input type="radio" name="type" id="" value="2" >
                                 Part time
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="type" id="optionsRadios3" value="2" >
+                                <input type="radio" name="type" id="" value="3" >
                                 Other
                             </label>
                         </div>
@@ -85,7 +85,5 @@
                 </div>
             </form>
         </div>
-
-
     </section>
 @endsection

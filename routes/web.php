@@ -47,6 +47,11 @@ Route::prefix('user')->group(function () {
          * User Absence
          */
         Route::resource('absence', 'User\AbsenceUserController');
+
+        /**
+         * Roll call user
+         */
+        Route::resource('rollcall', 'User\RollCallUserController');
     });
 });
 Route::prefix('admin')->group(function () {

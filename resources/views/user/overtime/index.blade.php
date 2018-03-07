@@ -22,8 +22,7 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Your ID</th>
+                                <th>No.</th>
                                 <th>Date</th>
                                 <th>Start time</th>
                                 <th>End time</th>
@@ -33,10 +32,12 @@
                                 <th></th>
                             </tr>
                             </thead>
+                            @php
+                                $temp = 1;
+                            @endphp
                             @foreach($overtime as $overtimes)
                                 <tbody>
-                                <td>{{ $overtimes->id }}</td>
-                                <td>{{ $overtimes->user_id }}</td>
+                                <td>{{ $temp++ }}</td>
                                 <td>{{ $overtimes->day->format('d/m/Y') }}</td>
                                 <td>{{ $overtimes->start_time->format('H:s:i') }}</td>
                                 <td>{{ $overtimes->end_time->format('H:s:i') }}</td>

@@ -16,7 +16,6 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Your ID</th>
                                 <th>Date</th>
                                 <th>Start time</th>
                                 <th>End time</th>
@@ -25,7 +24,6 @@
                             </thead>
                             <tbody>
                             <td>{{ $overtime->id }}</td>
-                            <td>{{ $overtime->user_id }}</td>
                             <td>{{ $overtime->day->format('d/m/Y') }}</td>
                             <td>{{ $overtime->start_time->format('H:s:i') }}</td>
                             <td>{{ $overtime->end_time->format('H:s:i') }}</td>

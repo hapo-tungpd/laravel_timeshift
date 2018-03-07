@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Welcome to Overtime, {{ Auth::user()->name }}</div>
+                    <div class="alert card-header alert-success">Welcome to Absence, {{ Auth::user()->name }}</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -16,14 +16,13 @@
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-primary ">
                                 <i class="fa fa-th-list"></i>
-                                Create new Overtime
+                                Create new Absence
                             </button>
                         </form>
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Your ID</th>
+                                <th>No.</th>
                                 <th>Date</th>
                                 <th>Type</th>
                                 <th>Start time</th>
@@ -34,12 +33,14 @@
                                 <th></th>
                             </tr>
                             </thead>
+                            @php
+                                $temp = 1;
+                            @endphp
                             @foreach($absence as $absences)
                                 <tbody>
-                                <td>{{ $absences->id }}</td>
-                                <td>{{ $absences->user_id }}</td>
+                                <td>{{ $temp++ }}</td>
                                 <td>{{ $absences->day->format('d/m/Y') }}</td>
-                                <td>{{ $absences->type?"Full time":"Part time" }}</td>
+                                <td id="choiceLabel"></td>
                                 <td>{{ $absences->start_time->format('H:s d-m-Y') }}</td>
                                 <td>{{ $absences->end_time->format('H:s d-m-Y') }}</td>
                                 <td>{{ $absences->content }}</td>

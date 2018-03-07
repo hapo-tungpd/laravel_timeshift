@@ -16,7 +16,6 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Your ID</th>
                                 <th>Date</th>
                                 <th>Type</th>
                                 <th>Start time</th>
@@ -26,7 +25,6 @@
                             </thead>
                             <tbody>
                             <td>{{ $absence->id }}</td>
-                            <td>{{ $absence->user_id }}</td>
                             <td>{{ $absence->type }}</td>
                             <td>{{ $absence->day->format('d/m/Y') }}</td>
                             <td>{{ $absence->start_time->format('H:s') }}</td>

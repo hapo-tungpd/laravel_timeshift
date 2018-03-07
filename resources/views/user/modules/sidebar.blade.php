@@ -25,7 +25,6 @@
                     <li><a href="{{ route('user.index') }}"><i class="fa fa-users"></i>User Manage</a></li>
                 </ul>
             </li>
-
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user"></i> <span>Report</span>
@@ -36,7 +35,6 @@
                     <li><a href="{{ route('report.index') }}"><i class="fa fa-user-plus"></i>Your Report</a></li>
                 </ul>
             </li>
-
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user"></i> <span>Overtime</span>
@@ -47,7 +45,6 @@
                     <li><a href="{{ route('overtime.index') }}"><i class="fa fa-user-plus"></i>Your Overtime</a></li>
                 </ul>
             </li>
-
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user"></i> <span>Absence</span>
@@ -58,9 +55,17 @@
                     <li><a href="{{ route('absence.index') }}"><i class="fa fa-user-plus"></i>Your Absence</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>Roll call</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('rollcall.create') }}"><i class="fa fa-users"></i>Roll call</a></li>
+                    <li><a href="{{ route('rollcall.index') }}"><i class="fa fa-users"></i>Your Roll Call</a></li>
+                </ul>
+            </li>
         </ul>
-
-
     </section>
     <!-- /.sidebar -->
 </aside>
