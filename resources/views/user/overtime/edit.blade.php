@@ -25,7 +25,7 @@
                         @if ($errors->has('day'))
                             <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input type="text" class="form-control over-time-picker" name="day" autocomplete="off" value="{{ $overtime->day->format('d/m/Y') }}">
+                        <input type="text" class="form-control over-time-picker" name="day" autocomplete="off" value="{{ $overtime->day->format('Y/m/d') }}">
                     </div>
 
                     <div class="form-group">
@@ -53,8 +53,8 @@
                     </div>
                 </div>
                 <!-- /.box-body -->
-
                 <div class="box-footer">
+                    <a href="{{ route('overtime.index') }}" class="btn btn-primary">Back</a>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>

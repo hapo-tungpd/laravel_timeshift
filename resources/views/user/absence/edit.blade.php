@@ -1,7 +1,6 @@
 @extends('user.layouts.master')
 
 @section('content')
-
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
@@ -25,7 +24,24 @@
                         @if ($errors->has('day'))
                             <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input type="text" class="form-control absence-time-picker" name="day" autocomplete="off" value="{{ $absence->day->format('d/m/Y') }}">
+                        <input type="text" class="form-control absence-time-picker" name="day" autocomplete="off" value="{{ $absence->day->format('Y/m/d') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Type</label>
+                        <div class="radio">
+                            <label class="radio-inline">
+                                <input type="radio" name="type" id="r1" value="1" {{ ($absence->type)?'checked':'' }} required>
+                                Full time
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="type" id="r2" value="2" {{ (!$absence->type)?'checked':'' }} required>
+                                Part time
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="type" id="r3" value="3" {{ (!$absence->type)?'checked':'' }} required>
+                                Other
+                            </label>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="">Start time</label>
@@ -51,6 +67,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
+                    <a href="{{ route('absence.index') }}" class="btn btn-primary">Back</a>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>

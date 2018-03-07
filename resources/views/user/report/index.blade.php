@@ -22,42 +22,42 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>No.</th>
-                                <th>Date</th>
-                                <th>Today</th>
-                                <th>Tomorrow</th>
-                                <th>Problem</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th class="text-center">No.</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Today</th>
+                                <th class="text-center">Tomorrow</th>
+                                <th class="text-center">Problem</th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
                             </tr>
                             </thead>
                             @php
                                 $temp = 1;
                             @endphp
-                            @foreach($report as $reports)
+                            @foreach($report as $data)
                             <tbody>
-                            <td>{{ $temp++ }}</td>
-                            <td>{{ $reports->day->format('d/m/Y') }}</td>
-                            <td>{{ $reports->today }}</td>
-                            <td>{{ $reports->tomorrow }}</td>
-                            <td>{{ $reports->problem }}</td>
-                            <td>
-                                <a href="{{ route('report.show', $reports->id) }}">
+                            <td class="text-center">{{ $temp++ }}</td>
+                            <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
+                            <td class="text-center">{{ $data->today }}</td>
+                            <td class="text-center">{{ $data->tomorrow }}</td>
+                            <td class="text-center">{{ $data->problem }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('report.show', $data->id) }}">
                                     <button class="btn btn-primary btn-sm">
                                         <i class="fa fa-th-list"></i>
                                     </button>
                                 </a>
                             </td>
-                            <td>
-                                <a href="{{ route('report.edit', $reports->id) }}">
+                            <td class="text-center">
+                                <a href="{{ route('report.edit', $data->id) }}">
                                     <button class="btn btn-warning btn-sm">
                                         <i class="fa fa-edit"></i>
                                     </button>
                                 </a>
                             </td>
-                            <td>
-                                <form action="{{ route('report.destroy', $reports->id) }}" method="POST">
+                            <td class="text-center">
+                                <form action="{{ route('report.destroy', $data->id) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button class="fa fa-trash-o btn btn-danger btn-sm"></button>

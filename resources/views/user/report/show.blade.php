@@ -15,19 +15,19 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Date</th>
-                                <th>Today</th>
-                                <th>Tomorrow</th>
-                                <th>Problem</th>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Today</th>
+                                <th class="text-center">Tomorrow</th>
+                                <th class="text-center">Problem</th>
                             </tr>
                             </thead>
                                 <tbody>
-                                <td>{{ $report->id }}</td>
-                                <td>{{ $report->day->format('d/m/Y') }}</td>
-                                <td>{{ $report->today }}</td>
-                                <td>{{ $report->tomorrow }}</td>
-                                <td>{{ $report->problem }}</td>
+                                <td class="text-center">{{ $report->id }}</td>
+                                <td class="text-center">{{ $report->day->format('d/m/Y') }}</td>
+                                <td class="text-center">{{ $report->today }}</td>
+                                <td class="text-center">{{ $report->tomorrow }}</td>
+                                <td class="text-center">{{ $report->problem }}</td>
                                 </tbody>
                         </table>
                     </div>

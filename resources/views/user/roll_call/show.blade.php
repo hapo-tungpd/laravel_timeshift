@@ -15,13 +15,13 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Start Roll Call</th>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Start Roll Call</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <td>{{ $rollcall->id }}</td>
-                            <td>{{ $rollcall->start_time->format('H:i d-m-Y') }}</td>
+                            <td class="text-center">{{ $rollcall->id }}</td>
+                            <td class="text-center">{{ $rollcall->start_time->format('H:i d-m-Y') }}</td>
                             </tbody>
                         </table>
                     </div>

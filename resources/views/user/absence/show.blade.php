@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Your Report</div>
+                    <div class="alert card-header alert-success">Your Absence</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -15,23 +15,24 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Date</th>
-                                <th>Type</th>
-                                <th>Start time</th>
-                                <th>End time</th>
-                                <th>Content</th>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Type</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Start time</th>
+                                <th class="text-center">End time</th>
+                                <th class="text-center">Content</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <td>{{ $absence->id }}</td>
-                            <td>{{ $absence->type }}</td>
-                            <td>{{ $absence->day->format('d/m/Y') }}</td>
-                            <td>{{ $absence->start_time->format('H:s') }}</td>
-                            <td>{{ $absence->end_time->format('H:s') }}</td>
-                            <td>{{ $absence->content }}</td>
+                            <td class="text-center">{{ $absence->id }}</td>
+                            <td class="text-center">{{ $absence->type }}</td>
+                            <td class="text-center">{{ $absence->day->format('d/m/Y') }}</td>
+                            <td class="text-center">{{ $absence->start_time->format('H:s') }}</td>
+                            <td class="text-center">{{ $absence->end_time->format('H:s') }}</td>
+                            <td class="text-center">{{ $absence->content }}</td>
                             </tbody>
                         </table>
+                        <a class="btn btn-primary" href="{{ route('absence.index') }}">Back</a>
                     </div>
                 </div>
             </div>

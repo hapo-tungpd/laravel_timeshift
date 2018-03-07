@@ -1,7 +1,6 @@
 @extends('user.layouts.master')
 
 @section('content')
-
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
@@ -25,9 +24,8 @@
                         @if ($errors->has('day'))
                             <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input type="text" class="form-control report-time-picker" name="day" autocomplete="off" value="{{ $report->day->format('d/m/Y') }}">
+                        <input type="text" class="form-control report-time-picker" name="day" autocomplete="off" value="{{ $report->day->format('Y/m/d') }}">
                     </div>
-
                     <div class="form-group">
                         <label for="">Today</label>
                         @if ($errors->has('today'))
@@ -35,7 +33,6 @@
                         @endif
                         <input type="text" class="form-control" value="{{ $report->today }}" name="today" required autocomplete="off">
                     </div>
-
                     <div class="form-group">
                         <label for="">Tomorrow</label>
                         @if ($errors->has('today'))
@@ -43,7 +40,6 @@
                         @endif
                         <input type="text" class="form-control" id="" value="{{ $report->tomorrow }}" name="tomorrow" required autocomplete="off">
                     </div>
-
                     <div class="form-group">
                         <label for="">Problem</label>
                         @if ($errors->has('problem'))
@@ -53,7 +49,6 @@
                     </div>
                 </div>
                 <!-- /.box-body -->
-
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

@@ -43,14 +43,4 @@
         format: 'Y-m-d',
     });
 </script>
-<script>
-    (function (){
-        var radios = document.getElementsByName('type');
-        console.log(radios);
-        for(var i = 0; i < radios.length; i++){
-            radios[i].onclick = function(){
-                document.getElementById('choiceLabel').innerText = this.value;
-            }
-        }
-    })();
-</script>
+

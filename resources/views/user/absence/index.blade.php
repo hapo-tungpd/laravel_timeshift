@@ -22,44 +22,52 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>No.</th>
-                                <th>Date</th>
-                                <th>Type</th>
-                                <th>Start time</th>
-                                <th>End time</th>
-                                <th>Content</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th class="text-center">No.</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Type</th>
+                                <th class="text-center">Start time</th>
+                                <th class="text-center">End time</th>
+                                <th class="text-center">Content</th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
                             </tr>
                             </thead>
                             @php
                                 $temp = 1;
                             @endphp
-                            @foreach($absence as $absences)
+                            @foreach($absence as $data)
                                 <tbody>
-                                <td>{{ $temp++ }}</td>
-                                <td>{{ $absences->day->format('d/m/Y') }}</td>
-                                <td id="choiceLabel"></td>
-                                <td>{{ $absences->start_time->format('H:s d-m-Y') }}</td>
-                                <td>{{ $absences->end_time->format('H:s d-m-Y') }}</td>
-                                <td>{{ $absences->content }}</td>
-                                <td>
-                                    <a href="{{ route('absence.show', $absences->id) }}">
+                                <td class="text-center">{{ $temp++ }}</td>
+                                <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
+                                <td class="text-center">
+                                    @if ($data->type == 1)
+                                        Fulltime
+                                    @elseif ($data->type == 2)
+                                        Parttime
+                                    @else
+                                        Other
+                                    @endif
+                                 </td>
+                                <td class="text-center">{{ $data->start_time->format('H:s d-m-Y') }}</td>
+                                <td class="text-center">{{ $data->end_time->format('H:s d-m-Y') }}</td>
+                                <td class="text-center">{{ $data->content }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('absence.show', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">
                                             <i class="fa fa-th-list"></i>
                                         </button>
                                     </a>
                                 </td>
-                                <td>
-                                    <a href="{{ route('absence.edit', $absences->id) }}">
+                                <td class="text-center">
+                                    <a href="{{ route('absence.edit', $data->id) }}">
                                         <button class="btn btn-warning btn-sm">
                                             <i class="fa fa-edit"></i>
                                         </button>
                                     </a>
                                 </td>
-                                <td>
-                                    <form action="{{ route('absence.destroy', $absences->id) }}" method="POST">
+                                <td class="text-center">
+                                    <form action="{{ route('absence.destroy', $data->id) }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button class="fa fa-trash-o btn btn-danger btn-sm"></button>
@@ -74,3 +82,10 @@
         </div>
     </div>
 @endsection
+<script>
+    var rate_value;
+    if (document.getElementById('r1').checked) {
+        rate_value = "Fsafsfsf";
+    }
+    document.getElementById('results').innerHTML = rate_value;
+</script>

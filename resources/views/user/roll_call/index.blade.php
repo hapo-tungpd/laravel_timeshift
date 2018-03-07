@@ -22,19 +22,17 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Time Roll call</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Time Roll call</th>
+                                <th class="text-center"></th>
                             </tr>
                             </thead>
-                            @foreach($rollcall as $rollcalls)
+                            @foreach($rollcall as $data)
                                 <tbody>
-                                <td>{{ $rollcalls->id }}</td>
-                                <td>{{ $rollcalls->start_time }}</td>
-                                <td>
-                                    <a href="{{ route('rollcall.show', $rollcalls->id) }}">
+                                <td class="text-center">{{ $data->id }}</td>
+                                <td class="text-center">{{ $data->start_time }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('rollcall.show', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">
                                             <i class="fa fa-th-list"></i>
                                         </button>

@@ -22,42 +22,42 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>No.</th>
-                                <th>Date</th>
-                                <th>Start time</th>
-                                <th>End time</th>
-                                <th>Total time</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th class="text-center">No.</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Start time</th>
+                                <th class="text-center">End time</th>
+                                <th class="text-center">Total time</th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
                             </tr>
                             </thead>
                             @php
                                 $temp = 1;
                             @endphp
-                            @foreach($overtime as $overtimes)
+                            @foreach($overtime as $data)
                                 <tbody>
-                                <td>{{ $temp++ }}</td>
-                                <td>{{ $overtimes->day->format('d/m/Y') }}</td>
-                                <td>{{ $overtimes->start_time->format('H:s:i') }}</td>
-                                <td>{{ $overtimes->end_time->format('H:s:i') }}</td>
-                                <td>{{ $overtimes->total_time }}</td>
-                                <td>
-                                    <a href="{{ route('overtime.show', $overtimes->id) }}">
+                                <td class="text-center">{{ $temp++ }}</td>
+                                <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
+                                <td class="text-center">{{ $data->start_time->format('H:s:i') }}</td>
+                                <td class="text-center">{{ $data->end_time->format('H:s:i') }}</td>
+                                <td class="text-center">{{ $data->total_time }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('overtime.show', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">
                                             <i class="fa fa-th-list"></i>
                                         </button>
                                     </a>
                                 </td>
-                                <td>
-                                    <a href="{{ route('overtime.edit', $overtimes->id) }}">
+                                <td class="text-center">
+                                    <a href="{{ route('overtime.edit', $data->id) }}">
                                         <button class="btn btn-warning btn-sm">
                                             <i class="fa fa-edit"></i>
                                         </button>
                                     </a>
                                 </td>
-                                <td>
-                                    <form action="{{ route('overtime.destroy', $overtimes->id) }}" method="POST">
+                                <td class="text-center">
+                                    <form action="{{ route('overtime.destroy', $data->id) }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button class="fa fa-trash-o btn btn-danger btn-sm"></button>
