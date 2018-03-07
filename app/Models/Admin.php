@@ -28,7 +28,7 @@ class Admin extends Model
         'password', 'remember_token',
     ];
 
-    protected $date = [
+    protected $dates = [
         'deleted_at',
     ];
 }
