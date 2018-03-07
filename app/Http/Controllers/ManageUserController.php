@@ -19,7 +19,7 @@ class ManageUserController extends Controller
         $data = [
             'users' => $users,
         ];
-        return view('admin.usermanage.index', $data);
+        return view('admin.user-manage.index', $data);
     }
 
     /**
@@ -29,7 +29,7 @@ class ManageUserController extends Controller
      */
     public function create()
     {
-        return view('admin.usermanage.create');
+        return view('admin.user-manage.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class ManageUserController extends Controller
         $data = [
             'user' => $user,
         ];
-        return view('admin.usermanage.show', $data);
+        return view('admin.user-manage.show', $data);
     }
 
     /**
@@ -77,7 +77,7 @@ class ManageUserController extends Controller
         $data = [
             'user' => $user,
         ];
-        return view('admin.usermanage.edit', $data);
+        return view('admin.user-manage.edit', $data);
     }
 
     /**
