@@ -26,7 +26,6 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        'gender' => 1,
         'JLPT' => 'None',
     ];
 
