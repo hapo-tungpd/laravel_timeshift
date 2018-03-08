@@ -43,6 +43,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ route('overtime.create') }}"><i class="fa fa-users"></i>Create Overtime</a></li>
                     <li><a href="{{ route('overtime.index') }}"><i class="fa fa-user-plus"></i>Your Overtime</a></li>
+                    <li><a href="{{ route('overtime.statistic') }}"><i class="fa fa-user-plus"></i>Statistic Overtime</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -63,6 +64,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ route('rollcall.create') }}"><i class="fa fa-users"></i>Roll call</a></li>
                     <li><a href="{{ route('rollcall.index') }}"><i class="fa fa-users"></i>Your Roll Call</a></li>
+                    <li><a href="{{ route('rollcall.statistic') }}"><i class="fa fa-users"></i>Statistic Roll Call</a></li>
                 </ul>
             </li>
         </ul>

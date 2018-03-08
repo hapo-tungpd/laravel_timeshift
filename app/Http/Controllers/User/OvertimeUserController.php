@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Overtime;
 use Auth;
+use App\Http\Requests\OvertimeUserRequest;
 
 class OvertimeUserController extends Controller
 {
@@ -36,11 +37,14 @@ class OvertimeUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OvertimeUserRequest $request)
     {
         $data = $request->all();
         $data['start_time'] = $data['day'] . ' ' . $data['start_time'] . ':00';
         $data['end_time'] = $data['day'] . ' ' . $data['end_time'] . ':00';
+        $to_time = strtotime($data['start_time']);
+        $from_time = strtotime($data['end_time']);
+        $data['total_time'] = ceil($from_time - $to_time)/(60*60);
         Overtime::create($data);
         return redirect()->route('overtime.index');
     }
@@ -102,5 +106,16 @@ class OvertimeUserController extends Controller
     {
         Overtime::findOrFail($id)->delete();
         return redirect()->route('overtime.index');
+    }
+
+    public function statistic()
+    {
+        $dateTime = Overtime::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day');
+        $date_time_day = substr($dateTime, 0, 7);
+        $sum_overtime = Overtime::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $date_time_day . "%")
+            ->sum('total_time');
+        $overtime = Overtime::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $date_time_day . "%")
+            ->paginate(config('app.pagination'));
+        return view("user.overtime.statistic", ['overtime' => $overtime, 'sum_overtime' => $sum_overtime]);
     }
 }

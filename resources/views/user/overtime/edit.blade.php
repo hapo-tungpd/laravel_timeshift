@@ -27,7 +27,6 @@
                         @endif
                         <input type="text" class="form-control over-time-picker" name="day" autocomplete="off" value="{{ $overtime->day->format('Y/m/d') }}">
                     </div>
-
                     <div class="form-group">
                         <label for="">Start time</label>
                         @if ($errors->has('start_time'))
@@ -35,21 +34,12 @@
                         @endif
                         <input type="time" class="form-control" value="{{ $overtime->start_time->format('H:s') }}" name="start_time" required autocomplete="off">
                     </div>
-
                     <div class="form-group">
                         <label for="">End time</label>
                         @if ($errors->has('end_time'))
                             <p class="input-warning">{{ $errors->first('end_time') }}</p>
                         @endif
                         <input type="time" class="form-control" value="{{ $overtime->end_time->format('H:s') }}" name="end_time" required autocomplete="off">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Total time</label>
-                        @if ($errors->has('total_time'))
-                            <p class="input-warning">{{ $errors->first('total_time') }}</p>
-                        @endif
-                        <input type="text" class="form-control" id="" value="{{ $overtime->total_time }}" name="total_time" required autocomplete="off">
                     </div>
                 </div>
                 <!-- /.box-body -->

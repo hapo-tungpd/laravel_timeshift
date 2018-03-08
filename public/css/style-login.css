@@ -115,6 +115,14 @@ body {
     -ms-transition: 0.5s all;
     transition: 0.5s all;
 }
+.admin-login {
+    size: 15px;
+    margin-top: 10px;
+}
+.admin-login a {
+    size: 15px;
+    color: #FFFFFF;
+}
 span.fa {
     float: left;
     color: #000;

@@ -39,8 +39,8 @@
                                 <tbody>
                                 <td class="text-center">{{ $temp++ }}</td>
                                 <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
-                                <td class="text-center">{{ $data->start_time->format('H:s:i') }}</td>
-                                <td class="text-center">{{ $data->end_time->format('H:s:i') }}</td>
+                                <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
+                                <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
                                 <td class="text-center">{{ $data->total_time }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('overtime.show', $data->id) }}">

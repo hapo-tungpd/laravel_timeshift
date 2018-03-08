@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use File;
 use Image;
+use App\Http\Requests\StoreUserRequest;
 
 class UpdateUserController extends Controller
 {
@@ -74,7 +75,7 @@ class UpdateUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request, $id)
     {
         $user = User::findOrFail($id);
         if ($request->hasFile('avata')) {

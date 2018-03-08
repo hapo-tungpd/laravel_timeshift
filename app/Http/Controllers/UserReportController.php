@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\Report;
+use App\Http\Requests\ReportUserRequest;
 
 class UserReportController extends Controller
 {
@@ -35,7 +36,7 @@ class UserReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReportUserRequest $request)
     {
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;

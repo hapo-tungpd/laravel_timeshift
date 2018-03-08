@@ -49,7 +49,7 @@
                         @if ($errors->has('birthday'))
                             <p class="input-warning">{{ $errors->first('birthday') }}</p>
                         @endif
-                        <input type="text" class="form-control" id="" value="{{ $user->birthday->format('d/m/Y') }}" name="birthday" required autocomplete="off">
+                        <input type="text" class="form-control" id="" value="{{ $user->birthday->format('Y-m-d') }}" name="birthday" required autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="">Email address</label>

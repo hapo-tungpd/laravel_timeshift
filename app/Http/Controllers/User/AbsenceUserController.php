@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Absence;
 use Auth;
+use App\Http\Requests\AbsenceUserRequest;
 
 class AbsenceUserController extends Controller
 {
@@ -36,7 +37,7 @@ class AbsenceUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AbsenceUserRequest $request)
     {
         $data = $request->all();
         Absence::create($data);

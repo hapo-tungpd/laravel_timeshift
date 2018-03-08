@@ -6,19 +6,14 @@
             <div class="box-header with-border">
                 <h3 class="box-title"> Create New Absence</h3>
             </div>
-
             <form class="form-create" role="form" action="{{ route('absence.store') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="box-body">
                     <div class="form-group">
                         <label for="">User ID</label>
-                        @if ($errors->has('user_id'))
-                            <p class="input-warning">{{ $errors->first('user_id') }}</p>
-                        @endif
                         <input type="text" class="form-control" id="" name="user_id" value="{{ Auth::user()->id }}">
                     </div>
                 </div>
-
                 <div class="box-body">
                     <div class="form-group">
                         <label for="">Date</label>
@@ -28,7 +23,6 @@
                         <input type="date" class="form-control" id="" name="day">
                     </div>
                 </div>
-
                 <div class="box-body">
                     <div class="form-group">
                         <label for="">Type</label>
@@ -48,7 +42,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="box-body">
                     <div class="form-group">
                         <label for="">Start time</label>
@@ -67,7 +60,6 @@
                         <input data-format="y-m-d" type="text" class=" bfh-datepicker form-control datetimepicker1" name="end_time">
                     </div>
                 </div>
-
                 <div class="box-body">
                     <div class="form-group">
                         <label for="">Content</label>
@@ -78,7 +70,6 @@
                         <textarea name="content" class="form-control"></textarea>
                     </div>
                 </div>
-
                 <div class="box-footer">
                     <a href="{{ route('absence.index') }}" class="btn btn-primary">Back</a>
                     <button type="submit" class="btn btn-primary" >Submit</button>

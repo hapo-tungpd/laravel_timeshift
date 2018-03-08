@@ -75,6 +75,9 @@
             <div class="right-w3l">
                 <input type="submit" value="Login">
             </div>
+            <div class="right-w31 admin-login">
+                <a href="{{ route('admin.login-form') }}">You are Admin?</a>
+            </div>
         </form>
     </div>
 </div>

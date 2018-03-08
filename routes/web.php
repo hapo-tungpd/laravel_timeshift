@@ -41,6 +41,7 @@ Route::prefix('user')->group(function () {
         /**
          * User Overtime
          */
+        Route::get('overtime/statistic', 'User\OvertimeUserController@statistic')->name('overtime.statistic');
         Route::resource('overtime', 'User\OvertimeUserController');
 
         /**
@@ -51,6 +52,7 @@ Route::prefix('user')->group(function () {
         /**
          * Roll call user
          */
+        Route::get('rollcall/statistic', 'User\RollCallUserController@statistic')->name('rollcall.statistic');
         Route::resource('rollcall', 'User\RollCallUserController');
     });
 });

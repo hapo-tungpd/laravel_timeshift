@@ -5,36 +5,45 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Welcome to Roll call, {{ Auth::user()->name }}</div>
+                    <div class="alert card-header alert-success">Welcome to Absence, {{ Auth::user()->name }}</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form action="{{ route('rollcall.index', Auth::user()->id) }}" method="GET">
-                            {{ csrf_field() }}
-                            <button type="submit" class="btn btn-primary ">
-                                <i class="fa fa-th-list"></i>
-                                Your Roll call
-                            </button>
-                        </form>
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Time Roll call</th>
+                                <th class="text-center">No.</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Start time</th>
+                                <th class="text-center">End time</th>
+                                <th class="text-center">Total time</th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
                                 <th class="text-center"></th>
                             </tr>
                             </thead>
+                            @php
+                                $temp = 1;
+                            @endphp
                             @foreach($rollcall as $data)
                                 <tbody>
-                                <td class="text-center">{{ $data->id }}</td>
-                                <td class="text-center">{{ $data->start_time }}</td>
+                                <td class="text-center">{{ $temp++ }}</td>
+                                <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
+                                <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
+                                <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
+                                <td class="text-center">{{ $data->total_time }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('rollcall.show', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">
                                             <i class="fa fa-th-list"></i>
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('rollcall.edit', $data->id) }}">
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="">Update time</i>
                                         </button>
                                     </a>
                                 </td>

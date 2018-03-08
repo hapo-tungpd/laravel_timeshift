@@ -25,7 +25,15 @@
                             </thead>
                             <tbody>
                             <td class="text-center">{{ $absence->id }}</td>
-                            <td class="text-center">{{ $absence->type }}</td>
+                            <td class="text-center">
+                                @if ($absence->type == 1)
+                                    Fulltime
+                                @elseif ($absence->type == 2)
+                                    Parttime
+                                @else
+                                    Other
+                                @endif
+                            </td>
                             <td class="text-center">{{ $absence->day->format('d/m/Y') }}</td>
                             <td class="text-center">{{ $absence->start_time->format('H:s') }}</td>
                             <td class="text-center">{{ $absence->end_time->format('H:s') }}</td>
