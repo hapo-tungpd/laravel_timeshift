@@ -33,14 +33,14 @@ class RollCallUserController extends Controller
         $rollcall->start_time = date('Y-m-d H:i:s');
         $rollcall->end_time = date('Y-m-d H:i:s');
         //hour OT
-        $to_time = strtotime($rollcall->end_time);
-        $from_time = strtotime($rollcall->start_time);
-        $hour = ceil($to_time - $from_time)/(60*60);
+        $toTime = strtotime($rollcall->end_time);
+        $fromTime = strtotime($rollcall->start_time);
+        $hour = ceil($toTime - $fromTime)/(60*60);
         $rollcall->total_time = $hour;
-        $date_time = RollCall::where('user_id', Auth::user()->id)->orderBy('start_time', 'desc')->value('start_time');
-        $date_time_day = substr($date_time, 0, 10);
+        $dateTime = RollCall::where('user_id', Auth::user()->id)->orderBy('start_time', 'desc')->value('start_time');
+        $dateTimeDay = substr($dateTime, 0, 10);
         $date = substr($rollcall->start_time, 0, 10);
-        if (!($date === $date_time_day)) {
+        if (!($date === $dateTimeDay)) {
             $rollcall->save();
             return redirect()->route('rollcall.index');
         } else {
@@ -129,12 +129,12 @@ class RollCallUserController extends Controller
     }
     public function statistic()
     {
-        $date_time = RollCall::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day');
-        $date_time_day = substr($date_time, 0, 7);
-        $sum_rollcall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $date_time_day . "%")
+        $dateTime = RollCall::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day');
+        $dateTimeDay = substr($dateTime, 0, 7);
+        $sumRollcall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->sum('total_time');
-        $rollcall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $date_time_day . "%")
+        $rollcall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->paginate(config('app.pagination'));
-        return view('user.roll_call.statistic', ['rollcall' => $rollcall, 'sum_rollcall' => $sum_rollcall]);
+        return view('user.roll_call.statistic', ['rollcall' => $rollcall, 'sumRollcall' => $sumRollcall]);
     }
 }

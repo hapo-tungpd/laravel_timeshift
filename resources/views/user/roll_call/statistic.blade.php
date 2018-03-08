@@ -48,7 +48,7 @@
                             <tr>
                                 <th class="text-center">Total time working</th>
                                 <th class="text-center">{{ --$temp }} day</th>
-                                <th class="text-center">{{ $sum_rollcall }} hour</th>
+                                <th class="text-center">{{ $sumRollcall }} hour</th>
                             </tr>
                             </tbody>
                         </table>
