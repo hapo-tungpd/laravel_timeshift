@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ManageUserController extends Controller
@@ -19,7 +19,7 @@ class ManageUserController extends Controller
         $data = [
             'users' => $users,
         ];
-        return view('admin.usermanage.index', $data);
+        return view('admin.user-manage.index', $data);
     }
 
     /**
@@ -29,7 +29,7 @@ class ManageUserController extends Controller
      */
     public function create()
     {
-        return view('admin.usermanage.create');
+        return view('admin.user-manage.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class ManageUserController extends Controller
         $data = [
             'user' => $user,
         ];
-        return view('admin.usermanage.show', $data);
+        return view('admin.user-manage.show', $data);
     }
 
     /**
@@ -77,7 +77,7 @@ class ManageUserController extends Controller
         $data = [
             'user' => $user,
         ];
-        return view('admin.usermanage.edit', $data);
+        return view('admin.user-manage.edit', $data);
     }
 
     /**
@@ -87,11 +87,11 @@ class ManageUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request, $id)
     {
         $data = $request->all();
         $data = array_slice($data, 2);
-        User::where('id',$id)->update($data);
+        User::findOrFail($id)->update($data);
         return redirect()->route('admin.user.index');
     }
 
@@ -109,18 +109,4 @@ class ManageUserController extends Controller
         ]);
     }
 
-    public function updateImage(Request $request, $id) {
-        if (!$request->hasFile('img')) {
-            return redirect()->route('admin.user.show', [
-                'id' => $id,
-            ]);
-        }
-        $imgLink = $request->file('img')->store('public/images');
-        $imgLink = substr($imgLink, 7);
-        $data["image"] = $imgLink;
-        User::find($id)->update($data);
-        return redirect()->route('admin.user.show', [
-            'id' => $id,
-        ]);
-    }
 }

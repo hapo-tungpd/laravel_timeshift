@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\Overtime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -53,7 +53,6 @@ class HomeController extends Controller
         $user = Auth::user();
         $user->password = bcrypt($request->get('new-password'));
         $user->save();
-        return redirect()->back()->with("success","Password changed successfully !");
+        return redirect()->back()->with("success", "Password changed successfully !");
     }
-
 }

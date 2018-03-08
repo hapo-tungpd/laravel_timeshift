@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class RollCallsTableSeeder extends Seeder
+class SalariesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class RollCallsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\RollCall::class, 40)->create();
+        factory(\App\Models\Salary::class, 20)->create();
     }
 }

@@ -14,7 +14,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 //manage user
 Route::prefix('user')->group(function() {
     Route::get('login', 'Auth\LoginController@loginForm')->name('user.login-form');
@@ -34,11 +33,6 @@ Route::prefix('user')->group(function() {
          */
         Route::get('changePassword', 'HomeController@showChangePasswordForm')->name('user.changePassword');
         Route::post('changePassword', 'HomeController@changePassword')->name('changePassword');
-
-        /**
-         * User Report
-         */
-        Route::resource('report', 'UserReportController');
     });
 });
 
@@ -68,6 +62,7 @@ Route::prefix('admin')->group(function() {
          * admin report controller
          */
         Route::resource('report', 'Admins\AdminReportController', ['as' => 'admin_report']);
+       Route::put('user/{id}/update-image', 'UserProfileController@updateImage')->name('admin.user.update.image');
    });
 });
 
