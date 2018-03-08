@@ -6,6 +6,7 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Add new user</h3>
+                <a href="{{ route('admin.user.index') }}"><button class="btn btn-success pull-right"><i class="fa fa-users"></i> User list</button></a>
             </div>
             <!-- /.box-header -->
 
@@ -13,6 +14,24 @@
             <form role="form" action="{{ route('admin.user.store') }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="box-body">
+                    <div class="form-group">
+                        <label for="">Email address</label>
+                        @if ($errors->has('email'))
+                            <p class="input-warning">{{ $errors->first('email') }}</p>
+                        @endif
+                        <input type="email" class="form-control" id="" placeholder="Enter email" name="email" autocomplete="off" value="{{ old('email') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password </label>
+                        @if ($errors->has('password'))
+                            <p class="input-warning">{{ $errors->first('password') }}</p>
+                        @endif
+                        <input type="password" class="form-control" id="" placeholder="Enter password" name="password" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Confirm password </label>
+                        <input type="password" class="form-control" id="" placeholder="Confirm password" name="password_confirmation" autocomplete="off" required>
+                    </div>
                     <div class="form-group">
                         <label for="">Name</label>
                         @if ($errors->has('name'))
@@ -41,24 +60,6 @@
                         <input type="text" class="form-control" id="" placeholder="Enter phone number" name="phone"  autocomplete="off" value="{{ old('phone_number') }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="">Birthday</label>
-                        @if ($errors->has('birthday'))
-                            <p class="input-warning">{{ $errors->first('birthday') }}</p>
-                        @endif
-                        <input type="date" class="form-control" id="" placeholder="Enter phone number" name="birthday"  autocomplete="off" value="{{ old('birthday') }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Password default</label>
-                        <input type="password" class="form-control" id="" name="password" value="$2y$10$gK7IMAohSkA6vnXSmA1fEOq87d9cgRiIQDGmpyeIxJmFaeaGY/eGu" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Email address</label>
-                        @if ($errors->has('email'))
-                            <p class="input-warning">{{ $errors->first('email') }}</p>
-                        @endif
-                        <input type="email" class="form-control" id="" placeholder="Enter email" name="email" autocomplete="off" value="{{ old('email') }}" required>
-                    </div>
-                    <div class="form-group">
                         <label for="">Address</label>
                         @if ($errors->has('address'))
                             <p class="input-warning">{{ $errors->first('address') }}</p>
@@ -68,12 +69,9 @@
                     <div class="form-group">
                         <label>JLPT level</label>
                         <select class="form-control" name="JLPT">
-                            <option value="N1">N1</option>
-                            <option value="N2">N2</option>
-                            <option value="N3">N3</option>
-                            <option value="N4">N4</option>
-                            <option value="N5">N5</option>
-                            <option value="None" selected>None</option>
+                            @foreach (\App\Models\User::JLPT as $value)
+                                <option value="{{ $value }}">{{ $value }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -91,7 +89,6 @@
                 </div>
             </form>
         </div>
-        <a href="{{ route('admin.user.index') }}"><button class="btn btn-success pull-right"><i class="fa fa-users"></i> User list</button></a>
     </section>
 
 @endsection

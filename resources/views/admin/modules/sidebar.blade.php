@@ -26,7 +26,6 @@
                     <li><a href="{{ route('admin.user.create') }}"><i class="fa fa-user-plus"></i>Add new user</a></li>
                 </ul>
             </li>
-
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user"></i> <span>Report</span>
@@ -36,6 +35,7 @@
                     <li><a href="{{ route('admin_report.report.index') }}"><i class="fa fa-users"></i>Employee Report</a></li>
                     <li><a href=""><i class="fa fa-users"></i>User list</a></li>
                     <li><a href=""><i class="fa fa-user-plus"></i>Add new user</a></li>
+
                 </ul>
             </li>
         </ul>
