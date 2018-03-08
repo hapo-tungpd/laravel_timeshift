@@ -57,12 +57,9 @@
                     <div class="form-group">
                         <label>JLPT level</label>
                         <select class="form-control" name="JLPT">
-                            <option value="N1" {{ ($user->JLPT == 'N1')?'selected':'' }}>N1</option>
-                            <option value="N2" {{ ($user->JLPT == 'N2')?'selected':'' }}>N2</option>
-                            <option value="N3" {{ ($user->JLPT == 'N3')?'selected':'' }}>N3</option>
-                            <option value="N4" {{ ($user->JLPT == 'N4')?'selected':'' }}>N4</option>
-                            <option value="N5" {{ ($user->JLPT == 'N5')?'selected':'' }}>N5</option>
-                            <option value="None" {{ ($user->JLPT == 'None')?'selected':'' }}>None</option>
+                            @foreach (\App\Models\User::JLPT as $value)
+                                <option value="{{ $value }}" {{ ($user->JLPT == $value)?'selected':'' }} >{{ $value }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

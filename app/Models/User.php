@@ -14,6 +14,9 @@ class User extends Authenticatable
 
     const MALE = 1;
     const FEMALE = 0;
+    const JLPT = [
+        'None', 'N1', 'N2', 'N3', 'N4','N5'
+    ];
 
     /**
      * The attributes that are mass assignable.

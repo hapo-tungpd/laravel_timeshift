@@ -6,6 +6,7 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Add new user</h3>
+                <a href="{{ route('admin.user.index') }}"><button class="btn btn-success pull-right"><i class="fa fa-users"></i> User list</button></a>
             </div>
             <!-- /.box-header -->
 
@@ -68,12 +69,9 @@
                     <div class="form-group">
                         <label>JLPT level</label>
                         <select class="form-control" name="JLPT">
-                            <option value="N1">N1</option>
-                            <option value="N2">N2</option>
-                            <option value="N3">N3</option>
-                            <option value="N4">N4</option>
-                            <option value="N5">N5</option>
-                            <option value="None" selected>None</option>
+                            @foreach (\App\Models\User::JLPT as $value)
+                                <option value="{{ $value }}">{{ $value }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -91,7 +89,6 @@
                 </div>
             </form>
         </div>
-        <a href="{{ route('admin.user.index') }}"><button class="btn btn-success pull-right"><i class="fa fa-users"></i> User list</button></a>
     </section>
 
 @endsection
