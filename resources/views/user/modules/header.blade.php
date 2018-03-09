@@ -15,7 +15,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </a>
-
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
@@ -29,6 +28,9 @@
                         <button type="submit" id="logout-btn" class="hidden" ></button>
                     </form>
                     <a href="#"><i class="fa fa-sign-out"></i>Log out</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
         </div>

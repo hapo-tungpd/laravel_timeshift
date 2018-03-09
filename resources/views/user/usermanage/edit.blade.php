@@ -3,7 +3,7 @@
 @section('content')
 
     <section class="content">
-        <div class="box box-primary">
+        <div class="box box-primary col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="box-header with-border">
                 <h3 class="box-title">Update your profile, {{ Auth::user()->name }}</h3>
             </div>

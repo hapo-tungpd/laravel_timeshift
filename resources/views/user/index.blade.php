@@ -27,25 +27,25 @@
             <div class="box-body box-profile">
                 <img class="profile-user-img img-responsive img-circle" src="{{ (Auth::user()->image == null) ? asset('img/default.png') : asset('storage/'.Auth::user()->image) }}" alt="User profile picture">
                 <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
-                <p class="text-muted text-center">Software Engineer</p>
+                {{--<p class="text-muted text-center">Software Engineer</p>--}}
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
-                        <b>Email</b> <a class="pull-right">{{ Auth::user()->email }}</a>
+                        <b>Email: </b> <a class="">{{ Auth::user()->email }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Birthday</b> <a class="pull-right">{{ Auth::user()->birthday->format('d-m-Y') }}</a>
+                        <b>Birthday: </b> <a class="">{{ Auth::user()->birthday->format('d-m-Y') }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Address</b> <a class="pull-right">{{ Auth::user()->address }}</a>
+                        <b>Address: </b> <a class="">{{ Auth::user()->address }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Gender</b> <a class="pull-right">{{ Auth::user()->gender?"Male":"Female" }}</a>
+                        <b>Gender: </b> <a class="">{{ Auth::user()->gender?"Male":"Female" }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Phone number</b> <a class="pull-right">{{ Auth::user()->phone }}</a>
+                        <b>Phone number: </b> <a class="">{{ Auth::user()->phone }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>JLPT</b> <a class="pull-right">{{ Auth::user()->JLPT }}</a>
+                        <b>JLPT: </b> <a class="">{{ Auth::user()->JLPT }}</a>
                     </li>
                 </ul>
                 <form method="GET">
