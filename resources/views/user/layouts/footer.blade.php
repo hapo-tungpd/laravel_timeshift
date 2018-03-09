@@ -46,5 +46,7 @@
     $(".absence-time-picker").datetimepicker({
         format: 'Y-m-d',
     });
+    $(".filter-overtime").datetimepicker({
+        format: 'Y-m-d',
+    });
 </script>
-

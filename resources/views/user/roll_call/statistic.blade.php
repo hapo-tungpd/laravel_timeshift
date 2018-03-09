@@ -6,20 +6,20 @@
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="alert card-header alert-success">
-                        <select class="selectpicker show-tick">
-                            <option>Tháng 1</option>
-                            <option>Tháng 2</option>
-                            <option>Tháng 3</option>
-                            <option>Tháng 4</option>
-                            <option>Tháng 5</option>
-                            <option>Tháng 6</option>
-                            <option>Tháng 7</option>
-                            <option>Tháng 8</option>
-                            <option>Tháng 9</option>
-                            <option>Tháng 10</option>
-                            <option>Tháng 11</option>
-                            <option>Tháng 12</option>
-                        </select>
+                        {{--<select class="selectpicker show-tick">--}}
+                            {{--<option>Tháng 1</option>--}}
+                            {{--<option>Tháng 2</option>--}}
+                            {{--<option>Tháng 3</option>--}}
+                            {{--<option>Tháng 4</option>--}}
+                            {{--<option>Tháng 5</option>--}}
+                            {{--<option>Tháng 6</option>--}}
+                            {{--<option>Tháng 7</option>--}}
+                            {{--<option>Tháng 8</option>--}}
+                            {{--<option>Tháng 9</option>--}}
+                            {{--<option>Tháng 10</option>--}}
+                            {{--<option>Tháng 11</option>--}}
+                            {{--<option>Tháng 12</option>--}}
+                        {{--</select>--}}
                         <h3 class="text-center">Time working month @php echo date('m/Y') @endphp</h3>
                     </div>
                     <div class="card-body">

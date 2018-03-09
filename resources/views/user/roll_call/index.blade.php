@@ -12,6 +12,19 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        <form class=" row form-inline my-2 my-lg-0" action="{{ route('rollcall.search') }}" method="post">
+                            {{csrf_field()}}
+                            {{ method_field('GET') }}
+                            <div class="col-md-3">
+                                <input type="text" name="from_date" id="from_date" class="form-control filter-overtime" placeholder="From Date" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="to_date" id="to_date" class="form-control filter-overtime" placeholder="To Date" />
+                            </div>
+                            <div class="col-md-5">
+                                <input type="submit" name="filter" id="filter" value="Search" class="btn btn-info" />
+                            </div>
+                        </form>
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>

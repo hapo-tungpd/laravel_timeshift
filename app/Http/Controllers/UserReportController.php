@@ -16,7 +16,7 @@ class UserReportController extends Controller
      */
     public function index()
     {
-        $report = Report::where('user_id', Auth::user()->id)->paginate(config('app.pagination'));
+        $report = Report::orderby('updated_at', Auth::user()->updated_at)->paginate(config('app.pagination'));
         return view("user.report.index", ['report' => $report]);
     }
 

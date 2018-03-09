@@ -16,7 +16,7 @@ class RollCallUserController extends Controller
      */
     public function index()
     {
-        $rollcall = RollCall::where('user_id', Auth::user()->id)->paginate(config('app.pagination'));
+        $rollcall = RollCall::orderBy('updated_at', Auth::user()->updated_at)->paginate(config('app.pagination'));
         return view("user.roll_call.index", ['rollcall' => $rollcall]);
     }
 
@@ -136,5 +136,14 @@ class RollCallUserController extends Controller
         $rollcall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->paginate(config('app.pagination'));
         return view('user.roll_call.statistic', ['rollcall' => $rollcall, 'sumRollcall' => $sumRollcall]);
+    }
+
+    public function search(Request $request)
+    {
+        $fromTime = $request->from_date;
+        $toTime = $request->to_date;
+        $employees = RollCall::whereBetween('day', [$fromTime, $toTime])->paginate(10);
+        $sumTime = RollCall::whereBetween('day', [$fromTime, $toTime])->sum('total_time');
+        return view('user.roll_call.search', compact('employees', 'sumTime'));
     }
 }

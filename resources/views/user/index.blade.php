@@ -16,7 +16,7 @@
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-primary ">
                                 <i class="fa fa-th-list"></i>
-                                Roll call
+                                Roll call now !
                             </button>
                         </form>
                         <table class="table table-hover table-bordered">

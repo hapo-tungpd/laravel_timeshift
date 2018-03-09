@@ -17,10 +17,17 @@ class OvertimeUserController extends Controller
      */
     public function index()
     {
-        $overtime = Overtime::where('user_id', Auth::user()->id)->paginate(config('app.pagination'));
+        $overtime = Overtime::orderby('updated_at', Auth::user()->updated_at)->paginate(config('app.pagination'));
         return view("user.overtime.index", ['overtime' => $overtime]);
     }
-
+    public function search(Request $request)
+    {
+        $from_time = $request->from_date;
+        $to_time = $request->to_date;
+        $employees = Overtime::whereBetween('day', [$from_time, $to_time])->paginate(10);
+        $sum_time = Overtime::whereBetween('day', [$from_time, $to_time])->sum('total_time');
+        return view('user.overtime.search', compact('employees', 'sum_time'));
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -11,14 +11,14 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 <!-- Ionicons -->
-<link rel="stylesheet" href="{{asset('css/ionicons.min.css')}}">
+<link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
 <!-- Theme style -->
-<link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
+<link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
 <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
-<link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
+<link rel="stylesheet" href="{{ asset('css/_all-skins.min.css') }}">
 <!-- bootstrap wysihtml5 - text editor -->
-<link rel="stylesheet" href="{{asset('css/bootstrap3-wysihtml5.min.css')}}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap3-wysihtml5.min.css') }}">
 {{--bootstrap time picker--}}
 <link rel="stylesheet" href="{{ asset('css/bootstrap-timepicker.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.min.css') }}">
@@ -31,5 +31,5 @@
 
 <!-- Google Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
