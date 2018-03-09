@@ -16,7 +16,7 @@ class UpdateUserController extends Controller
      */
     public function index()
     {
-
+        return view('user.index');
     }
 
     /**
@@ -77,26 +77,22 @@ class UpdateUserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        if($request->hasFile('avata')) {
+        if ($request->hasFile('image')) {
             $file1 = $user->image;
             File::delete('img/' . $file1);
-            $file = $request->avata;
-            $file->move('img', $file->getClientOriginalName());
+            $file = $request->image;
+            $file->move('storage/images', $file->getClientOriginalName());
             $user->image = $file->getClientOriginalName();
+            $user['image'] = 'images/' . $user['image'];
             $user->save();
         }
-//        $user->name = $request->input('name');
-//        $user->gender = $request->input('gender');
-//        $user->phone = $request->input('phone');
-//        $user->email = $request->input('email');
-//        $user->address = $request->input('address');
-//        $user->JLPT = $request->input('JLPT');
-//        $user->save();
-//        return redirect()->route('user.index');
-
-        $data = $request->all();
-        $data = array_slice($data, 2);
-        User::where('id', $id)->update($data);
+        $user -> name = $request->input('name');
+        $user -> phone = $request->input('phone');
+        $user -> birthday = $request->input('birthday');
+        $user -> gender = $request->input('gender');
+        $user -> address = $request->input('address');
+        $user -> JLPT = $request->input('JLPT');
+        $user->save();
         return redirect()->route('user.index');
     }
 

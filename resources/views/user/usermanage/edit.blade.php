@@ -9,7 +9,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-create" role="form" action="{{ route('user.users.update', $user->id) }}" method="post" enctype="multipart/form-data">
+            <form class="form-create" role="form" action="{{ route('user.update', $user->id) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
                 <div class="box-body">
@@ -21,10 +21,9 @@
                         <input type="text" class="form-control" id="" name="name" autocomplete="off" value="{{ $user->name }}" required>
                     </div>
                     <div class="form-group upload-btn-wrapper form-group col-lg-2 control-label">
-                        <input type="file" name="avata" />
-                        <button type="submit" class="btn btn-default">Upload avata</button>
+                        <input id="imgFile" type="file" name="image" />
+                        <button type="submit" class="btn btn-default btn-upload">Upload avata</button>
                     </div>
-
                     <div class="form-group">
                         <label for="">Gender</label>
                         <div class="radio">
@@ -44,6 +43,14 @@
                             <p class="input-warning">{{ $errors->first('phone') }}</p>
                         @endif
                         <input type="text" class="form-control" id="" value="{{ $user->phone }}" name="phone" required autocomplete="off">
+                    </div>
+
+                    <div class="form-group user-time-picker">
+                        <label for="">Birthday</label>
+                        @if ($errors->has('birthday'))
+                            <p class="input-warning">{{ $errors->first('birthday') }}</p>
+                        @endif
+                        <input type="text" class="form-control user-time-picker" id="" value="{{ $user->birthday->format('Y-m-d') }}" name="birthday" required autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="">Email address</label>

@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet" href="{{asset('css/ionicons.min.css')}}">
 <!-- Theme style -->
@@ -17,7 +19,9 @@
 <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="{{asset('css/bootstrap3-wysihtml5.min.css')}}">
-
+{{--bootstrap time picker--}}
+<link rel="stylesheet" href="{{ asset('css/bootstrap-timepicker.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.min.css') }}">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>

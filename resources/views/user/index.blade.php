@@ -12,42 +12,46 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form action="{{ route('user.users.edit', Auth::user()->id) }}" method="GET">
+                        <form  method="GET">
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-primary ">
                                 <i class="fa fa-th-list"></i>
-                                EDIT PROFILE
+                                Roll call
                             </button>
                         </form>
-                            <table class="table table-hover table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Avatar</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Birthday</th>
-                                    <th>Address</th>
-                                    <th>Gender</th>
-                                    <th>Phone</th>
-                                    <th>JLPT</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <td>{{ Auth::user()->id }}</td>
-                                    {{--<td>{{ Auth::user()->image }}--}}
-                                    <td><img width="50" src="{{ asset('img/'.Auth::user()->image) }}" class="img-home" alt=""></td>
-                                    <td>{{ Auth::user()->name }}</td>
-                                    <td>{{ Auth::user()->email }}</td>
-                                    <td>{{ Auth::user()->birthday }}</td>
-                                    <td>{{ Auth::user()->address }}</td>
-                                    <td>{{ Auth::user()->gender }}</td>
-                                    <td>{{ Auth::user()->phone }}</td>
-                                    <td>{{ Auth::user()->JLPT }}</td>
-                                </tbody>
-                            </table>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="box box-primary">
+            <div class="box-body box-profile">
+                <img class="profile-user-img img-responsive img-circle" src="{{ (Auth::user()->image == null) ? asset('img/default.png') : asset('storage/'.Auth::user()->image) }}" alt="User profile picture">
+                <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
+                <p class="text-muted text-center">Software Engineer</p>
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>Email</b> <a class="pull-right">{{ Auth::user()->email }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Birthday</b> <a class="pull-right">{{ Auth::user()->birthday->format('d-m-Y') }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Address</b> <a class="pull-right">{{ Auth::user()->address }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Gender</b> <a class="pull-right">{{ Auth::user()->gender?"Male":"Female" }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Phone number</b> <a class="pull-right">{{ Auth::user()->phone }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>JLPT</b> <a class="pull-right">{{ Auth::user()->JLPT }}</a>
+                    </li>
+                </ul>
+                <form method="GET">
+                    {{ csrf_field() }}
+                    <a href="{{ route('user.edit', Auth::user()->id) }}" class="btn btn-primary btn-block"><b>Update profile</b></a>
+                </form>
             </div>
         </div>
     </div>

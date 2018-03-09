@@ -63,7 +63,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Change Password
                                     </button>
-                                    <a href="{{ route('user.users.edit', Auth::user()->id) }}" class="btn btn-primary">Back</a>
+                                    <a href="{{ route('user.edit', Auth::user()->id) }}" class="btn btn-primary">Back</a>
                                 </div>
                             </div>
                         </form>

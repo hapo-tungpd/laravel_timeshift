@@ -56,8 +56,8 @@
                 <!-- /.col -->
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-                    <a class="btn btn-primary" href="{{ route('user.login') }}">User Sign In</a>
-                    <a class="btn btn-link" href="{{ route('admin.password.request') }}">Forgot your Password?</a>
+                    {{--<a class="btn btn-primary" href="{{ route('user.login') }}">User Sign In</a>--}}
+                    {{--<a class="btn btn-link" href="{{ route('admin.password.request') }}">Forgot your Password?</a>--}}
                 </div>
                 <!-- /.col -->
             </div>

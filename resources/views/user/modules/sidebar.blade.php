@@ -22,8 +22,7 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-{{--                    <li><a href="{{ route('user.user.index') }}"><i class="fa fa-users"></i>User list</a></li>--}}
-{{--                    <li><a href="{{ route('user.user.create') }}"><i class="fa fa-user-plus"></i>Add new user</a></li>--}}
+                    <li><a href="{{ route('user.index') }}"><i class="fa fa-users"></i>Profile</a></li>
                 </ul>
             </li>
         </ul>

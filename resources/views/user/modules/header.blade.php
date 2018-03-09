@@ -24,7 +24,7 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <!-- Control Sidebar Toggle Button -->
                 <li>
-                    <form action="{{ route('admin.logout') }}" method="post">
+                    <form action="{{ route('user.logout') }}" method="post">
                         {{ csrf_field() }}
                         <button type="submit" id="logout-btn" class="hidden" ></button>
                     </form>
