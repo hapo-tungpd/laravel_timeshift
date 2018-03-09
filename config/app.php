@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Ho_Chi_Minh',
 
     /*
     |--------------------------------------------------------------------------
@@ -210,5 +210,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+    /**
+     * Manage User Pagination
+     */
+    "user_pagination" => 10,
 
 ];
