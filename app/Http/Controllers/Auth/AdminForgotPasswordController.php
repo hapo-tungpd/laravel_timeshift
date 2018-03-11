@@ -31,12 +31,18 @@ class AdminForgotPasswordController extends Controller
         $this->middleware('guest:admin');
     }
 
+    /**
+     * @return mixed
+     */
     protected function broker()
     {
         return Password::broker('admins');
     }
 
-    public function showLinkRequestForm()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function formResetLinkEmail()
     {
         return view('auth.passwords.email-admin');
     }

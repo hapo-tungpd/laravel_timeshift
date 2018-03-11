@@ -5,11 +5,11 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- Bootstrap 3.3.7 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+<!-- Latest compiled and minified CSS -->bootstrap-select.min
+<link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
 <!-- Ionicons -->
 <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
 <!-- Theme style -->
