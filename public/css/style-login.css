@@ -28,7 +28,7 @@ nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
 body {
-    /*background: url(../storage/images/banner.jpg)no-repeat;*/
+    background: url(../img/background/background-picture.jpg)no-repeat;
     background-color: #2d4373;
     background-size: cover;
     -webkit-background-size: cover;
@@ -66,7 +66,7 @@ body {
     padding: 50px;
 }
 .sub-main-w3 h2 {
-    color: #fff;
+    color: #429321;
     font-size: 1.8em;
     letter-spacing: 1px;
     margin-bottom: 1em;
