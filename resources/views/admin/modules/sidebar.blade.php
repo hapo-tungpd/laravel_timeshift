@@ -26,6 +26,7 @@
                     <li><a href="{{ route('admin.user.create') }}"><i class="fa fa-user-plus"></i>Add new user</a></li>
                 </ul>
             </li>
+            <li><a href="{{ route('admin.report.index') }}"><i class="fa fa-list-ul"></i> <span>Report list</span></a></li>
         </ul>
     </section>
     <!-- /.sidebar -->
