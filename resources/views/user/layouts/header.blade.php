@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-<!-- Latest compiled and minified CSS -->bootstrap-select.min
+<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
 <!-- Ionicons -->
 <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">

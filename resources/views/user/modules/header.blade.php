@@ -29,9 +29,6 @@
                     </form>
                     <a href="#"><i class="fa fa-sign-out"></i>Log out</a>
                 </li>
-                <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                </li>
             </ul>
         </div>
     </nav>

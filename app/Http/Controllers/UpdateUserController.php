@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use File;
 use Image;
+use Auth;
 
 class UpdateUserController extends Controller
 {
@@ -16,6 +16,7 @@ class UpdateUserController extends Controller
      */
     public function index()
     {
+//        dd(Auth::user());
         return view('user.index');
     }
 
@@ -76,8 +77,8 @@ class UpdateUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request->hasFile('image')) {
-            $imgLink = $request->file('image')->store('public/images');
+        if ($request->hasFile('img')) {
+            $imgLink = $request->file('img')->store('public/images');
             $imgLink = substr($imgLink, 7);
             $data["image"] = $imgLink;
             User::find($id)->update($data);

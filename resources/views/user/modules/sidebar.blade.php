@@ -16,15 +16,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENU</li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-user"></i> <span>User</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('user.index') }}"><i class="fa fa-users"></i>Profile</a></li>
-                </ul>
-            </li>
+            <li><a href="{{ route('user.index') }}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

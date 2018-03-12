@@ -26,9 +26,12 @@
                         @if ($errors->has('password'))
                             <p class="input-warning">{{ $errors->first('password') }}</p>
                         @endif
-                        <input value="$2y$10$arnVmYllXZNOAaJSzFB6Hu3fTMq7DrxhHsbit2Izcqu2KWbrTYrdW" type="password" class="form-control" id="" name="password" autocomplete="off" required>
+                        <input type="password" class="form-control" id="" placeholder="Enter password" name="password" autocomplete="off" required>
                     </div>
-
+                    <div class="form-group">
+                        <label for="">Confirm password </label>
+                        <input type="password" class="form-control" id="" placeholder="Confirm password" name="password_confirmation" autocomplete="off" required>
+                    </div>
                     <div class="form-group">
                         <label for="">Name</label>
                         @if ($errors->has('name'))
@@ -49,14 +52,6 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="">Birthday</label>
-                        @if ($errors->has('birthday'))
-                            <p class="input-warning">{{ $errors->first('birthday') }}</p>
-                        @endif
-                        <input type="date" class="form-control" id="" placeholder="Enter phone number" name="birthday"  autocomplete="off" value="{{ old('phone_number') }}" required>
-                    </div>
-
                     <div class="form-group">
                         <label for="">Phone number</label>
                         @if ($errors->has('phone'))

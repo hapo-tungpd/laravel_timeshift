@@ -12,13 +12,6 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form  method="GET">
-                            {{ csrf_field() }}
-                            <button type="submit" class="btn btn-primary ">
-                                <i class="fa fa-th-list"></i>
-                                Roll call
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -30,22 +23,22 @@
                 {{--<p class="text-muted text-center">Software Engineer</p>--}}
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
-                        <b>Email: </b> <a class="">{{ Auth::user()->email }}</a>
+                        <b>Email: </b> <a class=""> {{ Auth::user()->email }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Birthday: </b> <a class="">{{ Auth::user()->birthday->format('d-m-Y') }}</a>
+                        <b>Birthday: </b> <a class=""> {{ (Auth::user()->birthday != null) ? Auth::user()->birthday->format('d-m-Y') : "" }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Address: </b> <a class="">{{ Auth::user()->address }}</a>
+                        <b>Address: </b> <a class=""> {{ Auth::user()->address }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Gender: </b> <a class="">{{ Auth::user()->gender?"Male":"Female" }}</a>
+                        <b>Gender: </b> <a class=""> {{ Auth::user()->gender?"Male":"Female" }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Phone number: </b> <a class="">{{ Auth::user()->phone }}</a>
+                        <b>Phone number: </b> <a class=""> {{ Auth::user()->phone }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>JLPT: </b> <a class="">{{ Auth::user()->JLPT }}</a>
+                        <b>JLPT: </b> <a class=""> {{ Auth::user()->JLPT }}</a>
                     </li>
                 </ul>
                 <form method="GET">

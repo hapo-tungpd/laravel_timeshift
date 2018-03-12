@@ -24,6 +24,5 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'gender' => $faker->randomElement([0, 1]),
         'address' => $faker->city,
         'JLPT' => $faker->randomElement(['None', 'N1', 'N2', 'N3', 'N4', 'N5']),
-        'image' => str_random(20),
     ];
 });

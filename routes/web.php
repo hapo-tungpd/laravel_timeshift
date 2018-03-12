@@ -13,6 +13,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 //manage user
 Route::prefix('user')->group(function () {
     Route::get('login', 'Auth\LoginController@loginForm')->name('user.login-form');
@@ -34,6 +35,7 @@ Route::prefix('user')->group(function () {
         Route::post('changePassword', 'HomeController@changePassword')->name('changePassword');
     });
 });
+
 Route::prefix('admin')->group(function () {
     //Admin Log in
     Route::get('login', 'Auth\AdminController@loginForm')->name('admin.login-form');
