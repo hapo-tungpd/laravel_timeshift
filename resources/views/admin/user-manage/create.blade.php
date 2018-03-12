@@ -64,28 +64,6 @@
                         @endif
                         <input type="text" class="form-control" id="" placeholder="Enter phone number" name="phone"  autocomplete="off" value="{{ old('phone_number') }}" required>
                     </div>
-                    <div class="form-group">
-                        <label for="">Address</label>
-                        @if ($errors->has('address'))
-                            <p class="input-warning">{{ $errors->first('address') }}</p>
-                        @endif
-                        <input type="text" class="form-control" id="" placeholder="Enter address" name="address" autocomplete="off" value="{{ old('address') }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>JLPT level</label>
-                        <select class="form-control" name="JLPT">
-                            @foreach (\App\Models\User::JLPT as $value)
-                                <option value="{{ $value }}">{{ $value }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="imgFile">Upload image</label><br>
-                        <img class="hidden" id="uploadImg" src="#" alt="your image" />
-                        <input class="hidden" type="file" id="imgFile" name="img">
-                        <button type="button" id="uploadImgBtn" class="btn btn-success"><i class="fa fa-fw fa-upload"></i>Upload</button>
-                        <p class="help-block">Upload profile picture</p>
-                    </div>
                 </div>
                 <!-- /.box-body -->
 
@@ -96,30 +74,4 @@
         </div>
     </section>
 
-@endsection
-
-@section('javascript')
-    <script>
-        function readURL(input) {
-
-            if (input.files && input.files[0]) {
-                let reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('#uploadImg').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $(document).ready(function() {
-            $("#imgFile").change(function () {
-                $('#uploadImg').removeClass('hidden');
-                readURL(this);
-            });
-            $('#uploadImgBtn').on('click', function() {
-                $("#imgFile").trigger('click');
-            })
-        });
-    </script>
 @endsection

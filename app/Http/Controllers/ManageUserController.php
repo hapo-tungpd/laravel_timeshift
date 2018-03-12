@@ -46,6 +46,7 @@ class ManageUserController extends Controller
             $imgLink = substr($imgLink, 7);
             $data["image"] = $imgLink;
         }
+        $data['password'] = bcrypt($data['password']);
         User::create($data);
         return redirect()->route('admin.user.index');
     }
