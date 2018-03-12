@@ -18,10 +18,8 @@ class ManageReportController extends Controller
     public function index()
     {
         $report = Report::orderBy('updated_at', 'desc')->paginate(config('app.report_pagination'));
-        $user = User::orderBy('updated_at', 'desc')->paginate(config('app.report_pagination'));
         $data = [
           'report' => $report,
-          'user' => $user,
         ];
         return view("admin.report-manage.index", $data);
     }

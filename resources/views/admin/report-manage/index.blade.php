@@ -16,10 +16,11 @@
                             <thead>
                             <tr>
                                 <th width="3%" class="text-center">No.</th>
+                                <th width="8%" class="text-center">Name</th>
                                 <th width="8%" class="text-center">Date</th>
-                                <th width="28%" class="text-center">Today</th>
-                                <th width="28%" class="text-center">Tomorrow</th>
-                                <th width="28%" class="text-center">Problem</th>
+                                <th width="25%" class="text-center">Today</th>
+                                <th width="25%" class="text-center">Tomorrow</th>
+                                <th width="25%" class="text-center">Problem</th>
                                 <th width="5%" class="text-center"></th>
                             </tr>
                             </thead>
@@ -29,6 +30,7 @@
                             @foreach($report as $data)
                                 <tbody>
                                 <td class="text-center">{{ $temp++ }}</td>
+                                <td class="text-center">{{ $data->user->name }}</td>
                                 <td>{{ $data->day->format('d-m-Y') }}</td>
                                 <td>{{ str_limit($data->today, 60) }}</td>
                                 <td>{{ str_limit($data->tomorrow, 60) }}</td>
