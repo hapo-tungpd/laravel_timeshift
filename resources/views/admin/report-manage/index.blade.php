@@ -21,7 +21,6 @@
                                 <th width="28%" class="text-center">Tomorrow</th>
                                 <th width="28%" class="text-center">Problem</th>
                                 <th width="5%" class="text-center"></th>
-                                <th>Name</th>
                             </tr>
                             </thead>
                             @php
