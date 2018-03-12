@@ -26,7 +26,7 @@
                         @if ($errors->has('today'))
                             <p class="input-warning">{{ $errors->first('today') }}</p>
                         @endif
-                        <input type="text" class="form-control" id="" value="{{ $report->today }}" name="today" required autocomplete="off">
+                        <textarea class="form-control" id="" name="today" required autocomplete="off">{{ $report->today }}</textarea>
                     </div>
 
                     <div class="form-group">
@@ -34,7 +34,7 @@
                         @if ($errors->has('today'))
                             <p class="input-warning">{{ $errors->first('tomorrow') }}</p>
                         @endif
-                        <input type="text" class="form-control" id="" value="{{ $report->tomorrow }}" name="tomorrow" required autocomplete="off">
+                        <textarea class="form-control" id="" name="tomorrow" required autocomplete="off">{{ $report->tomorrow }}</textarea>
                     </div>
 
                     <div class="form-group">
@@ -42,7 +42,7 @@
                         @if ($errors->has('problem'))
                             <p class="input-warning">{{ $errors->first('problem') }}</p>
                         @endif
-                        <input type="text" class="form-control" id="" value="{{ $report->problem }}" name="problem" required autocomplete="off">
+                        <textarea class="form-control" id="" name="problem" required autocomplete="off">{{ $report->problem }}</textarea>
                     </div>
                 </div>
                 <!-- /.box-body -->
