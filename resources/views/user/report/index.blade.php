@@ -37,26 +37,26 @@
                             @endphp
                             @foreach($report as $data)
                             <tbody>
-                            <td>{{ $temp++ }}</td>
-                            <td>{{ $data->day->format('d-m-Y') }}</td>
+                            <td class="text-center">{{ $temp++ }}</td>
+                            <td class="text-center">{{ $data->day->format('d-m-Y') }}</td>
                             <td>{{ str_limit($data->today, 60) }}</td>
                             <td>{{ str_limit($data->tomorrow, 60) }}</td>
                             <td>{{ str_limit($data->problem, 60) }}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{ route('report.show', $data->id) }}">
                                     <button class="btn btn-primary btn-sm">
                                         <i class="fa fa-th-list"></i>
                                     </button>
                                 </a>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{ route('report.edit', $data->id) }}">
                                     <button class="btn btn-warning btn-sm">
                                         <i class="fa fa-edit"></i>
                                     </button>
                                 </a>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <form action="{{ route('report.destroy', $data->id) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}

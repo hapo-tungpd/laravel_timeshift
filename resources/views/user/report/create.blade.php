@@ -8,7 +8,7 @@
             </div>
             <form class="form-create" role="form" action="{{ route('report.store') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <div class="box-body">
+                <div class="box-body ">
                     <div class="form-group">
                         <label for="">Date</label>
                         @if ($errors->has('day'))

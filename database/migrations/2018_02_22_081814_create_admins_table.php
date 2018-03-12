@@ -18,6 +18,7 @@ class CreateAdminsTable extends Migration
             $table->increments('id');
             $table->string('username');
             $table->string('password');
+            $table->string('email');
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('user.layouts.master')
 
 @section('content')
 
@@ -13,12 +13,12 @@
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
                 <div class="box-body">
-                    <div class="form-group">
+                    <div class="form-group report-time-picker">
                         <label for="">Date</label>
                         @if ($errors->has('day'))
                             <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input type="text" class="form-control" id="" name="day" autocomplete="off" value="{{ $report->day->format('Y-m-d') }}">
+                        <input type="text" class="form-control report-time-picker" id="" name="day" autocomplete="off" value="{{ $report->day->format('Y-m-d') }}">
                     </div>
 
                     <div class="form-group">

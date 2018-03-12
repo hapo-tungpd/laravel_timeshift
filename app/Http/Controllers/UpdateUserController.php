@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
-use File;
 use Image;
+use Auth;
+use Carbon\Carbon;
 
 class UpdateUserController extends Controller
 {
@@ -16,7 +18,7 @@ class UpdateUserController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.index');
     }
 
     /**
@@ -74,30 +76,29 @@ class UpdateUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request, $id)
     {
-        $user = User::findOrFail($id);
-        if ($request->hasFile('avata')) {
-            $file1 = $user->image;
-            File::delete('img/' . $file1);
-            $file = $request->avata;
-            $file->move('img', $file->getClientOriginalName());
-            $user->image = $file->getClientOriginalName();
-            $user->save();
+        if ($request->hasFile('img')) {
+            $imgLink = $request->file('img')->store('public/images');
+            $imgLink = substr($imgLink, 7);
+            $data["image"] = $imgLink;
+            User::find($id)->update($data);
         }
-//        $user->name = $request->input('name');
-//        $user->gender = $request->input('gender');
-//        $user->phone = $request->input('phone');
-//        $user->email = $request->input('email');
-//        $user->address = $request->input('address');
-//        $user->JLPT = $request->input('JLPT');
-//        $user->save();
-//        return redirect()->route('user.index');
 
-        $data = $request->all();
-        $data = array_slice($data, 2);
-        User::where('id', $id)->update($data);
-        return redirect()->route('user.index');
+        $user = User::findOrFail($id);
+        $user -> name = $request->input('name');
+        $user -> phone = $request->input('phone');
+        if ($request->input('birthday') != null) {
+            $user -> birthday = Carbon::createFromFormat('d-m-Y', $request->input('birthday'));
+        }
+        $user -> gender = $request->input('gender');
+        $user -> address = $request->input('address');
+        $user -> JLPT = $request->input('JLPT');
+        $user -> email = $request->input('email');
+        $user->save();
+        return redirect()->route('user.index', [
+            'id' => $id,
+        ]);
     }
 
     /**

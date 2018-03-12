@@ -1,69 +1,95 @@
-@extends('user.layouts.master')
+<!DOCTYPE HTML>
+<html lang="en">
 
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-default">
-                    <div class="card-header text-center"><strong>USER Login</strong></div>
+<head>
+    <title>Haposoft</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Haposoft login"
+    />
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('user.login') }}">
-                            @csrf
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Meta tag Keywords -->
+    <!-- css files -->
+    <link rel="stylesheet" href="{{ asset('css/style-login.css') }}" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link rel="stylesheet"  href="{{ asset('css/font-awesome.css') }}">
+    <!-- Font-Awesome-Icons-CSS -->
 
-                            <div class="form-group row">
-                                <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail Address</label>
+    <!-- //css files -->
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <!-- //online-fonts -->
+</head>
 
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+<body>
+<!--header-->
+<div class="header-w3l">
+    <h1>
+        <span>H</span>apo
+        <span>ERP</span>
+        <span>L</span>ogin</h1>
+</div>
+<!--//header-->
+<div class="main-content-agile">
+    <div class="sub-main-w3">
+        <h2>Login Here</h2>
+        <form action="{{ route('login') }}" method="post">
+            @csrf
+            <div class="pom-agile">
+                <span class="fa fa-user-o" aria-hidden="true"></span>
+                <input placeholder="Email" id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Login
-                                    </button>
-                                    <a href="{{ route('admin.login-form') }}" class="btn btn-primary">Login with admin</a>
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        Forgot Your Password?
-                                    </a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
             </div>
-        </div>
+            <div class="pom-agile">
+                <span class="fa fa-key" aria-hidden="true"></span>
+                <input placeholder="Password" id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                @if ($errors->has('password'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="sub-w3l">
+                <div class="sub-agile">
+                    <input type="checkbox" id="brand1" value="">
+                    <label for="brand1">
+                        <span></span>Remember me</label>
+                </div>
+                <a href="{{ route('password.request') }}">Forgot Password?</a>
+                <div class="clear"></div>
+            </div>
+            <div class="right-w3l">
+                <input type="submit" value="Login">
+            </div>
+            <div class="right-w31 admin-login">
+                <a href="{{ route('admin.login-form') }}">You are Admin?</a>
+            </div>
+        </form>
     </div>
-@endsection
+</div>
+<!--//main-->
+<!--footer-->
+<div class="footer">
+    <p>&copy; 2018 User login | Design by
+        <a href="https://haposoft.com/vi">Haposoft</a>
+    </p>
+</div>
+<!--//footer-->
+</body>
+
+</html>
