@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admins;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Report;
+use App\Models\User;
+use Auth;
 
 class ManageReportController extends Controller
 {
@@ -13,7 +17,13 @@ class ManageReportController extends Controller
      */
     public function index()
     {
-        return view('admin.report-manage.index');
+        $report = Report::orderBy('updated_at', 'desc')->paginate(config('app.report_pagination'));
+        $user = User::orderBy('updated_at', 'desc')->paginate(config('app.report_pagination'));
+        $data = [
+          'report' => $report,
+          'user' => $user,
+        ];
+        return view("admin.report-manage.index", $data);
     }
 
     /**
@@ -45,7 +55,13 @@ class ManageReportController extends Controller
      */
     public function show($id)
     {
-        //
+        $report = Report::findOrFail($id);
+        $user = User::findOrFail($report->user_id);
+        $data = [
+            'report' => $report,
+            'user' => $user,
+        ];
+        return view('admin.report-manage.show', $data);
     }
 
     /**

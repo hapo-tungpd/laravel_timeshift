@@ -15,25 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->group(function () {
     //Admin Log in
     Route::get('login', 'Auth\AdminController@loginForm')->name('admin.login-form');
     Route::post('login', 'Auth\AdminController@login')->name('admin.login');
-    Route::middleware(['admin.auth'])->group(function() {
+    Route::middleware(['admin.auth'])->group(function () {
         Route::post('logout', 'Auth\AdminController@logout')->name('admin.logout');
         Route::get('/', 'AdminController@index')->name('admin.index');
 
        /**
         * Manage user
         */
-       Route::resource('user','ManageUserController', ['as' => 'admin']);
-       Route::put('user/{id}/update-image', 'UserProfileController@updateImage')->name('admin.user.update.image');
+        Route::resource('user', 'ManageUserController', ['as' => 'admin']);
+        Route::put('user/{id}/update-image', 'UserProfileController@updateImage')->name('admin.user.update.image');
 
        /**
         * Manage report
         */
-       Route::resource('report', 'ManageReportController', ['as' => 'admin']);
-   });
+        Route::resource('report', 'Admins\ManageReportController', ['as' => 'admin']);
+    });
 });
 
 Auth::routes();
