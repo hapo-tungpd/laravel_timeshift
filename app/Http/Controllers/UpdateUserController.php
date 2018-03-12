@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Image;
 use Auth;
+use Carbon\Carbon;
 
 class UpdateUserController extends Controller
 {
@@ -75,7 +77,7 @@ class UpdateUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request, $id)
     {
         if ($request->hasFile('img')) {
             $imgLink = $request->file('img')->store('public/images');
@@ -83,13 +85,18 @@ class UpdateUserController extends Controller
             $data["image"] = $imgLink;
             User::find($id)->update($data);
         }
+
         $user = User::findOrFail($id);
         $user -> name = $request->input('name');
         $user -> phone = $request->input('phone');
-        $user -> birthday = $request->input('birthday');
+        if ($request->input('birthday') != null) {
+            $user -> birthday = Carbon::createFromFormat('d-m-Y', $request->input('birthday'));
+        }
         $user -> gender = $request->input('gender');
         $user -> address = $request->input('address');
         $user -> JLPT = $request->input('JLPT');
+        $user -> email = $request->input('email');
+//        dd($user->all());
         $user->save();
         return redirect()->route('user.index', [
             'id' => $id,

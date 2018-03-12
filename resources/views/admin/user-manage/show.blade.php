@@ -34,7 +34,9 @@
                     <br>
                     Email: {{ $user->email }}
                     <br>
-                    Phone number: {{ $user->phone_number }}
+                    Phone number: {{ $user->phone }}
+                    <br>
+                    Birthday: {{ ($user->birthday != null) ? $user->birthday->format('d-m-Y') : "" }}
                     <br>
                     Address: {{ $user->address }}
                     <br>

@@ -57,7 +57,7 @@
                         @if ($errors->has('phone'))
                             <p class="input-warning">{{ $errors->first('phone') }}</p>
                         @endif
-                        <input type="text" class="form-control" id="" placeholder="Enter phone number" name="phone"  autocomplete="off" value="{{ old('phone_number') }}" required>
+                        <input type="text" class="form-control" id="" placeholder="Enter phone number" name="phone"  autocomplete="off" value="{{ old('phone') }}" required>
                     </div>
                 </div>
                 <!-- /.box-body -->
