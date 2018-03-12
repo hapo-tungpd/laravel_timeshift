@@ -16,6 +16,7 @@ class AdminsTableSeeder extends Seeder
         Admin::create([
             'username' => 'admin',
             'password' => bcrypt('123456'),
+            'email' => 'linhlt@haposoft.com',
         ]);
     }
 }
