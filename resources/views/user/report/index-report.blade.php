@@ -22,22 +22,23 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Your ID</th>
-                                <th>Date</th>
-                                <th>Today</th>
-                                <th>Tomorrow</th>
-                                <th>Problem</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th width="3%" class="text-center">No.</th>
+                                <th width="8%" class="text-center">Date</th>
+                                <th width="24%" class="text-center">Today</th>
+                                <th width="24%" class="text-center">Tomorrow</th>
+                                <th width="24%" class="text-center">Problem</th>
+                                <th width="5%" class="text-center">Show</th>
+                                <th width="5%" class="text-center">Edit</th>
+                                <th width="5%" class="text-center">Delete</th>
                             </tr>
                             </thead>
+                            @php
+                                $temp = 1;
+                            @endphp
                             @foreach($report as $reports)
                             <tbody>
-                            <td>{{ $reports->id }}</td>
-                            <td>{{ $reports->user_id }}</td>
-                            <td>{{ $reports->report_date }}</td>
+                            <td>{{ $temp++ }}</td>
+                            <td>{{ $reports->day->format('d-m-Y') }}</td>
                             <td>{{ $reports->today }}</td>
                             <td>{{ $reports->tomorrow }}</td>
                             <td>{{ $reports->problem }}</td>

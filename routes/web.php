@@ -36,7 +36,7 @@ Route::prefix('user')->group(function () {
         /**
          * User Report
          */
-        Route::resource('report', 'UserReportController');
+        Route::resource('report', 'Users\UserReportController');
     });
 });
 Route::prefix('admin')->group(function () {

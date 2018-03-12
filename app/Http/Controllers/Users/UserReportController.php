@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Users;
 
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\Report;
+use App\Http\Controllers\Controller;
 
 class UserReportController extends Controller
 {
@@ -15,7 +16,7 @@ class UserReportController extends Controller
      */
     public function index()
     {
-        $report = Report::where('user_id', Auth::user()->id)->paginate(config('app.pagination'));
+        $report = Report::where('user_id', Auth::user()->id)->paginate(config('app.user_report_pagination'));
         return view("user.report.index-report", ['report' => $report]);
     }
 

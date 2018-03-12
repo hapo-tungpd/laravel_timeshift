@@ -214,6 +214,7 @@ return [
     /**
      * Manage User Pagination
      */
-    "user_pagination" => 5,
+    'user_pagination' => 5,
+    'user_report_pagination' => 10,
 
 ];
