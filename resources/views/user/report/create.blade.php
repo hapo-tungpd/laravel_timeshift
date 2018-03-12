@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="box-footer">
-                    <a href="{{ route('report.index') }}" class="btn btn-primary">Back</a>
+                    <a href="{{ route('report.index') }}" class="btn btn-success">Back</a>
                     <button type="submit" class="btn btn-primary" >Submit</button>
                 </div>
             </form>

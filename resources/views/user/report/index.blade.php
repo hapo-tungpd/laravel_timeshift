@@ -15,7 +15,7 @@
                         <form action="{{ route('report.create', Auth::user()->id) }}" method="GET">
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-primary ">
-                                <i class="fa fa-th-list"></i>
+                                <i class="fa fa-plus"></i>
                                 Create new report
                             </button>
                         </form>
