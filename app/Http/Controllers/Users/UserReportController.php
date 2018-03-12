@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Users;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\Report;
+use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReportUserRequest;
 
 class UserReportController extends Controller
 {
@@ -16,8 +18,11 @@ class UserReportController extends Controller
      */
     public function index()
     {
-        $report = Report::where('user_id', Auth::user()->id)->paginate(config('app.user_report_pagination'));
-        return view("user.report.index-report", ['report' => $report]);
+        $report = Report::orderBy('updated_at', 'desc')->paginate(config('app.user_report_pagination'));
+        $data = [
+            'report' => $report,
+        ];
+        return view("user.report.index", $data);
     }
 
     /**
@@ -27,7 +32,7 @@ class UserReportController extends Controller
      */
     public function create()
     {
-        return view('user.report.create-report');
+        return view('user.report.create');
     }
 
     /**
@@ -36,11 +41,11 @@ class UserReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReportUserRequest $request)
     {
         $reports = new Report();
         $reports->user_id = Auth::user()->id;
-        $reports->report_date = $request->input('report_date');
+        $reports->day = $request->input('day');
         $reports->today = $request->input('today');
         $reports->tomorrow = $request->input('tomorrow');
         $reports->problem = $request->input('problem');
@@ -57,10 +62,12 @@ class UserReportController extends Controller
     public function show($id)
     {
         $report = Report::findOrFail($id);
+        $user = User::findOrFail($report->user_id);
         $data = [
             'report' => $report,
+            'user' => $user,
         ];
-        return view('user.report.show-report', $data);
+        return view('user.report.show', $data);
     }
 
     /**
@@ -75,7 +82,7 @@ class UserReportController extends Controller
         $data = [
             'report' => $report,
         ];
-        return view('user.report.edit-report', $data);
+        return view('user.report.edit', $data);
     }
 
     /**
@@ -85,11 +92,11 @@ class UserReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ReportUserRequest $request, $id)
     {
         $reports = Report::findOrFail($id);
         $reports->user_id = Auth::user()->id;
-        $reports->report_date = $request->report_date;
+        $reports->day = $request->day;
         $reports->today = $request->today;
         $reports->tomorrow = $request->tomorrow;
         $reports->problem = $request->problem;

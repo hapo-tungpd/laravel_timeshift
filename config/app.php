@@ -216,5 +216,5 @@ return [
      */
     'user_pagination' => 5,
     'user_report_pagination' => 10,
-
+    "user_pagination" => 10,
 ];

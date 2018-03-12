@@ -18,11 +18,6 @@
 <script src="{{asset('js/ckeditor.js')}}"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{asset('js/bootstrap3-wysihtml5.all.min.js')}}"></script>
-<script>
-    $(document).ready(function () {
-        $('.sidebar-menu').tree()
-    });
-</script>
 
 <script>
     $(function() {

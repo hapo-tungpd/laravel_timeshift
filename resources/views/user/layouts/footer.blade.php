@@ -8,6 +8,9 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {{--  Toast  --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
 <!-- FastClick -->
 <script src="{{asset('js/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
@@ -18,6 +21,8 @@
 <script src="{{asset('js/ckeditor.js')}}"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{asset('js/bootstrap3-wysihtml5.all.min.js')}}"></script>
+<script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
@@ -29,5 +34,8 @@
         $('.fa-sign-out').parent().on('click', function() {
             $('#logout-btn').trigger('click');
         });
+    });
+    $(".report-time-picker").datetimepicker({
+        format: 'Y-m-d',
     });
 </script>

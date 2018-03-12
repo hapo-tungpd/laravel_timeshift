@@ -35,29 +35,29 @@
                             @php
                                 $temp = 1;
                             @endphp
-                            @foreach($report as $reports)
+                            @foreach($report as $data)
                             <tbody>
                             <td>{{ $temp++ }}</td>
-                            <td>{{ $reports->day->format('d-m-Y') }}</td>
-                            <td>{{ $reports->today }}</td>
-                            <td>{{ $reports->tomorrow }}</td>
-                            <td>{{ $reports->problem }}</td>
+                            <td>{{ $data->day->format('d-m-Y') }}</td>
+                            <td>{{ str_limit($data->today, 60) }}</td>
+                            <td>{{ str_limit($data->tomorrow, 60) }}</td>
+                            <td>{{ str_limit($data->problem, 60) }}</td>
                             <td>
-                                <a href="{{ route('report.show', $reports->id) }}">
+                                <a href="{{ route('report.show', $data->id) }}">
                                     <button class="btn btn-primary btn-sm">
                                         <i class="fa fa-th-list"></i>
                                     </button>
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('report.edit', $reports->id) }}">
+                                <a href="{{ route('report.edit', $data->id) }}">
                                     <button class="btn btn-warning btn-sm">
                                         <i class="fa fa-edit"></i>
                                     </button>
                                 </a>
                             </td>
                             <td>
-                                <form action="{{ route('report.destroy', $reports->id) }}" method="POST">
+                                <form action="{{ route('report.destroy', $data->id) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button class="fa fa-trash-o btn btn-danger btn-sm"></button>
@@ -66,6 +66,7 @@
                             </tbody>
                             @endforeach
                         </table>
+                        {{ $report->links() }}
                     </div>
                 </div>
             </div>
