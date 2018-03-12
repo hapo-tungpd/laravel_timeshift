@@ -18,13 +18,7 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
-//        dd($request->only(['username', 'password']));
-
         $check = Auth::guard('admin')->attempt($request->only(['username', 'password']));
-
-//         dd($request->all());
-
-
         if ($check) {
             return redirect()->route('admin.index');
         } else {

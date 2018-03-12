@@ -20,11 +20,6 @@
 <script src="{{asset('js/bootstrap3-wysihtml5.all.min.js')}}"></script>
 {{--Bootstrap timepick--}}
 <script src="{{ asset('js/bootstrap-timepicker.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        $('.sidebar-menu').tree()
-    });
-</script>
 
 <script>
     $(function() {

@@ -9,7 +9,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-create" role="form" action="{{ route('user.users.update', $user->id) }}" method="post" enctype="multipart/form-data">
+            <form class="form-create" role="form" action="{{ route('user.update', $user->id) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
                 <div class="box-body">
@@ -20,9 +20,12 @@
                         @endif
                         <input type="text" class="form-control" id="" name="name" autocomplete="off" value="{{ $user->name }}" required>
                     </div>
-                    <div class="form-group upload-btn-wrapper form-group col-lg-2 control-label">
-                        <input type="file" name="avata" />
-                        <button type="submit" class="btn btn-default">Upload avata</button>
+                    <div class="form-group">
+                        <img class="hidden" id="uploadImg" src="#" alt="your image" />
+                        <input class="hidden" type="file" id="imgFile" name="img">
+                        <button type="button" id="uploadImgBtn" class="btn btn-success"><i class="fa fa-fw fa-upload"></i>Upload</button>
+                        <p class="help-block">Upload profile picture</p>
+                        <button type="submit" class="hidden" id="updateImg"></button>
                     </div>
                     <div class="form-group">
                         <label for="">Gender</label>
@@ -44,6 +47,14 @@
                         @endif
                         <input type="text" class="form-control" id="" value="{{ $user->phone }}" name="phone" required autocomplete="off">
                     </div>
+
+                    <div class="form-group user-time-picker">
+                        <label for="">Birthday</label>
+                        @if ($errors->has('birthday'))
+                            <p class="input-warning">{{ $errors->first('birthday') }}</p>
+                        @endif
+                        <input type="text" class="form-control user-time-picker" id="" value="{{ (Auth::user()->birthday != null) ? Auth::user()->birthday->format('d-m-Y') : "" }}" name="birthday" autocomplete="off">
+                    </div>
                     <div class="form-group">
                         <label for="">Birthday</label>
                         @if ($errors->has('birthday'))
@@ -63,7 +74,7 @@
                         @if ($errors->has('address'))
                             <p class="input-warning">{{ $errors->first('address') }}</p>
                         @endif
-                        <input type="text" class="form-control" id="" value="{{ $user->address }}" name="address" autocomplete="off" required>
+                        <input type="text" class="form-control" id="" value="{{ $user->address }}" name="address" autocomplete="off" >
                     </div>
                     <div class="form-group">
                         <label>JLPT level</label>
@@ -89,4 +100,33 @@
             </form>
         </div>
     </section>
+@endsection
+
+@section('javascript')
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#uploadImg').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(document).ready(function() {
+            $("#imgFile").change(function () {
+                $('#uploadImg').removeClass('hidden');
+                readURL(this);
+            });
+            $('#uploadImgBtn').on('click', function() {
+                $("#imgFile").trigger('click');
+            });
+            $('.modal-footer .btn-primary').on('click', function() {
+                $("#updateImg").trigger('click');
+            });
+        });
+    </script>
 @endsection

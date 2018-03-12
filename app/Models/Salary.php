@@ -10,7 +10,6 @@ class Salary extends Model
     use SoftDeletes;
 
     protected $fillable = [
-
         'user_id', 'pay_per_hour', 'insurance_money', 'final_payment',
     ];
 

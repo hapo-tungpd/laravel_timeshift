@@ -33,9 +33,9 @@
 <!--header-->
 <div class="header-w3l">
     <h1>
-        <span>U</span>ser
-        <span>L</span>ogin
-        <span>F</span>orm</h1>
+        <span>H</span>apo
+        <span>ERP</span>
+        <span>L</span>ogin</h1>
 </div>
 <!--//header-->
 <div class="main-content-agile">
@@ -45,7 +45,7 @@
             @csrf
             <div class="pom-agile">
                 <span class="fa fa-user-o" aria-hidden="true"></span>
-                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                <input placeholder="Email" id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                 @if ($errors->has('email'))
                     <span class="invalid-feedback">
@@ -55,7 +55,7 @@
             </div>
             <div class="pom-agile">
                 <span class="fa fa-key" aria-hidden="true"></span>
-                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                <input placeholder="Password" id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                 @if ($errors->has('password'))
                     <span class="invalid-feedback">
@@ -75,17 +75,13 @@
             <div class="right-w3l">
                 <input type="submit" value="Login">
             </div>
+            <div class="right-w31 admin-login">
+                <a href="{{ route('admin.login-form') }}">You are Admin?</a>
+            </div>
         </form>
     </div>
 </div>
 <!--//main-->
-<!--footer-->
-<div class="footer">
-    <p>&copy; 2018 User login | Design by
-        <a href="https://haposoft.com/vi">Haposoft</a>
-    </p>
-</div>
-<!--//footer-->
 </body>
 
 </html>
