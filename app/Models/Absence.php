@@ -17,7 +17,6 @@ class Absence extends Model
         'day', 'start_time', 'end_time', 'deleted_at',
     ];
 
-
     /**
      * Connect to users table
      *

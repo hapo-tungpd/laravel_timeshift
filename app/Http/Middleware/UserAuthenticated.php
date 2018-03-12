@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class AdminAuthenticate
+class UserAuthenticated
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class AdminAuthenticate
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::guard('admin')->check()) {
-            return redirect()->route('admin.login-form');
+        if (!Auth::guard('web')->check()) {
+            return redirect()->route('user.login-form');
         }
         return $next($request);
     }
