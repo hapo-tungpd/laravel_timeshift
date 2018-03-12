@@ -141,14 +141,14 @@ span.fa {
     padding-left: 25px;
     display: inline-block;
     font-size: .9em;
-    color: #fff;
+    color: #429321;
     cursor: pointer;
 }
 .sub-agile input[type="checkbox"]+label span:first-child {
     width: 13px;
     height: 13px;
     display: inline-block;
-    border: 1px solid #fff;
+    border: 1px solid #429321;
     position: absolute;
     top: 1px;
     left: 2px;
@@ -166,7 +166,7 @@ span.fa {
 .sub-w3l a {
     float: right;
     font-size: .9em;
-    color: #fff;
+    color: #429321;
 }
 /*--placeholder-color--*
 ::-webkit-input-placeholder{
@@ -186,7 +186,7 @@ span.fa {
 /*--footer--*/
 .footer p {
     font-size: .9em;
-    color: #fff;
+    color: #429321;
     letter-spacing: 2px;
 }
 .footer p a {
@@ -198,7 +198,7 @@ span.fa {
     transition: 0.5s all;
 }
 .footer p a:hover {
-    color: #fff;
+    color: #429321;
     -webkit-transition: 0.5s all;
     -o-transition: 0.5s all;
     -moz-transition: 0.5s all;

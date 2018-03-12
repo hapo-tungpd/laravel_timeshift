@@ -49,11 +49,13 @@ class LoginController extends Controller
         if ($check) {
             return redirect()->route('user.index');
         } else {
-            return redirect()->route('user.login');
+//            return redirect()->route('user.login');
+            return redirect()->back()->withInput($request->only('email', 'remember'));
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::guard('web')->logout();
         return redirect()->route('user.login-form');
     }

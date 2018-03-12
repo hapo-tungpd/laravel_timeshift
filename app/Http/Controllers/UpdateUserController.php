@@ -76,16 +76,13 @@ class UpdateUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
         if ($request->hasFile('image')) {
-            $file1 = $user->image;
-            File::delete('img/' . $file1);
-            $file = $request->image;
-            $file->move('storage/images', $file->getClientOriginalName());
-            $user->image = $file->getClientOriginalName();
-            $user['image'] = 'images/' . $user['image'];
-            $user->save();
+            $imgLink = $request->file('image')->store('public/images');
+            $imgLink = substr($imgLink, 7);
+            $data["image"] = $imgLink;
+            User::find($id)->update($data);
         }
+        $user = User::findOrFail($id);
         $user -> name = $request->input('name');
         $user -> phone = $request->input('phone');
         $user -> birthday = $request->input('birthday');
@@ -93,7 +90,9 @@ class UpdateUserController extends Controller
         $user -> address = $request->input('address');
         $user -> JLPT = $request->input('JLPT');
         $user->save();
-        return redirect()->route('user.index');
+        return redirect()->route('user.index', [
+            'id' => $id,
+        ]);
     }
 
     /**
