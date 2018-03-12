@@ -29,6 +29,7 @@
                         <button type="submit" id="logout-btn" class="hidden" ></button>
                     </form>
                     <a href="#"><i class="fa fa-sign-out"></i>Log out</a>
+                    <a href="#"><i class="fa fa-sign-out"></i>Log out</a>
                 </li>
             </ul>
         </div>

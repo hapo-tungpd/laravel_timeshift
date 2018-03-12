@@ -50,6 +50,12 @@ Route::prefix('admin')->group(function () {
         Route::resource('user', 'ManageUserController', ['as' => 'admin']);
         Route::put('user/{id}/update-image', 'ManageUserController@updateImage')->name('admin.user.update.image');
         Route::put('user/{id}/update-image', 'UserProfileController@updateImage')->name('admin.user.update.image');
+
+        /**
+         * change password admin
+         */
+//        Route::get('adminChangePassword', 'AdminController@showChangePasswordForm')->name('admin.adminChangePassword');
+//        Route::post('adminChangePassword', 'AdminController@changePassword')->name('adminChangePassword');
     });
     /**
      * admin reset password
