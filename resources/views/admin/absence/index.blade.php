@@ -113,18 +113,6 @@
 
 @section('javascript')
     <script>
-        function readURL(input) {
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('#uploadImg').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
         $(function () {
             // AJAX
             $.ajaxSetup({
@@ -164,17 +152,6 @@
                 ;
             });
             // END AJAX
-
-            $("#imgFile").change(function () {
-                $('#uploadImg').removeClass('hidden');
-                readURL(this);
-            });
-            $('#uploadImgBtn').on('click', function() {
-                $("#imgFile").trigger('click');
-            });
-            $('.modal-footer .btn-primary').on('click', function() {
-                $("#addEmployee").trigger('click');
-            });
         });
 
     </script>
