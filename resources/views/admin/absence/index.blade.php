@@ -52,7 +52,7 @@
                                 <td>{{ ($absence->end_time != null) ? $absence->end_time->format('H:i') : "" }}</td>
                                 <td>{{ $absence->content }}</td>
                                 <td>
-                                    <button type="button" data-toggle="modal" data-target="#showAbsence" class="btn btn-primary btn-sm">
+                                    <button type="button" data-toggle="modal" data-target="#{{ $absence->id }}" class="btn btn-primary btn-sm">
                                         <i class="fa fa-th-list"></i>
                                     </button>
                                 </td>
@@ -66,31 +66,42 @@
                                     </form>
                                 </td>
                             </tr>
+
+                            <!-- Modal -->
+                            <div id="{{ $absence->id }}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h3 class="modal-title">Absence detail</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h4><strong>{{ $absence->user->name }}</strong></h4>
+                                            <p>Date: {{ ($absence->day != null) ? $absence->day->format('d-m-Y') : "" }}</p>
+                                            <p>
+                                                Absent type: {{ ($absence->type == 1) ? 'Full day' :
+                                                (($absence->type == 2) ? 'Half day' : 'Other') }}
+                                            </p>
+                                            <p>
+                                                From {{ ($absence->start_time != null) ? $absence->start_time->format('H:i') : "" }}
+                                                to {{ ($absence->end_time != null) ? $absence->end_time->format('H:i') : "" }}
+                                            </p>
+                                            <span><strong>Content: </strong></span>
+                                            <p>{{ $absence->content }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         @endforeach
                         </tbody>
                     </table>
                     {{ $absences->links() }}
-
-                    <!-- Modal -->
-                    <div id="showAbsence" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h3 class="modal-title">Absence detail</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <p>{{  }}</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
 
                 </div>
                 <!-- /.box-body -->
