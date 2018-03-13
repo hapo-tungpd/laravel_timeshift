@@ -8,10 +8,13 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {{--  Toast  --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<<<<<<< HEAD
+=======
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 <!-- (Optional) Latest compiled and minified JavaScript translation files -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
+>>>>>>> develop
 <!-- FastClick -->
 <script src="{{asset('js/fastclick.js')}}"></script>
 <!-- AdminLTE App -->

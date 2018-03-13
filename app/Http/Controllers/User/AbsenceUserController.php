@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Image;
+use App\Http\Controllers\Controller;
+use App\Models\Absence;
 use Auth;
-use Carbon\Carbon;
 
-class UpdateUserController extends Controller
+class AbsenceUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +16,8 @@ class UpdateUserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        $absence = Absence::where('user_id', Auth::user()->id)->paginate(config('app.pagination'));
+        return view("user.absence.index", ['absence' => $absence]);
     }
 
     /**
@@ -28,7 +27,7 @@ class UpdateUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.absence.create');
     }
 
     /**
@@ -39,7 +38,9 @@ class UpdateUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Absence::create($data);
+        return redirect()->route('absence.index');
     }
 
     /**
@@ -50,7 +51,11 @@ class UpdateUserController extends Controller
      */
     public function show($id)
     {
-        //
+        $absence = Absence::findOrFail($id);
+        $data = [
+            'absence' => $absence,
+        ];
+        return view('user.absence.show', $data);
     }
 
     /**
@@ -58,15 +63,14 @@ class UpdateUserController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     *
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $absence = Absence::findOrFail($id);
         $data = [
-            'user' => $user,
+            'absence' => $absence,
         ];
-        return view('user.usermanage.edit', $data);
+        return view('user.absence.edit', $data);
     }
 
     /**
@@ -76,30 +80,12 @@ class UpdateUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUserRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        if ($request->hasFile('img')) {
-            $imgLink = $request->file('img')->store('public/images');
-            $imgLink = substr($imgLink, 7);
-            $data["image"] = $imgLink;
-            User::find($id)->update($data);
-        }
-
-        $user = User::findOrFail($id);
-        $user -> name = $request->input('name');
-        $user -> phone = $request->input('phone');
-        if ($request->input('birthday') != null) {
-            $user -> birthday = Carbon::createFromFormat('d-m-Y', $request->input('birthday'));
-        }
-        $user -> gender = $request->input('gender');
-        $user -> address = $request->input('address');
-        $user -> JLPT = $request->input('JLPT');
-        $user -> email = $request->input('email');
-//        dd($user->all());
-        $user->save();
-        return redirect()->route('user.index', [
-            'id' => $id,
-        ]);
+        $data = $request->all();
+        $data = array_slice($data, 2);
+        Absence::where('id', $id)->update($data);
+        return redirect()->route('absence.index');
     }
 
     /**
@@ -110,6 +96,7 @@ class UpdateUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Absence::findOrFail($id)->delete();
+        return redirect()->route('absence.index');
     }
 }

@@ -14,7 +14,7 @@ class AdminsTableSeeder extends Seeder
     public function run()
     {
         Admin::create([
-            'username' => 'admin',
+           'username' => 'admin',
             'password' => bcrypt('123456'),
             'email' => 'linhlt@haposoft.com',
         ]);

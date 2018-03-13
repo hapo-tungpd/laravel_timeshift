@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AdminController extends Controller
 {
@@ -16,6 +15,7 @@ class AdminController extends Controller
         }
         return view('admin.login');
     }
+
     public function login(Request $request)
     {
         $check = Auth::guard('admin')->attempt($request->only(['username', 'password']));
@@ -25,6 +25,7 @@ class AdminController extends Controller
             return redirect()->route('admin.login');
         }
     }
+
     public function logout()
     {
         Auth::guard('admin')->logout();

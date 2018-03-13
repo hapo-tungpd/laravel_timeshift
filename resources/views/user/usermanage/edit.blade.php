@@ -56,6 +56,13 @@
                         <input type="text" class="form-control user-time-picker" id="" value="{{ (Auth::user()->birthday != null) ? Auth::user()->birthday->format('d-m-Y') : "" }}" name="birthday" autocomplete="off">
                     </div>
                     <div class="form-group">
+                        <label for="">Birthday</label>
+                        @if ($errors->has('birthday'))
+                            <p class="input-warning">{{ $errors->first('birthday') }}</p>
+                        @endif
+                        <input type="text" class="form-control" id="" value="{{ $user->birthday->format('d/m/Y') }}" name="birthday" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
                         <label for="">Email address</label>
                         @if ($errors->has('email'))
                             <p class="input-warning">{{ $errors->first('email') }}</p>

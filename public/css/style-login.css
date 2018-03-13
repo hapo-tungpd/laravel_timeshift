@@ -186,11 +186,19 @@ span.fa {
 /*--footer--*/
 .footer p {
     font-size: .9em;
+<<<<<<< HEAD
+    color: #fff;
+    letter-spacing: 2px;
+}
+.footer p a {
+    color: #fb6906;
+=======
     color: #429321;
     letter-spacing: 2px;
 }
 .footer p a {
     color: #429321;
+>>>>>>> develop
     -webkit-transition: 0.5s all;
     -o-transition: 0.5s all;
     -moz-transition: 0.5s all;
