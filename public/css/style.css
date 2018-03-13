@@ -1,0 +1,32 @@
+.img-responsive {
+	margin-left: 0;
+}
+
+#uploadImg {
+	display: block;
+	max-width: 200px;
+	margin-bottom: 10px;
+}
+
+.form-group .input-warning {
+	color: red;
+}
+.form-create .upload-btn-wrapper {
+	overflow: hidden;
+}
+.form-create .upload-btn-wrapper .btn-upload {
+	border: 2px solid gray;
+	color: gray;
+	background-color: white;
+	padding: 8px 15px;
+	border-radius: 8px;
+	font-size: 15px;
+	font-weight: bold;
+}
+.form-create .upload-btn-wrapper input {
+	font-size: 15px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}
