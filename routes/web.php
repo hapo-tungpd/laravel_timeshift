@@ -50,6 +50,11 @@ Route::prefix('admin')->group(function () {
         Route::resource('user', 'ManageUserController', ['as' => 'admin']);
         Route::put('user/{id}/update-image', 'ManageUserController@updateImage')->name('admin.user.update.image');
         Route::put('user/{id}/update-image', 'UserProfileController@updateImage')->name('admin.user.update.image');
+
+        /**
+         * Manage report
+         */
+        Route::resource('absence', 'Admin\AbsenceController', ['as' => 'admin']);
     });
     /**
      * admin reset password
