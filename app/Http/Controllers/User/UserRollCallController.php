@@ -77,7 +77,7 @@ class UserRollCallController extends Controller
         $data = [
             'rollcall' => $request,
         ];
-        return view('user.roll-call.show', $data);
+        return view('user.roll_call.show', $data);
     }
 
     /**
@@ -142,7 +142,7 @@ class UserRollCallController extends Controller
             ->sum('total_time');
         $rollcall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->paginate(config('app.pagination'));
-        return view('user.roll-call.statistic', ['rollcall' => $rollcall, 'sumRollcall' => $sumRollcall]);
+        return view('user.roll_call.statistic', ['rollcall' => $rollcall, 'sumRollcall' => $sumRollcall]);
     }
 
     public function search(Request $request)
@@ -151,6 +151,6 @@ class UserRollCallController extends Controller
         $toTime = $request->to_date;
         $employees = RollCall::whereBetween('day', [$fromTime, $toTime])->paginate(10);
         $sumTime = RollCall::whereBetween('day', [$fromTime, $toTime])->sum('total_time');
-        return view('user.roll-call.search', compact('employees', 'sumTime'));
+        return view('user.roll_call.search', compact('employees', 'sumTime'));
     }
 }
