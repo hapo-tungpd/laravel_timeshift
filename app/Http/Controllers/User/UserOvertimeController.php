@@ -112,7 +112,9 @@ class UserOvertimeController extends Controller
     public function destroy($id)
     {
         Overtime::findOrFail($id)->delete();
-        return redirect()->route('overtime.index');
+        return response()->json([
+            'message' => 'Delete success'
+        ]);
     }
 
     public function search(Request $request)
