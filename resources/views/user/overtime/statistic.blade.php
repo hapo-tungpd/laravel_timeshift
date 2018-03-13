@@ -6,20 +6,6 @@
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="alert card-header alert-success">
-                        {{--<select class="selectpicker show-tick">--}}
-                        {{--<option name="">Tháng 1</option>--}}
-                        {{--<option>Tháng 2</option>--}}
-                        {{--<option>Tháng 3</option>--}}
-                        {{--<option>Tháng 4</option>--}}
-                        {{--<option>Tháng 5</option>--}}
-                        {{--<option>Tháng 6</option>--}}
-                        {{--<option>Tháng 7</option>--}}
-                        {{--<option>Tháng 8</option>--}}
-                        {{--<option>Tháng 9</option>--}}
-                        {{--<option>Tháng 10</option>--}}
-                        {{--<option>Tháng 11</option>--}}
-                        {{--<option>Tháng 12</option>--}}
-                        {{--</select>--}}
 
                         <form action="{{ route('overtime.statistic') }}" method="POST">
 
