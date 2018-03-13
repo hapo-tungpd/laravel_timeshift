@@ -13,10 +13,8 @@
                         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                             <div class="row">
                                 <div class="col-sm-6">
-
                                 </div>
                                 <div class="col-sm-6">
-
                                 </div>
                             </div>
                             <div class="row">
@@ -24,7 +22,7 @@
                                     <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                         <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
+                                            <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
                                             <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Name</th>
                                             <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Date</th>
                                             <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Start time</th>
@@ -47,12 +45,15 @@
                                         <tfoot>
                                         <tr>
                                             <th class="text-center" rowspan="1" colspan="1">General: {{ --$temp }}</th>
-                                            <th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1"></th>
                                             <th rowspan="1" colspan="1"></th>
-                                            <th class="text-center" rowspan="1" colspan="1">Total: {{ $sumOverTimeToday }}</th>
+                                            <th rowspan="1" colspan="1"></th>
+                                            <th rowspan="1" colspan="1"></th>
+                                            <th rowspan="1" colspan="1"></th>
+                                            <th class="text-center" rowspan="1" colspan="1">Total: {{ $sumOverTimeToday }} hour</th>
                                         </tr>
                                         </tfoot>
                                     </table>
+                                    {{ $overTimeDay->links() }}
                                 </div>
                             </div>
                             <div class="row">
@@ -105,8 +106,8 @@
                                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                         <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 297px;">No.</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Name</th>
+                                            <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
                                             <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 361px;">Date</th>
                                             <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 322px;">Start time</th>
                                             <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 257px;">End time</th>
@@ -127,9 +128,16 @@
                                             @endforeach
                                         </tbody>
                                         <tfoot>
-                                        <tr><th class="text-center" rowspan="1" colspan="1">Gereral: {{ --$temp }}</th><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1"></th><th class="text-center" rowspan="1" colspan="1">Total: {{ $sumOverTimeMonth }}</th></tr>
+                                        <tr>
+                                            <th class="text-center" rowspan="1" colspan="1">Gereral: {{ --$temp }}</th>
+                                            <th rowspan="1" colspan="1"></th>
+                                            <th rowspan="1" colspan="1"></th>
+                                            <th rowspan="1" colspan="1"></th>
+                                            <th rowspan="1" colspan="1"></th>
+                                            <th class="text-center" rowspan="1" colspan="1">Total: {{ $sumOverTimeMonth }} hour</th></tr>
                                         </tfoot>
                                     </table>
+                                    {{ $overTimeMonth->links() }}
                                 </div>
                             </div>
                                 <div class="row">
