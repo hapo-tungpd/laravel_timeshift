@@ -33,6 +33,11 @@ Route::prefix('user')->group(function () {
          */
         Route::get('changePassword', 'HomeController@showChangePasswordForm')->name('user.changePassword');
         Route::post('changePassword', 'HomeController@changePassword')->name('changePassword');
+
+        /**
+         * User Absence
+         */
+        Route::resource('absence', 'User\UserAbsenceController');
     });
 });
 
