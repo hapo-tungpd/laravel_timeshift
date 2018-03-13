@@ -27,6 +27,17 @@
                     <li><a href="{{ route('report.index') }}"><i class="fa fa-folder-open"></i>Your Report</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>Roll call</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('rollcall.create') }}"><i class="fa fa-users"></i>Roll call now!</a></li>
+                    <li><a href="{{ route('rollcall.index') }}"><i class="fa fa-users"></i>Your Roll Call</a></li>
+                    <li><a href="{{ route('rollcall.statistic') }}"><i class="fa fa-users"></i>Statistic Roll Call</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

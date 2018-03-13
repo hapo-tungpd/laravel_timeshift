@@ -38,6 +38,13 @@ Route::prefix('user')->group(function () {
          * User Report
          */
         Route::resource('report', 'User\UserReportController');
+
+        /**
+         * User Roll Call
+         */
+        Route::get('rollcall/search', 'User\UserRollCallController@search')->name('rollcall.search');
+        Route::get('rollcall/statistic', 'User\UserRollCallController@statistic')->name('rollcall.statistic');
+        Route::resource('rollcall', 'User\UserRollCallController');
     });
 });
 
