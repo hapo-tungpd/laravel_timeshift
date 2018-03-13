@@ -60,6 +60,12 @@ Route::prefix('admin')->group(function () {
          * Manage report
          */
         Route::resource('absence', 'Admin\AbsenceController', ['as' => 'admin']);
+
+        /**
+         * Manage roll call
+         */
+        Route::get('overtime/statistic', 'Admin\OvertimeController@statistic')->name('admin.overtime.statistic');
+        Route::resource('overtime', 'Admin\OvertimeController', ['as' => 'admin']);
     });
     /**
      * admin reset password
