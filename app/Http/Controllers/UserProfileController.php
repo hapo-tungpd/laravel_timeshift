@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class UserProfileController extends Controller
 {
-    public function updateImage(Request $request, $id) {
+    public function updateImage(Request $request, $id)
+    {
         if (!$request->hasFile('img')) {
             return redirect()->route('admin.user.show', [
                 'id' => $id,

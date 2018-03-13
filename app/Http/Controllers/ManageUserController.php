@@ -15,7 +15,7 @@ class ManageUserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('updated_at','desc')->paginate(config('app.user_pagination'));
+        $users = User::orderBy('updated_at', 'desc')->paginate(config('app.user_pagination'));
         $data = [
             'users' => $users,
         ];
@@ -109,5 +109,4 @@ class ManageUserController extends Controller
             'message' => 'Delete success'
         ]);
     }
-
 }
