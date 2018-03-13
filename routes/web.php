@@ -62,8 +62,9 @@ Route::prefix('admin')->group(function () {
         Route::resource('absence', 'Admin\AbsenceController', ['as' => 'admin']);
 
         /**
-         * Manage roll call
+         * Manage overtime
          */
+        Route::get('overtime/search', 'Admin\OvertimeController@search')->name('admin.overtime.search');
         Route::get('overtime/statistic', 'Admin\OvertimeController@statistic')->name('admin.overtime.statistic');
         Route::resource('overtime', 'Admin\OvertimeController', ['as' => 'admin']);
     });

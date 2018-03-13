@@ -1,11 +1,18 @@
 @extends('admin.layouts.master')
 
 @section('content')
-    <div class="container">
+    <section class="content-header">
+        <h1>
+            Overtime
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="box">
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Welcome to Overtime</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -13,7 +20,7 @@
                             </div>
                         @endif
 
-                        <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="" method="post">
+                        <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('admin.overtime.search') }}" method="post">
                             {{csrf_field()}}
                             {{ method_field('GET') }}
                             <div class="col-md-3">
@@ -59,18 +66,63 @@
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <form action="{{ route('admin.overtime.destroy', $data->id) }}" method="POST">
+                                    <form action="#" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button class="fa fa-trash-o btn btn-danger btn-sm"></button>
+                                        <button type="submit" data-id="{{ $data->id }}"
+                                                class="fa fa-trash-o btn btn-danger btn-sm"></button>
                                     </form>
                                 </td>
                                 </tbody>
                             @endforeach
                         </table>
+                        {{ $overTime->links() }}
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+@endsection
+@section('javascript')
+    <script>
+        $(function () {
+            // AJAX
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $(document).on('click', '.btn-danger', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                console.log(id);
+                var btn = $(this);
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover data!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                    if(willDelete) {
+                        $.ajax({
+                            type: 'delete',
+                            url: 'overtime/' + id,
+                            success: function (response) {
+                                btn.parent().parent().parent().fadeOut('slow');
+                            },
+                            error: function (xhr, status, error) {
+                                toastr.error('Unable to delete.', 'Error!');
+                            },
+                        });
+                    }
+                }
+            )
+                ;
+            });
+            // END AJAX
+        });
+    </script>
+
 @endsection

@@ -54,7 +54,13 @@ class OvertimeController extends Controller
      */
     public function show($id)
     {
-        //
+        $overTime = Overtime::findOrFail($id);
+        $user = User::findOrFail($overTime->user_id);
+        $data = [
+            'overTime' => $overTime,
+            'user' => $user,
+        ];
+        return view('admin.overtime.show', $data);
     }
 
     /**
@@ -88,7 +94,10 @@ class OvertimeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Overtime::findOrFail($id)->delete();
+        return response()->json([
+            'message' => 'Delete success'
+        ]);
     }
 
     public function statistic()
@@ -113,5 +122,14 @@ class OvertimeController extends Controller
             'overTime' => $overTime,
         ];
         return view('admin.overtime.statistic', $data);
+    }
+
+    public function search(Request $request)
+    {
+        $from_time = $request->from_date;
+        $to_time = $request->to_date;
+        $employees = Overtime::whereBetween('day', [$from_time, $to_time])->paginate(10);
+        $sum_time = Overtime::whereBetween('day', [$from_time, $to_time])->sum('total_time');
+        return view('admin.overtime.search', compact('employees', 'sum_time'));
     }
 }
