@@ -54,15 +54,13 @@ Route::prefix('admin')->group(function () {
         /**
          * change password admin
          */
-//        Route::get('adminChangePassword', 'AdminController@showChangePasswordForm')->name('admin.adminChangePassword');
-//        Route::post('adminChangePassword', 'AdminController@changePassword')->name('adminChangePassword');
     });
     /**
      * admin reset password
      */
     Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')
         ->name('admin.password.email');
-    Route::get('/password/reset', 'Auth\AdminForgotPasswordController@formResetLinkEmail')
+    Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')
         ->name('admin.password.request');
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')

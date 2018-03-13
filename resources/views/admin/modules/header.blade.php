@@ -15,7 +15,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </a>
-
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
@@ -29,8 +28,14 @@
                         <button type="submit" id="logout-btn" class="hidden" ></button>
                     </form>
                     <a href="#"><i class="fa fa-sign-out"></i>Log out</a>
-                    <a href="#"><i class="fa fa-sign-out"></i>Log out</a>
                 </li>
+                {{--<li>--}}
+                    {{--<form action="{{ route('admin.adminChangePassword') }}" method="GET">--}}
+                        {{--{{ csrf_field() }}--}}
+                        {{--<button type="submit" class="hidden" ></button>--}}
+                    {{--</form>--}}
+                    {{--<a href="#"><i class="fa"></i>Change Password</a>--}}
+                {{--</li>--}}
             </ul>
         </div>
     </nav>
