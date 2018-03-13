@@ -17,8 +17,13 @@ class UserRollCallController extends Controller
      */
     public function index()
     {
-        $rollcall = RollCall::orderBy('updated_at', Auth::user()->updated_at)->paginate(config('app.pagination'));
-        return view("user.roll-call.index", ['rollcall' => $rollcall]);
+        $rollcall = RollCall::where('user_id', Auth::user()->id)
+            ->orderby('updated_at', Auth::user()->updated_at)
+            ->paginate(config('app.user_report_pagination'));
+        $data = [
+            'rollcall' => $rollcall,
+        ];
+        return view("user.roll-call.index", $data);
     }
 
     /**
