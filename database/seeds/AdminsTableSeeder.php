@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+
 use App\Models\Admin;
 
 class AdminsTableSeeder extends Seeder
@@ -15,6 +16,7 @@ class AdminsTableSeeder extends Seeder
         Admin::create([
             'username' => 'admin',
             'password' => bcrypt('123456'),
+            'email' => 'linhlt@haposoft.com',
         ]);
     }
 }

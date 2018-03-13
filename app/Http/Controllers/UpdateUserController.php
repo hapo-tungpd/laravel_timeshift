@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admins;
+namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Report;
 use App\Models\User;
+use Image;
 use Auth;
+use Carbon\Carbon;
 
-class ManageReportController extends Controller
+class UpdateUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +18,8 @@ class ManageReportController extends Controller
      */
     public function index()
     {
-        $report = Report::orderBy('updated_at', 'desc')->paginate(config('app.report_pagination'));
-        $data = [
-          'report' => $report,
-        ];
-        return view("admin.report-manage.index", $data);
+//        dd(Auth::user());
+        return view('user.index');
     }
 
     /**
@@ -53,13 +51,7 @@ class ManageReportController extends Controller
      */
     public function show($id)
     {
-        $report = Report::findOrFail($id);
-        $user = User::findOrFail($report->user_id);
-        $data = [
-            'report' => $report,
-            'user' => $user,
-        ];
-        return view('admin.report-manage.show', $data);
+        //
     }
 
     /**
@@ -67,10 +59,15 @@ class ManageReportController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $data = [
+            'user' => $user,
+        ];
+        return view('user.usermanage.edit', $data);
     }
 
     /**
@@ -80,9 +77,30 @@ class ManageReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request, $id)
     {
-        //
+        if ($request->hasFile('img')) {
+            $imgLink = $request->file('img')->store('public/images');
+            $imgLink = substr($imgLink, 7);
+            $data["image"] = $imgLink;
+            User::find($id)->update($data);
+        }
+
+        $user = User::findOrFail($id);
+        $user -> name = $request->input('name');
+        $user -> phone = $request->input('phone');
+        if ($request->input('birthday') != null) {
+            $user -> birthday = Carbon::createFromFormat('d-m-Y', $request->input('birthday'));
+        }
+        $user -> gender = $request->input('gender');
+        $user -> address = $request->input('address');
+        $user -> JLPT = $request->input('JLPT');
+        $user -> email = $request->input('email');
+//        dd($user->all());
+        $user->save();
+        return redirect()->route('user.index', [
+            'id' => $id,
+        ]);
     }
 
     /**

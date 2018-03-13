@@ -15,7 +15,7 @@ class ManageUserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('updated_at','desc')->paginate(config('app.user_pagination'));
+        $users = User::orderBy('updated_at', 'desc')->paginate(config('app.user_pagination'));
         $data = [
             'users' => $users,
         ];
@@ -46,6 +46,7 @@ class ManageUserController extends Controller
             $imgLink = substr($imgLink, 7);
             $data["image"] = $imgLink;
         }
+        $data['password'] = bcrypt($data['password']);
         User::create($data);
         return redirect()->route('admin.user.index');
     }
@@ -108,5 +109,4 @@ class ManageUserController extends Controller
             'message' => 'Delete success'
         ]);
     }
-
 }

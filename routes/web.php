@@ -10,9 +10,35 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
+});
+
+//manage user
+Route::prefix('user')->group(function () {
+    Route::get('login', 'Auth\LoginController@loginForm')->name('user.login-form');
+    Route::post('login', 'Auth\LoginController@login')->name('user.login');
+    Route::get('index', 'HomeController@index')->name('user.index');
+
+    Route::middleware(['web.auth'])->group(function () {
+        Route::post('logout', 'Auth\LoginController@logout')->name('user.logout');
+
+        /**
+         * update user
+         */
+        Route::resource('user', 'UpdateUserController');
+
+        /**
+         * change password user
+         */
+        Route::get('changePassword', 'HomeController@showChangePasswordForm')->name('user.changePassword');
+        Route::post('changePassword', 'HomeController@changePassword')->name('changePassword');
+
+        /**
+         * User Report
+         */
+        Route::resource('report', 'User\UserReportController');
+    });
 });
 
 Route::prefix('admin')->group(function () {
@@ -27,15 +53,29 @@ Route::prefix('admin')->group(function () {
         * Manage user
         */
         Route::resource('user', 'ManageUserController', ['as' => 'admin']);
+        Route::put('user/{id}/update-image', 'ManageUserController@updateImage')->name('admin.user.update.image');
         Route::put('user/{id}/update-image', 'UserProfileController@updateImage')->name('admin.user.update.image');
 
-       /**
-        * Manage report
-        */
-        Route::resource('report', 'Admins\ManageReportController', ['as' => 'admin']);
+        /**
+         * Manage absence
+         */
+        Route::resource('absence', 'Admin\AbsenceController', ['as' => 'admin']);
+
+        /**
+         * Manage report
+         */
+        Route::resource('report', 'Admin\ManageReportController', ['as' => 'admin']);
     });
+    /**
+     * admin reset password
+     */
+    Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')
+        ->name('admin.password.email');
+    Route::get('/password/reset', 'Auth\AdminForgotPasswordController@formResetLinkEmail')
+        ->name('admin.password.request');
+    Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
+    Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')
+        ->name('admin.password.reset');
 });
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
