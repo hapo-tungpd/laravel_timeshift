@@ -115,6 +115,8 @@ class UserReportController extends Controller
     public function destroy($id)
     {
         Report::findOrFail($id)->delete();
-        return redirect()->route('report.index');
+        return response()->json([
+            'message' => 'Delete success'
+        ]);
     }
 }

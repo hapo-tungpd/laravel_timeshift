@@ -57,10 +57,11 @@
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <form action="{{ route('report.destroy', $data->id) }}" method="POST">
+                                    <form action="#" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button class="fa fa-trash-o btn btn-danger btn-sm"></button>
+                                        <button type="submit" data-id="{{ $data->id }}"
+                                                class="fa fa-trash-o btn btn-danger btn-sm"></button>
                                     </form>
                                 </td>
                                 </tbody>
@@ -72,4 +73,51 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('javascript')
+    <script>
+        $(function () {
+            // AJAX
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(document).on('click', '.btn-danger', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                console.log(id);
+                var btn = $(this);
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover data!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                    if(willDelete) {
+                        $.ajax({
+                            type: 'delete',
+                            url: 'report/' + id,
+                            success: function (response) {
+                                btn.parent().parent().parent().fadeOut('slow');
+                            },
+                            error: function (xhr, status, error) {
+                                toastr.error('Unable to delete.', 'Error!');
+                            },
+                        });
+                    }
+                }
+            )
+                ;
+            });
+            // END AJAX
+        });
+
+    </script>
+
 @endsection
