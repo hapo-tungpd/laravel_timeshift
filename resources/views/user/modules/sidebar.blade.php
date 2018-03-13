@@ -27,6 +27,16 @@
                     <li><a href="{{ route('absence.index') }}"><i class="fa fa-calendar-times-o"></i>Your Absence</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-calendar-o"></i> <span>Report</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('report.create') }}"><i class="fa fa-edit"></i>Create Report</a></li>
+                    <li><a href="{{ route('report.index') }}"><i class="fa fa-folder-open"></i>Your Report</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

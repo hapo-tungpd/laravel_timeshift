@@ -38,6 +38,11 @@ Route::prefix('user')->group(function () {
          * User Absence
          */
         Route::resource('absence', 'User\UserAbsenceController');
+
+        /**
+         * User Report
+         */
+        Route::resource('report', 'User\UserReportController');
     });
 });
 
