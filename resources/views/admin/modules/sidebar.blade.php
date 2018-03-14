@@ -31,6 +31,8 @@
                     <i class="fa fa-calendar-minus-o"></i> <span>Absence</span>
                 </a>
             </li>
+
+            <li><a href=""><i class="fa fa-user-plus"></i>Salary</a></li>
         </ul>
     </section>
     <!-- /.sidebar -->
