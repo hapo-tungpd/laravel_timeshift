@@ -45,6 +45,13 @@ Route::prefix('user')->group(function () {
         Route::get('rollcall/search', 'User\UserRollCallController@search')->name('rollcall.search');
         Route::get('rollcall/statistic', 'User\UserRollCallController@statistic')->name('rollcall.statistic');
         Route::resource('rollcall', 'User\UserRollCallController');
+
+        /**
+         * User Overtime
+         */
+        Route::get('overtime/search', 'User\UserOvertimeController@search')->name('overtime.search');
+        Route::get('overtime/statistic', 'User\UserOvertimeController@statistic')->name('overtime.statistic');
+        Route::resource('overtime', 'User\UserOvertimeController');
     });
 });
 
