@@ -5,7 +5,7 @@
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Add new employee</h3>
+                <h3 class="box-title">Edit employee</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -46,6 +46,13 @@
                             <p class="input-warning">{{ $errors->first('email') }}</p>
                         @endif
                         <input type="email" class="form-control" id="" value="{{ $user->email }}" name="email" autocomplete="off" required>
+                    </div>
+                    <div class="form-group user-time-picker">
+                        <label for="">Birthday</label>
+                        @if ($errors->has('birthday'))
+                            <p class="input-warning">{{ $errors->first('birthday') }}</p>
+                        @endif
+                        <input type="text" class="form-control user-time-picker" id="" value="{{ (Auth::user()->birthday != null) ? Auth::user()->birthday->format('d-m-Y') : "" }}" name="birthday" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="">Address</label>

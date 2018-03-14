@@ -10,9 +10,14 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" src="{{ ($user->image == null) ? asset('img/default.png') : asset('storage/'.$user->image) }}" alt="User profile picture">
+                        <img class="profile-user-img img-responsive img-circle"
+                             src="{{ ($user->image == null) ? asset('img/default.png') : asset('storage/'.$user->image) }}"
+                             alt="User profile picture">
                         {{--Trigger upload img modal--}}
-                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-upload"></i>Upload image</button><br>
+                        <button type="button" class="btn btn-success btn-block" data-toggle="modal"
+                                data-target="#myModal"><i class="fa fa-fw fa-upload"></i>Upload image
+                        </button>
+                        <br>
                         {{--End trigger--}}
                         <h3 class="profile-username text-center">{{ $user->name }}</h3>
 
@@ -20,7 +25,8 @@
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Birthday</b> <a class="pull-right">{{ ($user->birthday != null) ? $user->birthday->format('d-m-Y') : "" }}</a>
+                                <b>Birthday</b> <a
+                                        class="pull-right">{{ ($user->birthday != null) ? $user->birthday->format('d-m-Y') : "" }}</a>
                             </li>
                             <li class="list-group-item">
                                 <b>Gender</b> <a class="pull-right">{{ ($user->gender)?"Male":"Female" }}</a>
@@ -30,7 +36,8 @@
                             </li>
                         </ul>
 
-                        <a href="{{ route('admin.user.edit', ['id'=>$user->id]) }}" class="btn btn-primary btn-block"><b>Edit</b></a>
+                        <a href="{{ route('admin.user.edit', ['id'=>$user->id]) }}"
+                           class="btn btn-primary btn-block"><b>Edit</b></a>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -73,13 +80,16 @@
                                 <h4 class="modal-title">Upload profile image</h4>
                             </div>
                             <div class="modal-body">
-                                <form role="form" action="{{ route('admin.user.update.image', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
+                                <form role="form" action="{{ route('admin.user.update.image', ['id' => $user->id]) }}"
+                                      method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="_method" value="PUT">
                                     <div class="form-group">
-                                        <img class="hidden" id="uploadImg" src="#" alt="your image" />
+                                        <img class="hidden" id="uploadImg" src="#" alt="your image"/>
                                         <input class="hidden" type="file" id="imgFile" name="img">
-                                        <button type="button" id="uploadImgBtn" class="btn btn-success"><i class="fa fa-fw fa-upload"></i>Upload</button>
+                                        <button type="button" id="uploadImgBtn" class="btn btn-success"><i
+                                                    class="fa fa-fw fa-upload"></i>Upload
+                                        </button>
                                         <p class="help-block">Upload profile picture</p>
                                         <button type="submit" class="hidden" id="updateImg"></button>
                                     </div>
@@ -92,15 +102,15 @@
                         </div>
                     </div>
                 </div>
-                {{--End modal--}}
-                <!-- /.box -->
+            {{--End modal--}}
+            <!-- /.box -->
             </div>
             <!-- /.col -->
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-                        <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+                        <li><a href="#timeline" data-toggle="tab">Report</a></li>
                         <li><a href="#settings" data-toggle="tab">Settings</a></li>
                     </ul>
                     <div class="tab-content">
@@ -108,7 +118,8 @@
                             <!-- Post -->
                             <div class="post">
                                 <div class="user-block">
-                                    <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+                                    <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg"
+                                         alt="user image">
                                     <span class="username">
                           <a href="#">Jonathan Burke Jr.</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -124,11 +135,14 @@
                                     to Charlie Sheen fans.
                                 </p>
                                 <ul class="list-inline">
-                                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i>
+                                            Share</a></li>
+                                    <li><a href="#" class="link-black text-sm"><i
+                                                    class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
                                     </li>
                                     <li class="pull-right">
-                                        <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                                        <a href="#" class="link-black text-sm"><i
+                                                    class="fa fa-comments-o margin-r-5"></i> Comments
                                             (5)</a></li>
                                 </ul>
 
@@ -139,7 +153,8 @@
                             <!-- Post -->
                             <div class="post clearfix">
                                 <div class="user-block">
-                                    <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
+                                    <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg"
+                                         alt="User Image">
                                     <span class="username">
                           <a href="#">Sarah Ross</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -161,7 +176,9 @@
                                             <input class="form-control input-sm" placeholder="Response">
                                         </div>
                                         <div class="col-sm-3">
-                                            <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
+                                            <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">
+                                                Send
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -171,7 +188,8 @@
                             <!-- Post -->
                             <div class="post">
                                 <div class="user-block">
-                                    <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+                                    <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg"
+                                         alt="User Image">
                                     <span class="username">
                           <a href="#">Adam Jones</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -206,11 +224,14 @@
                                 <!-- /.row -->
 
                                 <ul class="list-inline">
-                                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i>
+                                            Share</a></li>
+                                    <li><a href="#" class="link-black text-sm"><i
+                                                    class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
                                     </li>
                                     <li class="pull-right">
-                                        <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                                        <a href="#" class="link-black text-sm"><i
+                                                    class="fa fa-comments-o margin-r-5"></i> Comments
                                             (5)</a></li>
                                 </ul>
 
@@ -222,92 +243,41 @@
                         <div class="tab-pane" id="timeline">
                             <!-- The timeline -->
                             <ul class="timeline timeline-inverse">
+                                @foreach($user->reports as $report)
+                                    <!-- timeline time label -->
+                                    <li class="time-label">
+                                        <span class="bg-red">
+                                          {{ $report->day->format('d-m-Y') }}
+                                        </span>
+                                    </li>
+                                <!-- /.timeline-label -->
+                                    <!-- timeline item -->
+                                    <li>
+                                        <i class="fa fa-envelope bg-blue"></i>
+
+                                        <div class="timeline-item">
+                                            <h3 class="timeline-header">
+                                                <a href="#">Updated at: </a>
+                                                <i class="fa fa-clock-o"></i> {{ $report->updated_at->format('H:i') }}
+                                            </h3>
+                                            <strong>Today</strong>
+                                            <div class="timeline-body">
+                                                {!! $report->today !!}
+                                            </div>
+                                            <strong>Tomorrow</strong>
+                                            <div class="timeline-body">
+                                                {!! $report->tomorrow !!}
+                                            </div>
+                                            <strong>Problem</strong>
+                                            <div class="timeline-body">
+                                                {!! $report->problem !!}
+                                            </div>
+                                        </div>
+                                    </li>
+                                <!-- END timeline item -->
+                                @endforeach
                                 <!-- timeline time label -->
                                 <li class="time-label">
-                        <span class="bg-red">
-                          10 Feb. 2014
-                        </span>
-                                </li>
-                                <!-- /.timeline-label -->
-                                <!-- timeline item -->
-                                <li>
-                                    <i class="fa fa-envelope bg-blue"></i>
-
-                                    <div class="timeline-item">
-                                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                                        <div class="timeline-body">
-                                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                            quora plaxo ideeli hulu weebly balihoo...
-                                        </div>
-                                        <div class="timeline-footer">
-                                            <a class="btn btn-primary btn-xs">Read more</a>
-                                            <a class="btn btn-danger btn-xs">Delete</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- END timeline item -->
-                                <!-- timeline item -->
-                                <li>
-                                    <i class="fa fa-user bg-aqua"></i>
-
-                                    <div class="timeline-item">
-                                        <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                                        <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                                        </h3>
-                                    </div>
-                                </li>
-                                <!-- END timeline item -->
-                                <!-- timeline item -->
-                                <li>
-                                    <i class="fa fa-comments bg-yellow"></i>
-
-                                    <div class="timeline-item">
-                                        <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                                        <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                                        <div class="timeline-body">
-                                            Take me to your leader!
-                                            Switzerland is small and neutral!
-                                            We are more like Germany, ambitious and misunderstood!
-                                        </div>
-                                        <div class="timeline-footer">
-                                            <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- END timeline item -->
-                                <!-- timeline time label -->
-                                <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
-                        </span>
-                                </li>
-                                <!-- /.timeline-label -->
-                                <!-- timeline item -->
-                                <li>
-                                    <i class="fa fa-camera bg-purple"></i>
-
-                                    <div class="timeline-item">
-                                        <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                                        <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                                        <div class="timeline-body">
-                                            <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                            <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                            <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                            <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- END timeline item -->
                                 <li>
                                     <i class="fa fa-clock-o bg-gray"></i>
                                 </li>
@@ -342,7 +312,8 @@
                                     <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
 
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                        <textarea class="form-control" id="inputExperience"
+                                                  placeholder="Experience"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -356,7 +327,8 @@
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                                <input type="checkbox"> I agree to the <a href="#">terms and
+                                                    conditions</a>
                                             </label>
                                         </div>
                                     </div>
@@ -391,22 +363,23 @@
             if (input.files && input.files[0]) {
                 let reader = new FileReader();
 
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     $('#uploadImg').attr('src', e.target.result);
                 }
 
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $(document).ready(function() {
+
+        $(document).ready(function () {
             $("#imgFile").change(function () {
                 $('#uploadImg').removeClass('hidden');
                 readURL(this);
             });
-            $('#uploadImgBtn').on('click', function() {
+            $('#uploadImgBtn').on('click', function () {
                 $("#imgFile").trigger('click');
             });
-            $('.modal-footer .btn-primary').on('click', function() {
+            $('.modal-footer .btn-primary').on('click', function () {
                 $("#updateImg").trigger('click');
             });
         });
