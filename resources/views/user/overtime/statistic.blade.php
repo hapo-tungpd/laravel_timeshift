@@ -40,7 +40,7 @@
                             <tr>
                                 <th class="text-center">Total time OT</th>
                                 <th class="text-center">{{ --$temp }} day</th>
-                                <th class="text-center">{{ $sumOvertime }} hour</th>
+                                <th class="text-center">{{ $sumOvertime }} hours</th>
                             </tr>
                             </tbody>
                         </table>
