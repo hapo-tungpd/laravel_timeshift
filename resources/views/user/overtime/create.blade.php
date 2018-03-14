@@ -19,7 +19,7 @@
                         @if ($errors->has('day'))
                             <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input type="text" class="form-control over-time-picker" id="" name="day">
+                        <input type="text" class="form-control over-time-picker" id="" name="day" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
                     </div>
                 </div>
                 <div class="box-body">
@@ -28,7 +28,8 @@
                         @if ($errors->has('start_time'))
                             <p class="input-warning">{{ $errors->first('start_time') }}</p>
                         @endif
-                        <input type="time" class="form-control" id="" name="start_time">
+                        <input type="time" class="form-control" id="" name="start_time"
+                               value="{{ \Carbon\Carbon::createFromFormat('H:i', '18:00')->format('H:i') }}">
                     </div>
                 </div>
                 <div class="box-body">
@@ -37,7 +38,7 @@
                         @if ($errors->has('end_time'))
                             <p class="input-warning">{{ $errors->first('end_time') }}</p>
                         @endif
-                        <input type="time" class="form-control" id="" name="end_time">
+                        <input type="time" class="form-control" id="" name="end_time" value="{{ \Carbon\Carbon::now()->format('H:i') }}">
                     </div>
                 </div>
                 <div class="box-footer">

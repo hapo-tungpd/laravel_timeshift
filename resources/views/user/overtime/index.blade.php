@@ -19,6 +19,7 @@
                                 Create new Overtime
                             </button>
                         </form>
+                        <br>
                         <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('overtime.search') }}" method="post">
                             {{csrf_field()}}
                             {{ method_field('GET') }}

@@ -27,7 +27,7 @@
                             <td class="text-center">{{ $overtime->day->format('d/m/Y') }}</td>
                             <td class="text-center">{{ $overtime->start_time->format('H:s:i') }}</td>
                             <td class="text-center">{{ $overtime->end_time->format('H:s:i') }}</td>
-                            <td class="text-center">{{ $overtime->total_time }}</td>
+                            <td class="text-center">{{ $overtime->total_time }} hours</td>
                             </tbody>
                         </table>
                         <a href="{{ route('overtime.index') }}" class="btn btn-primary">Back</a>

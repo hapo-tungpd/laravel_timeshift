@@ -51,7 +51,8 @@ class UserOvertimeController extends Controller
         $data['end_time'] = $data['day'] . ' ' . $data['end_time'] . ':00';
         $toTime = strtotime($data['start_time']);
         $fromTime = strtotime($data['end_time']);
-        $data['total_time'] = ceil($fromTime - $toTime)/(60*60);
+        $data['total_time'] = ($fromTime - $toTime)/(60*60);
+        $data['total_time'] = number_format($data['total_time'], 1, '.', ',');
         Overtime::create($data);
         return redirect()->route('overtime.index');
     }
