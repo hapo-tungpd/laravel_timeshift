@@ -232,6 +232,7 @@
                                         <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
                                         <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
                                         <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Total time</th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 25px;">Show</th></tr>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -243,6 +244,13 @@
                                         <td class="text-center">{{ $temp++ }}</td>
                                         <td class="text-center">{{ $data->user->name }}</td>
                                         <td class="text-center">{{ $data->total_times }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('admin.overtime.showOvertime', $data->user_id) }}">
+                                                <button class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-th-list"></i>
+                                                </button>
+                                            </a>
+                                        </td>
                                     </tbody>
                                 @endforeach
                                 <tfoot>

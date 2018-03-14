@@ -149,4 +149,16 @@ class OvertimeController extends Controller
         $sum_time = Overtime::whereBetween('day', [$from_time, $to_time])->sum('total_time');
         return view('admin.overtime.search', compact('employees', 'sum_time'));
     }
+
+    public function showOvertime($user_id)
+    {
+        $overTimeEmployee = Overtime::where('user_id', $user_id)
+            ->whereMonth('day', Carbon::now()->format('m'))
+            ->whereYear('day', Carbon::now()->format('Y'))
+            ->paginate(config('app.pagination'));
+        $data = [
+            'overTimeEmployee' => $overTimeEmployee,
+        ];
+        return view('admin.overtime.show-overtime', $data);
+    }
 }
