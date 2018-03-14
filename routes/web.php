@@ -60,6 +60,11 @@ Route::prefix('admin')->group(function () {
          * Manage report
          */
         Route::resource('absence', 'Admin\AbsenceController', ['as' => 'admin']);
+
+        /**
+         * Manage salary
+         */
+        Route::resource('salary', 'Admin\SalaryController', ['as' => 'admin']);
     });
     /**
      * admin reset password
