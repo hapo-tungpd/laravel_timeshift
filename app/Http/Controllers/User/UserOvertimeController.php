@@ -17,8 +17,6 @@ class UserOvertimeController extends Controller
      */
     public function index()
     {
-//        $overtime = Overtime::orderby('updated_at', Auth::user()->updated_at)->paginate(config('app.pagination'));
-//        return view("user.overtime.index", ['overtime' => $overtime]);
         $overtime = Overtime::where('user_id', Auth::user()->id)
             ->orderby('updated_at', Auth::user()->updated_at)
             ->paginate(config('app.user_report_pagination'));
@@ -130,7 +128,7 @@ class UserOvertimeController extends Controller
     public function statistic()
     {
         $dateTime = Overtime::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day');
-        $dateTimeDay = substr($dateTime, 0, 7);
+        $dateTimeDay = $dateTime->format('Y-m');
         $sumOvertime = Overtime::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->sum('total_time');
         $overtime = Overtime::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
