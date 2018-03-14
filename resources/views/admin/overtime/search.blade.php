@@ -1,4 +1,4 @@
-@extends('user.layouts.master')
+@extends('admin.layouts.master')
 
 @section('content')
     <section class="content-header">
@@ -54,7 +54,7 @@
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             <button type="submit" data-id="{{ $data->id }}"
-                                            class="fa fa-trash-o btn btn-danger btn-sm"></button>
+                                                    class="fa fa-trash-o btn btn-danger btn-sm"></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -78,6 +78,7 @@
         </div>
     </section>
 @endsection
+
 @section('javascript')
     <script>
         $(function () {

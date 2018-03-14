@@ -147,7 +147,11 @@ class OvertimeController extends Controller
         $toTime = $request->to_date;
         $employees = Overtime::whereBetween('day', [$fromTime, $toTime])->paginate(10);
         $sumTime = Overtime::whereBetween('day', [$fromTime, $toTime])->sum('total_time');
-        return view('admin.overtime.search', compact('employees', 'sumTime'));
+        $data = [
+            'employees' => $employees,
+            'sumTime' => $sumTime,
+        ];
+        return view('admin.overtime.search', $data);
     }
 
     public function showOvertime($user_id)

@@ -20,9 +20,7 @@
                             </div>
                         @endif
 
-                        <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('admin.overtime.search') }}" method="post">
-                            {{csrf_field()}}
-                            {{ method_field('GET') }}
+                        <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('admin.overtime.search') }}" method="get">
                             <div class="col-md-3">
                                 <input type="text" name="from_date" id="from_date" class="form-control filter-overtime over-time-picker" placeholder="From Date" />
                             </div>
