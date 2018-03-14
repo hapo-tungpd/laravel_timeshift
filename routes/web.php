@@ -64,6 +64,8 @@ Route::prefix('admin')->group(function () {
         /**
          * Manage roll call
          */
+        Route::get('rollcall/showRollCall/{user_id}', 'Admin\RollCallController@showRollCall')
+            ->name('admin.rollcall.showRollCall');
         Route::get('rollcall/search', 'Admin\RollCallController@search')->name('admin.rollcall.search');
         Route::get('rollcall/statistic', 'Admin\RollCallController@statistic')->name('admin.rollcall.statistic');
         Route::resource('rollcall', 'Admin\RollCallController', ['as' => 'admin']);
