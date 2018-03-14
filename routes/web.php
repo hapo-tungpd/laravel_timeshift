@@ -43,6 +43,13 @@ Route::prefix('user')->group(function () {
          * User Report
          */
         Route::resource('report', 'User\UserReportController');
+
+        /**
+         * User Overtime
+         */
+        Route::get('overtime/search', 'User\UserOvertimeController@search')->name('overtime.search');
+        Route::get('overtime/statistic', 'User\UserOvertimeController@statistic')->name('overtime.statistic');
+        Route::resource('overtime', 'User\UserOvertimeController');
     });
 });
 
