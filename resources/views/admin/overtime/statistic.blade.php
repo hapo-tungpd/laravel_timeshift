@@ -6,7 +6,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Overtime Today</h3>
+                        <h3 class="box-title">Overtime Today, @php echo date('d-m/Y'); @endphp</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -96,7 +96,7 @@
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Overtime Of Month</h3>
+                        <h3 class="box-title">Overtime Of Month, @php echo date('m/Y'); @endphp</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -105,13 +105,14 @@
                                 <div class="col-sm-12">
                                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                         <thead>
-                                        <tr role="row">
-                                            <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 361px;">Date</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 322px;">Start time</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 257px;">End time</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Total time</th></tr>
+                                            <tr role="row">
+                                                <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 361px;">Date</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 322px;">Start time</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 257px;">End time</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Total time</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             @php
@@ -119,23 +120,25 @@
                                             @endphp
                                             @foreach($overTimeMonth as $data)
                                                 <tbody>
-                                                <td class="text-center">{{ $temp++ }}</td>
-                                                <td class="text-center">{{ $data->user->name }}</td>
-                                                <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
-                                                <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
-                                                <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
-                                                <td class="text-center">{{ $data->total_time }}</td>
+                                                    <td class="text-center">{{ $temp++ }}</td>
+                                                    <td class="text-center">{{ $data->user->name }}</td>
+                                                    <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
+                                                    <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
+                                                    <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
+                                                    <td class="text-center">{{ $data->total_time }}</td>
+                                                </tbody>
                                             @endforeach
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <th class="text-center" rowspan="1" colspan="1">Gereral: {{ --$temp }}</th>
-                                            <th rowspan="1" colspan="1"></th>
-                                            <th rowspan="1" colspan="1"></th>
-                                            <th rowspan="1" colspan="1"></th>
-                                            <th rowspan="1" colspan="1"></th>
-                                            <th class="text-center" rowspan="1" colspan="1">Total: {{ $sumOverTimeMonth }} hour</th></tr>
-                                        </tfoot>
+                                            <tfoot>
+                                                <tr>
+                                                    <th class="text-center" rowspan="1" colspan="1">Gereral: {{ --$temp }}</th>
+                                                    <th rowspan="1" colspan="1"></th>
+                                                    <th rowspan="1" colspan="1"></th>
+                                                    <th rowspan="1" colspan="1"></th>
+                                                    <th rowspan="1" colspan="1"></th>
+                                                    <th class="text-center" rowspan="1" colspan="1">Total: {{ $sumOverTimeMonth }} hour</th>
+                                                </tr>
+                                            </tfoot>
+                                         </tbody>
                                     </table>
                                     {{ $overTimeMonth->links() }}
                                 </div>
@@ -185,31 +188,35 @@
                     <div class="box box-solid">
                         <div class="box-body">
                             <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                                STATISTIC OVERTIME EMPLOYEE
+                                STATISTIC OVERTIME EMPLOYEE TODAY, @php echo date('d-m/Y'); @endphp
                             </h4>
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="https://themequarry.com/theme/ample-admin-the-ultimate-dashboard-template-ASFEDA95" class="ad-click-event">
-                                        <img src="https://themequarry.com/storage/images/approved/ASFEDA95_v2.1_5a0eaa448e2d5.png" alt="Ample Admin" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <div class="clearfix">
-                                        <p class="pull-right">
-                                            <a href="https://themequarry.com/theme/ample-admin-the-ultimate-dashboard-template-ASFEDA95" class="btn btn-success btn-sm ad-click-event">
-                                                LEARN MORE
-                                            </a>
-                                        </p>
-
-                                        <h4 style="margin-top: 0">Ample Admin ─ $24</h4>
-
-                                        <p>Admin + Frontend Template</p>
-                                        <p style="margin-bottom: 0">
-                                            <i class="fa fa-shopping-cart margin-r5"></i> 100+ purchases
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                <thead>
+                                <tr role="row">
+                                    <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
+                                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
+                                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Total time</th></tr>
+                                </thead>
+                                <tbody>
+                                @php
+                                    $temp = 1;
+                                @endphp
+                                @foreach($dataName as $data)
+                                    <tbody>
+                                        <td class="text-center">{{ $temp++ }}</td>
+                                        <td class="text-center">{{ $data->user->name }}</td>
+                                        <td class="text-center">{{ $data->total_times }}</td>
+                                    </tbody>
+                                @endforeach
+                                <tfoot>
+                                    <tr>
+                                        <th class="text-center" rowspan="1" colspan="1">Gereral: {{ --$temp }}</th>
+                                        <th rowspan="1" colspan="1"></th>
+                                        <th class="text-center" rowspan="1" colspan="1">Total: {{ $dataSumRollCallToDay }} hour</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            {{ $dataName->links() }}
                         </div>
                     </div>
                 </div>
@@ -217,31 +224,36 @@
                     <div class="box box-solid">
                         <div class="box-body">
                             <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                                PREMIUM TEMPLATE
+                                STATISTIC OVERTIME EMPLOYEE OF MONTH, @php echo date('m/Y'); @endphp
                             </h4>
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="https://themequarry.com/theme/appzia-responsive-admin-dashboard-ASFEDAAB" class="ad-click-event">
-                                        <img src="https://themequarry.com/storage/images/approved/ASFEDAAB_v1.0.0_5992c3326c307.png" alt="Appzia" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <div class="clearfix">
-                                        <p class="pull-right">
-                                            <a href="https://themequarry.com/theme/appzia-responsive-admin-dashboard-ASFEDAAB" class="btn btn-success btn-sm ad-click-event">
-                                                LEARN MORE
-                                            </a>
-                                        </p>
-
-                                        <h4 style="margin-top: 0">Appzia ─ $18</h4>
-
-                                        <p>Responsive Admin Dashboard</p>
-                                        <p style="margin-bottom: 0">
-                                            <i class="fa fa-shopping-cart margin-r5"></i> 9+ purchases
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Total time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @php
+                                    $temp = 1;
+                                @endphp
+                                @foreach($dataNameMonth as $data)
+                                    <tbody>
+                                        <td class="text-center">{{ $temp++ }}</td>
+                                        <td class="text-center">{{ $data->user->name }}</td>
+                                        <td class="text-center">{{ $data->total_times }}</td>
+                                    </tbody>
+                                @endforeach
+                                <tfoot>
+                                    <tr>
+                                        <th class="text-center" rowspan="1" colspan="1">Gereral: {{ --$temp }}</th>
+                                        <th rowspan="1" colspan="1"></th>
+                                        <th class="text-center" rowspan="1" colspan="1">Total: {{ $dataSumRollCallMonth }} hour</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            {{ $dataNameMonth->links() }}
                         </div>
                     </div>
                 </div>

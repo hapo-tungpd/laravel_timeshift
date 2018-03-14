@@ -1,12 +1,18 @@
 @extends('user.layouts.master')
 
 @section('content')
+    <section class="content-header">
+        <h1>
+            Overtime
+        </h1>
+    </section>
 
-    <div class="container">
+    <section class="content">
+        <div class="box">
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Welcome to Overtime, {{ Auth::user()->name }}</div>
                     <legend class="text-center">Overtime</legend>
                     @if(session('info'))
                         {{session('info')}}
@@ -70,9 +76,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    </body>
-    </html>
+    </section>
 @endsection
 @section('javascript')
     <script>

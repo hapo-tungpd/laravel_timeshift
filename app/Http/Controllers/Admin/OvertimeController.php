@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Models\Overtime;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class OvertimeController extends Controller
 {
@@ -114,12 +115,28 @@ class OvertimeController extends Controller
             ->sum('total_time');
         $overTimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
             ->paginate(config('app.pagination'));
+        $dataName = Overtime::where('day', "LIKE", "%" . $dateTimeDay . "%")
+            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
+            ->groupBy('user_id')
+            ->paginate(config('app.pagination'));
+        $dataSumRollCallToDay = Overtime::where('day', "LIKE", "%" . $dateTimeDay . "%")
+            ->sum('total_time');
+        $dataNameMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
+            ->groupBy('user_id')
+            ->paginate(config('app.pagination'));
+        $dataSumRollCallMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->sum('total_time');
         $data = [
             'overTimeDay' => $overTimeDay,
             'sumOverTimeToday' => $sumOverTimeToday,
             'overTimeMonth' => $overTimeMonth,
             'sumOverTimeMonth' => $sumOverTimeMonth,
             'overTime' => $overTime,
+            'dataName' => $dataName,
+            'dataSumRollCallToDay' => $dataSumRollCallToDay,
+            'dataNameMonth' => $dataNameMonth,
+            'dataSumRollCallMonth' => $dataSumRollCallMonth,
         ];
         return view('admin.overtime.statistic', $data);
     }
