@@ -22,7 +22,9 @@
 <script src="{{asset('js/ckeditor.js')}}"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{asset('js/bootstrap3-wysihtml5.all.min.js')}}"></script>
-
+{{--Bootstrap timepick--}}
+<script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 <script>
     $(function() {
         $('.fa-sign-out').parent().on('click', function() {

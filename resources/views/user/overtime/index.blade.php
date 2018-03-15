@@ -23,8 +23,8 @@
                         <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('overtime.search') }}" method="post">
                             {{csrf_field()}}
                             {{ method_field('GET') }}
-                            <div class="col-md-3">
-                                <input type="text" name="from_date" id="from_date" class="form-control filter-overtime over-time-picker" placeholder="From Date" />
+                            <div class="col-md-3 ">
+                                <input type="text" name="from_date" id="from_date" class="form-control user-time-picker filter-overtime over-time-picker" placeholder="From Date" />
                             </div>
                             <div class="col-md-3">
                                 <input type="text" name="to_date" id="to_date" class="form-control filter-overtime over-time-picker" placeholder="To Date" />
