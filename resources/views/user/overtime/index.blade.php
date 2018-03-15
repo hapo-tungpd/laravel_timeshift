@@ -34,6 +34,7 @@
                                 </div>
                             </form>
                         </div>
+                        <br>
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
@@ -56,7 +57,7 @@
                                 <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
                                 <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
                                 <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
-                                <td class="text-center">{{ $data->total_time }}</td>
+                                <td class="text-center">{{ $data->total_time }} hours</td>
                                 <td class="text-center">
                                     <a href="{{ route('overtime.show', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">

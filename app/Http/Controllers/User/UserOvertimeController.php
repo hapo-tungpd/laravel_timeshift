@@ -132,7 +132,7 @@ class UserOvertimeController extends Controller
     public function statistic()
     {
         $dateTime = Overtime::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day');
-        $dateTimeDay = substr($dateTime, 0, 7);
+        $dateTimeDay = $dateTime->format('Y-m');
         $sumOvertime = Overtime::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->sum('total_time');
         $overtime = Overtime::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
