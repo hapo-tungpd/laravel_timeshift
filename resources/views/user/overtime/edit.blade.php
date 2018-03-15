@@ -31,14 +31,14 @@
                         @if ($errors->has('start_time'))
                             <p class="input-warning">{{ $errors->first('start_time') }}</p>
                         @endif
-                        <input type="time" class="form-control" value="{{ $overtime->start_time->format('H:i') }}" name="start_time" required autocomplete="off">
+                        <input type="text" class="form-control" value="{{ $overtime->start_time->format('H:i') }}" name="start_time" required autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="">End time</label>
                         @if ($errors->has('end_time'))
                             <p class="input-warning">{{ $errors->first('end_time') }}</p>
                         @endif
-                        <input type="text" class="form-control edit-over" value="{{ $overtime->end_time->format('H:i') }}" name="end_time" required autocomplete="off">
+                        <input type="text" class="form-control" value="{{ $overtime->end_time->format('H:i') }}" name="end_time" required autocomplete="off">
                     </div>
                 </div>
                 <!-- /.box-body -->
