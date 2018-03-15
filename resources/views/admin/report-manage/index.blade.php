@@ -38,9 +38,9 @@
                                 <td class="text-center">{{ $temp++ }}</td>
                                 <td class="text-center">{{ $data->user->name }}</td>
                                 <td>{{ $data->day->format('d-m-Y') }}</td>
-                                <td>{{ str_limit($data->today, 60) }}</td>
-                                <td>{{ str_limit($data->tomorrow, 60) }}</td>
-                                <td>{{ str_limit($data->problem, 60) }}</td>
+                                <td>{{ str_limit($data->today, 50) }}</td>
+                                <td>{{ str_limit($data->tomorrow, 50) }}</td>
+                                <td>{{ str_limit($data->problem, 50) }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.report.show', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">
