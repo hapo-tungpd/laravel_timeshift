@@ -1,12 +1,18 @@
-@extends('user.layouts.master')
+@extends('admin.layouts.master')
 
 @section('content')
+    <section class="content-header">
+        <h1>
+            Over
+        </h1>
+    </section>
 
-    <div class="container">
+    <section class="content">
+        <div class="box">
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Welcome to Overtime, {{ Auth::user()->name }}</div>
                     <legend class="text-center">Overtime</legend>
                     @if(session('info'))
                         {{session('info')}}
@@ -15,6 +21,7 @@
                         <thead>
                         <tr>
                             <th class="text-center">No.</th>
+                            <th class="text-center">Name</th>
                             <th class="text-center">Date</th>
                             <th class="text-center">Start time</th>
                             <th class="text-center">End time</th>
@@ -32,29 +39,24 @@
                             @foreach($employees as $data)
                                 <tr class="table-primary tr-show">
                                     <td class="text-center">{{ $temp++ }}</td>
+                                    <td class="text-center">{{ $data->user->name }}</td>
                                     <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
                                     <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
                                     <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
                                     <td class="text-center">{{ $data->total_time }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('overtime.show', $data->id) }}">
+                                        <a href="{{ route('admin.overtime.show', $data->id) }}">
                                             <button class="btn btn-primary btn-sm">
                                                 <i class="fa fa-th-list"></i>
                                             </button>
                                         </a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('overtime.edit', $data->id) }}">
-                                            <button class="btn btn-warning btn-sm">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                        </a>
-                                    </td>
-                                    <td class="text-center">
-                                        <form action="{{ route('overtime.destroy', $data->id) }}" method="POST">
+                                        <form action="#" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                            <button class="fa fa-trash-o btn btn-danger btn-sm"></button>
+                                            <button type="submit" data-id="{{ $data->id }}"
+                                                    class="fa fa-trash-o btn btn-danger btn-sm"></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -69,14 +71,56 @@
                         </tr>
                         </tbody>
                     </table>
-                    <form action="{{ route('overtime.index') }}">
+                    <form action="{{ route('admin.overtime.index') }}">
                         {{ csrf_field() }}
                         <button class="btn btn-primary">BACK</button>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-    </body>
-    </html>
+    </section>
+@endsection
+
+@section('javascript')
+    <script>
+        $(function () {
+            // AJAX
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $(document).on('click', '.btn-danger', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                console.log(id);
+                var btn = $(this);
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover data!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                    if(willDelete) {
+                        $.ajax({
+                            type: 'delete',
+                            url: 'overtime/' + id,
+                            success: function (response) {
+                                btn.parent().parent().parent().fadeOut('slow');
+                            },
+                            error: function (xhr, status, error) {
+                                toastr.error('Unable to delete.', 'Error!');
+                            },
+                        });
+                    }
+                }
+            )
+                ;
+            });
+            // END AJAX
+        });
+    </script>
+
 @endsection

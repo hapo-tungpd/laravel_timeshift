@@ -6,8 +6,8 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Welcome to Overtime, {{ Auth::user()->name }}</div>
-                    <legend class="text-center">Overtime</legend>
+                    <div class="alert card-header alert-success">Welcome to Roll call, {{ Auth::user()->name }}</div>
+                    <legend class="text-center">Roll call</legend>
                     @if(session('info'))
                         {{session('info')}}
                     @endif
@@ -19,8 +19,6 @@
                             <th class="text-center">Start time</th>
                             <th class="text-center">End time</th>
                             <th class="text-center">Total time</th>
-                            <th class="text-center"></th>
-                            <th class="text-center"></th>
                             <th class="text-center"></th>
                         </tr>
                         </thead>
@@ -37,25 +35,11 @@
                                     <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
                                     <td class="text-center">{{ $data->total_time }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('overtime.show', $data->id) }}">
+                                        <a href="{{ route('rollcall.show', $data->id) }}">
                                             <button class="btn btn-primary btn-sm">
                                                 <i class="fa fa-th-list"></i>
                                             </button>
                                         </a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="{{ route('overtime.edit', $data->id) }}">
-                                            <button class="btn btn-warning btn-sm">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                        </a>
-                                    </td>
-                                    <td class="text-center">
-                                        <form action="{{ route('overtime.destroy', $data->id) }}" method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button class="fa fa-trash-o btn btn-danger btn-sm"></button>
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -69,7 +53,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <form action="{{ route('overtime.index') }}">
+                    <form action="{{ route('rollcall.index') }}">
                         {{ csrf_field() }}
                         <button class="btn btn-primary">BACK</button>
                     </form>
