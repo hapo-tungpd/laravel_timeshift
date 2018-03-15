@@ -32,6 +32,17 @@
                     <i class="fa fa-calendar-minus-o"></i> <span>Absence</span>
                 </a>
             </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-clock-o"></i> <span>Overtime</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('admin.overtime.index') }}"><i class="fa fa-clock-o"></i>Overtime</a></li>
+                    <li><a href="{{ route('admin.overtime.statistic') }}"><i class="fa fa-book"></i>Statistic Overtime</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

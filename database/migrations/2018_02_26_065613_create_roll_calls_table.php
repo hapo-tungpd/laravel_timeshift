@@ -19,7 +19,7 @@ class CreateRollCallsTable extends Migration
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->date('day');
-            $table->integer('total_time');
+            $table->double('total_time');
             $table->softDeletes();
             $table->timestamps();
         });
