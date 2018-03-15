@@ -76,6 +76,15 @@ Route::prefix('admin')->group(function () {
          * Manage report
          */
         Route::resource('absence', 'Admin\AbsenceController', ['as' => 'admin']);
+
+        /**
+         * Manage overtime
+         */
+        Route::get('overtime/showOvertime/{user_id}', 'Admin\OvertimeController@showOvertime')
+            ->name('admin.overtime.showOvertime');
+        Route::get('overtime/search', 'Admin\OvertimeController@search')->name('admin.overtime.search');
+        Route::get('overtime/statistic', 'Admin\OvertimeController@statistic')->name('admin.overtime.statistic');
+        Route::resource('overtime', 'Admin\OvertimeController', ['as' => 'admin']);
     });
     /**
      * admin reset password
