@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Models\RollCall;
 use App\Models\User;
+use Carbon\Carbon;
 
 class UserRollCallController extends Controller
 {
@@ -17,15 +18,26 @@ class UserRollCallController extends Controller
      */
     public function index()
     {
+        $createTimeNow = Carbon::now()->toDateString();
+        $rollcall = RollCall::where('user_id', Auth::user()->id)
+            ->where('day', $createTimeNow)
+            ->paginate(config('app.user_report_pagination'));
+        $data = [
+            'rollcall' => $rollcall,
+        ];
+        return view("user.roll_call.index", $data);
+    }
+
+    public function showAllRollCall()
+    {
         $rollcall = RollCall::where('user_id', Auth::user()->id)
             ->orderby('updated_at', Auth::user()->updated_at)
             ->paginate(config('app.user_report_pagination'));
         $data = [
             'rollcall' => $rollcall,
         ];
-        return view("user.roll-call.index", $data);
+        return view("user.roll_call.index", $data);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -35,13 +47,12 @@ class UserRollCallController extends Controller
     {
         $rollcall = new RollCall();
         $rollcall->user_id = Auth::user()->id;
-        $rollcall->day = date('Y-m-d');
-        $rollcall->start_time = date('Y-m-d H:i:s');
-        $rollcall->end_time = date('Y-m-d H:i:s');
-        //hour OT
+        $rollcall->day = Carbon::now()->format('Y-m-d');
+        $rollcall->start_time = Carbon::now()->toDateTimeString();
+        $rollcall->end_time = Carbon::now()->toDateTimeString();
         $toTime = strtotime($rollcall->end_time);
         $fromTime = strtotime($rollcall->start_time);
-        $hour = ceil($toTime - $fromTime)/(60*60);
+        $hour = round(($toTime - $fromTime)/(60*60), 2);
         $rollcall->total_time = $hour;
         $dateTime = RollCall::where('user_id', Auth::user()->id)->orderBy('start_time', 'desc')->value('start_time');
         $dateTimeDay = substr($dateTime, 0, 10);
@@ -88,12 +99,34 @@ class UserRollCallController extends Controller
      */
     public function edit($id)
     {
+        $timeNow = Carbon::now();
+        $timeMorning = $timeNow->hour(8)->minute(30)->second(0)->toDateTimeString();
+        $timeAffer = $timeNow->hour(18)->minute(0)->second(0)->toDateTimeString();
         $request = RollCall::findOrFail($id);
-        $request->end_time = date('Y-m-d H:i:s');
-        $to_time = strtotime($request->end_time);
-        $from_time = strtotime($request->start_time);
-        $hour = ceil($to_time - $from_time)/(60*60);
-        $request->total_time = $hour;
+        $request->end_time = Carbon::now()->toDateTimeString();
+        $timeStartWorking = $request->start_time;
+        $timeEndWorking = $request->end_time;
+        if (($timeStartWorking >= $timeMorning) && ($timeEndWorking <= $timeAffer)) {
+            $toTime = strtotime($request->end_time);
+            $fromTime = strtotime($request->start_time);
+            $hour = round(($toTime - $fromTime)/(60*60), 2);
+            $request->total_time = $hour;
+        } elseif (($timeStartWorking < $timeMorning) && ($timeEndWorking <= $timeAffer)) {
+            $toTime = strtotime($request->end_time);
+            $fromTime = strtotime($timeMorning);
+            $hour = round(($toTime - $fromTime)/(60*60), 2);
+            $request->total_time = $hour;
+        } elseif (($timeStartWorking < $timeMorning) && ($timeEndWorking > $timeAffer)) {
+            $toTime = strtotime($timeAffer);
+            $fromTime = strtotime($timeMorning);
+            $hour = round(($toTime - $fromTime)/(60*60), 2);
+            $request->total_time = $hour;
+        } else {
+            $toTime = strtotime($timeAffer);
+            $fromTime = strtotime($request->start_time);
+            $hour = round(($toTime - $fromTime)/(60*60), 2);
+            $request->total_time = $hour;
+        }
         $data = [
             'user_id' => $request->user_id,
             'start_time' => $request->start_time,
@@ -133,7 +166,6 @@ class UserRollCallController extends Controller
     {
         //
     }
-
     public function statistic()
     {
         $dateTime = RollCall::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day');
@@ -149,7 +181,9 @@ class UserRollCallController extends Controller
     {
         $fromTime = $request->from_date;
         $toTime = $request->to_date;
-        $employees = RollCall::whereBetween('day', [$fromTime, $toTime])->paginate(10);
+        $employees = RollCall::whereBetween('day', [$fromTime, $toTime])
+            ->where('user_id', Auth::user()->id)
+            ->paginate(10);
         $sumTime = RollCall::whereBetween('day', [$fromTime, $toTime])->sum('total_time');
         return view('user.roll_call.search', compact('employees', 'sumTime'));
     }

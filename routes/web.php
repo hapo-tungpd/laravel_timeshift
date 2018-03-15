@@ -42,6 +42,8 @@ Route::prefix('user')->group(function () {
         /**
          * User Roll Call
          */
+        Route::get('rollcall/showAllRollCall', 'User\UserRollCallController@showAllRollCall')
+            ->name('rollcall.showAllRollCall');
         Route::get('rollcall/search', 'User\UserRollCallController@search')->name('rollcall.search');
         Route::get('rollcall/statistic', 'User\UserRollCallController@statistic')->name('rollcall.statistic');
         Route::resource('rollcall', 'User\UserRollCallController');

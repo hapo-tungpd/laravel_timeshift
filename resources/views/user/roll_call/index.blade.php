@@ -56,7 +56,7 @@
                                     </a>
                                     <a href="{{ route('rollcall.edit', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">
-                                            <i class="">Update time</i>
+                                            <i class="">End working</i>
                                         </button>
                                     </a>
                                 </td>

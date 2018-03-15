@@ -45,7 +45,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('rollcall.create') }}"><i class="fa fa-users"></i>Roll call now!</a></li>
-                    <li><a href="{{ route('rollcall.index') }}"><i class="fa fa-users"></i>Your Roll Call</a></li>
+                    <li><a href="{{ route('rollcall.showAllRollCall') }}"><i class="fa fa-users"></i>Your Roll Call</a></li>
                     <li><a href="{{ route('rollcall.statistic') }}"><i class="fa fa-users"></i>Statistic Roll Call</a></li>
                 </ul>>
             </li>
