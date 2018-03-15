@@ -19,7 +19,6 @@
                                 Create new Overtime
                             </button>
                         </form>
-                        <br>
                         <div class="row">
                             <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('overtime.search') }}" method="post">
                                 {{csrf_field()}}
@@ -35,6 +34,7 @@
                                 </div>
                             </form>
                         </div>
+                        <br>
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>

@@ -49,8 +49,7 @@ class UserOvertimeController extends Controller
         $data['end_time'] = $data['day'] . ' ' . $data['end_time'] . ':00';
         $toTime = strtotime($data['start_time']);
         $fromTime = strtotime($data['end_time']);
-        $data['total_time'] = ($fromTime - $toTime)/(60*60);
-        $data['total_time'] = number_format($data['total_time'], 1, '.', ',');
+        $data['total_time'] = round(($fromTime - $toTime)/(60*60), 2);
         Overtime::create($data);
         return redirect()->route('overtime.index');
     }
@@ -98,6 +97,9 @@ class UserOvertimeController extends Controller
         $data = array_slice($data, 2);
         $data['start_time'] = $data['day'] . ' ' . $data['start_time'] . ':00';
         $data['end_time'] = $data['day'] . ' ' . $data['end_time'] . ':00';
+        $toTime = strtotime($data['start_time']);
+        $fromTime = strtotime($data['end_time']);
+        $data['total_time'] = round(($fromTime - $toTime)/(60*60), 2);
         Overtime::where('id', $id)->update($data);
         return redirect()->route('overtime.index');
     }
@@ -118,11 +120,13 @@ class UserOvertimeController extends Controller
 
     public function search(Request $request)
     {
-        $from_time = $request->from_date;
-        $to_time = $request->to_date;
-        $employees = Overtime::whereBetween('day', [$from_time, $to_time])->paginate(10);
-        $sum_time = Overtime::whereBetween('day', [$from_time, $to_time])->sum('total_time');
-        return view('user.overtime.search', compact('employees', 'sum_time'));
+        $fromTime = $request->from_date;
+        $toTime = $request->to_date;
+        $employees = Overtime::whereBetween('day', [$fromTime, $toTime])
+            ->where('user_id', Auth::user()->id)
+            ->paginate(config('app.user_pagination'));
+        $sumTime = Overtime::whereBetween('day', [$fromTime, $toTime])->sum('total_time');
+        return view('user.overtime.search', compact('employees', 'sumTime'));
     }
 
     public function statistic()
