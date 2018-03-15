@@ -19,20 +19,22 @@
                                 Create new Overtime
                             </button>
                         </form>
+                        <div class="row">
+                            <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('overtime.search') }}" method="post">
+                                {{csrf_field()}}
+                                {{ method_field('GET') }}
+                                <div class="col-md-3">
+                                    <input type="text" name="from_date" id="from_date" class="form-control filter-overtime over-time-picker" placeholder="From Date" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" name="to_date" id="to_date" class="form-control filter-overtime over-time-picker" placeholder="To Date" />
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="submit" name="filter" id="filter" value="Search" class="btn btn-info" />
+                                </div>
+                            </form>
+                        </div>
                         <br>
-                        <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('overtime.search') }}" method="post">
-                            {{csrf_field()}}
-                            {{ method_field('GET') }}
-                            <div class="col-md-3 ">
-                                <input type="text" name="from_date" id="from_date" class="form-control filter-overtime over-time-picker" placeholder="From Date" />
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" name="to_date" id="to_date" class="form-control filter-overtime over-time-picker" placeholder="To Date" />
-                            </div>
-                            <div class="col-md-5">
-                                <input type="submit" name="filter" id="filter" value="Search" class="btn btn-info" />
-                            </div>
-                        </form>
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
