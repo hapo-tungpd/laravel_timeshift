@@ -13,13 +13,18 @@
                         <input type="text" class="form-control hidden" id="" name="user_id" value="{{ Auth::user()->id }}">
                     </div>
                 </div>
-                <div class="box-body absence-time-picker">
+                <div class="box-body">
                     <div class="form-group">
                         <label for="">Date</label>
                         @if ($errors->has('day'))
                             <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input placeholder="Absence date..." type="text" class="form-control absence-time-picker" id="" name="day">
+                        <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                            <input type="text" class="form-control" name="day" >
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="box-body">
@@ -100,5 +105,8 @@
                 $('#timepicker2').val('12:00 PM');
             });
         })
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+        });
     </script>
 @endsection

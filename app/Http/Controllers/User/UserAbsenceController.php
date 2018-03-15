@@ -47,6 +47,7 @@ class UserAbsenceController extends Controller
     public function store(AbsenceUserRequest $request)
     {
         $data = $request->all();
+        $data['day'] = Carbon::createFromFormat('d/m/Y', $data['day'])->format('Y-m-d');
         $data['start_time'] = Carbon::createFromFormat('Y-m-d H:i A', $data['day'] . ' ' . $data['start_time']);
         $data['end_time'] = Carbon::createFromFormat('Y-m-d H:i A', $data['day'] . ' ' . $data['end_time']);
         Absence::create($data);
@@ -96,6 +97,7 @@ class UserAbsenceController extends Controller
     {
         $data = $request->all();
         $data = array_slice($data, 2);
+        $data['day'] = Carbon::createFromFormat('d/m/Y', $data['day'])->format('Y-m-d');
         $data['start_time'] = Carbon::createFromFormat('Y-m-d H:i A', $data['day'] . ' ' . $data['start_time']);
         $data['end_time'] = Carbon::createFromFormat('Y-m-d H:i A', $data['day'] . ' ' . $data['end_time']);
         Absence::where('id', $id)->update($data);

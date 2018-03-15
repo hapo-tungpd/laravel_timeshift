@@ -25,7 +25,7 @@ class AbsenceUserRequest extends FormRequest
     {
         return [
             "type" => "required",
-            "day" => "required|date",
+            "day" => "required",
             "start_time" => "required",
             "end_time" => "required",
             "content" => "required",

@@ -19,6 +19,7 @@
                                 Create new Absence
                             </button>
                         </form>
+                            <br>
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
@@ -42,9 +43,9 @@
                                 <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
                                 <td class="text-center">
                                     @if ($data->type == 1)
-                                        Fulltime
+                                        Full day
                                     @elseif ($data->type == 2)
-                                        Parttime
+                                        Half day
                                     @else
                                         Other
                                     @endif
@@ -55,7 +56,7 @@
                                 <td class="text-center">
                                     {{ $data->end_time ->format('H:s A') }}
                                 </td>
-                                <td class="text-center">{{ $data->content }}</td>
+                                <td class="text-center">{{ str_limit($data->content, 20) }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('absence.show', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">

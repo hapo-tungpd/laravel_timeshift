@@ -24,8 +24,12 @@
                         @if ($errors->has('day'))
                             <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input type="text" class="form-control absence-time-picker" name="day" autocomplete="off" value="{{ $absence->day->format('Y-m-d') }}">
-                    </div>
+                        <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                            <input type="text" class="form-control" name="day" value="{{ $absence->day->format('d/m/Y') }}">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>                    </div>
                     <div class="form-group">
                         <label for="">Type</label>
                         <div class="radio">
