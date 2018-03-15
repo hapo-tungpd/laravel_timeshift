@@ -27,15 +27,15 @@
                         <label for="">Type</label>
                         <div class="radio">
                             <label class="radio-inline">
-                                <input type="radio" name="type" id="" value="1" checked >
-                                Full time
+                                <input type="radio" name="type" id="fullday" value="1" checked >
+                                Full day
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="type" id="" value="2" >
-                                Part time
+                                <input type="radio" name="type" id="halfday" value="2" >
+                                Half day
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="type" id="" value="3" >
+                                <input type="radio" name="type" id="other" value="3" >
                                 Other
                             </label>
                         </div>
@@ -47,7 +47,10 @@
                         @if ($errors->has('start_time'))
                             <p class="input-warning">{{ $errors->first('start_time') }}</p>
                         @endif
-                        <input placeholder="Absence start time..." data-format="y-m-d" type="text" class=" bfh-datepicker form-control datetimepicker1" name="start_time">
+                        <div class="input-group bootstrap-timepicker timepicker">
+                            <input id="timepicker1" type="text" class="form-control input-small" name="start_time" value="08:30 AM">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        </div>
                     </div>
                 </div>
                 <div class="box-body">
@@ -56,7 +59,10 @@
                         @if ($errors->has('end_time'))
                             <p class="input-warning">{{ $errors->first('end_time') }}</p>
                         @endif
-                        <input placeholder="Absence end time..." data-format="y-m-d" type="text" class=" bfh-datepicker form-control datetimepicker1" name="end_time">
+                        <div class="input-group bootstrap-timepicker timepicker">
+                            <input id="timepicker2" type="text" class="form-control input-small" name="end_time" value="06:00 PM">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        </div>
                     </div>
                 </div>
                 <div class="box-body">
@@ -76,4 +82,23 @@
             </form>
         </div>
     </section>
+@endsection
+
+@section('javascript')
+    <script type="text/javascript">
+        $('#timepicker1').timepicker();
+        $('#timepicker2').timepicker();
+    </script>
+    <script>
+        $(function() {
+            $("#fullday").on('click', function() {
+                $('#timepicker1').val('08:30 AM');
+                $('#timepicker2').val('06:00 PM');
+            });
+            $("#halfday").on('click', function() {
+                $('#timepicker1').val('08:30 AM');
+                $('#timepicker2').val('12:00 PM');
+            });
+        })
+    </script>
 @endsection

@@ -24,18 +24,18 @@
                         @if ($errors->has('day'))
                             <p class="input-warning">{{ $errors->first('day') }}</p>
                         @endif
-                        <input type="text" class="form-control absence-time-picker" name="day" autocomplete="off" value="{{ $absence->day->format('Y/m/d') }}">
+                        <input type="text" class="form-control absence-time-picker" name="day" autocomplete="off" value="{{ $absence->day->format('Y-m-d') }}">
                     </div>
                     <div class="form-group">
                         <label for="">Type</label>
                         <div class="radio">
                             <label class="radio-inline">
                                 <input type="radio" name="type" id="r1" value="1" {{ ($absence->type)?'checked':'' }} required>
-                                Full time
+                                Full day
                             </label>
                             <label class="radio-inline">
                                 <input type="radio" name="type" id="r2" value="2" {{ (!$absence->type)?'checked':'' }} required>
-                                Part time
+                                Half day
                             </label>
                             <label class="radio-inline">
                                 <input type="radio" name="type" id="r3" value="3" {{ (!$absence->type)?'checked':'' }} required>
@@ -48,15 +48,19 @@
                         @if ($errors->has('start_time'))
                             <p class="input-warning">{{ $errors->first('start_time') }}</p>
                         @endif
-                        <input type="text" class="datetimepicker1 form-control" value="{{ $absence->start_time->format('Y-m-d H:s:i') }}" name="start_time" required autocomplete="off">
-                    </div>
+                        <div class="input-group bootstrap-timepicker timepicker">
+                            <input id="timepicker1" type="text" class="form-control input-small" name="start_time" value="08:30 AM">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        </div>                    </div>
                     <div class="form-group">
                         <label for="">End time</label>
                         @if ($errors->has('end_time'))
                             <p class="input-warning">{{ $errors->first('end_time') }}</p>
                         @endif
-                        <input type="text" class="datetimepicker1 form-control" value="{{ $absence->end_time->format('Y-m-d H:s:i') }}" name="end_time" required autocomplete="off">
-                    </div>
+                        <div class="input-group bootstrap-timepicker timepicker">
+                            <input id="timepicker2" type="text" class="form-control input-small" name="end_time" value="06:00 PM">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        </div>                    </div>
                     <div class="form-group">
                         <label for="">Content</label>
                         @if ($errors->has('content'))

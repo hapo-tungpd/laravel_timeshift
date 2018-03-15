@@ -26,8 +26,8 @@ class AbsenceUserRequest extends FormRequest
         return [
             "type" => "required",
             "day" => "required|date",
-            "start_time" => "required|date",
-            "end_time" => "required|date",
+            "start_time" => "required",
+            "end_time" => "required",
             "content" => "required",
         ];
     }
@@ -40,10 +40,10 @@ class AbsenceUserRequest extends FormRequest
     public function messages()
     {
         return [
-            "day.required" => "The date has rerequired",
-            "start_time.required" => "The Start time has rerequired",
-            "end_time.required" => "The End time has rerequired",
-            "content.required" => "The Content has rerequired",
+            "day.required" => "The date has required",
+            "start_time.required" => "The Start time has required",
+            "end_time.required" => "The End time has required",
+            "content.required" => "The Content has required",
             "type.required" => "The type has required",
         ];
     }

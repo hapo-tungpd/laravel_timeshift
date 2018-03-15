@@ -50,18 +50,10 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    @if($data->type == 1)
-                                        {{ $data->start_time->format('d-m-Y') }}
-                                    @else
-                                        {{ $data->start_time ->format('H:s d-m-Y') }}
-                                    @endif
+                                    {{ $data->start_time->format('H:s A') }}
                                 </td>
                                 <td class="text-center">
-                                    @if($data->type == 1)
-                                        {{ $data->end_time->format('d-m-Y') }}
-                                    @else
-                                        {{ $data->end_time ->format('H:s d-m-Y') }}
-                                    @endif
+                                    {{ $data->end_time ->format('H:s A') }}
                                 </td>
                                 <td class="text-center">{{ $data->content }}</td>
                                 <td class="text-center">

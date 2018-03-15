@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Absence;
@@ -46,6 +47,8 @@ class UserAbsenceController extends Controller
     public function store(AbsenceUserRequest $request)
     {
         $data = $request->all();
+        $data['start_time'] = Carbon::createFromFormat('Y-m-d H:i A', $data['day'] . ' ' . $data['start_time']);
+        $data['end_time'] = Carbon::createFromFormat('Y-m-d H:i A', $data['day'] . ' ' . $data['end_time']);
         Absence::create($data);
         return redirect()->route('absence.index');
     }
@@ -93,6 +96,8 @@ class UserAbsenceController extends Controller
     {
         $data = $request->all();
         $data = array_slice($data, 2);
+        $data['start_time'] = Carbon::createFromFormat('Y-m-d H:i A', $data['day'] . ' ' . $data['start_time']);
+        $data['end_time'] = Carbon::createFromFormat('Y-m-d H:i A', $data['day'] . ' ' . $data['end_time']);
         Absence::where('id', $id)->update($data);
         return redirect()->route('absence.index');
     }
