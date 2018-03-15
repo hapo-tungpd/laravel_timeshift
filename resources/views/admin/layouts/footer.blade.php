@@ -8,6 +8,10 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {{--  Toast  --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
 <!-- FastClick -->
 <script src="{{asset('js/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
@@ -24,5 +28,23 @@
         $('.fa-sign-out').parent().on('click', function() {
             $('#logout-btn').trigger('click');
         });
+    });
+    $(".datetimepicker1").datetimepicker({
+        format: 'Y-m-d H:s:i',
+    });
+    $(".report-time-picker").datetimepicker({
+        format: 'Y-m-d',
+    });
+    $(".over-time-picker").datetimepicker({
+        format: 'Y-m-d',
+    });
+    $(".absence-time-picker").datetimepicker({
+        format: 'Y-m-d',
+    });
+    $(".user-time-picker").datetimepicker({
+        format: 'Y-m-d',
+    });
+    $(".edit-over").datetimepicker({
+        format: 'Y-m-d',
     });
 </script>
