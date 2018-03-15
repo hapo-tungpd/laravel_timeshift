@@ -75,6 +75,7 @@ Route::prefix('admin')->group(function () {
         /**
          * change password admin
          */
+        Route::resource('changepassword', 'Admin\ChangePassword', ['as' => 'admin']);
 
         /**
          * Manage absence

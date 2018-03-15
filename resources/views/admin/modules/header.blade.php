@@ -29,13 +29,18 @@
                     </form>
                     <a href="#"><i class="fa fa-sign-out"></i>Log out</a>
                 </li>
-                {{--<li>--}}
-                    {{--<form action="{{ route('admin.adminChangePassword') }}" method="GET">--}}
-                        {{--{{ csrf_field() }}--}}
-                        {{--<button type="submit" class="hidden" ></button>--}}
-                    {{--</form>--}}
-                    {{--<a href="#"><i class="fa"></i>Change Password</a>--}}
-                {{--</li>--}}
+            </ul>
+        </div>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- Messages: style can be found in dropdown.less-->
+                <!-- Notifications: style can be found in dropdown.less -->
+                <!-- Tasks: style can be found in dropdown.less -->
+                <!-- User Account: style can be found in dropdown.less -->
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="{{ route('admin.changepassword.index') }}"><i class="fa"></i>Admin</a>
+                </li>
             </ul>
         </div>
     </nav>
