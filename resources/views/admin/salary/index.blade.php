@@ -38,10 +38,10 @@
                         @php
                             $temp = 1;
                         @endphp
-                        @foreach($dataNameRollMonth as $data)
+                        @foreach($total as $data)
                             <tbody>
                             <td class="text-center">{{ $temp++ }}</td>
-                            <td class="text-center">{{ $data->user->name }}</td>
+                            <td class="text-center">{{ $data->name }}</td>
                             <td class="text-center">{{ $data->total_times }}</td>
                             <td class="text-center">{{ $data->total_times * 50000 }} VNĐ</td>
                             @endforeach
@@ -51,7 +51,7 @@
                                 <th class="text-center" rowspan="1" colspan="1">Gereral: {{ --$temp }}</th>
                                 <th rowspan="1" colspan="1"></th>
                                 <th rowspan="1" colspan="1"></th>
-                                <th class="text-center" rowspan="1" colspan="1">Total: {{ $dataSumRollCallMonth * 50000  }} VNĐ</th></tr>
+                                <th class="text-center" rowspan="1" colspan="1">Total: {{ $dataSumRollCallMonth  }} VNĐ</th></tr>
                             </tfoot>
                     </table>
                 </div>

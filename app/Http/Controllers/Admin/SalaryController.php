@@ -22,21 +22,6 @@ class SalaryController extends Controller
     {
         $date = Carbon::now();
         $dateTimeMonth = substr($date, 0, 7);
-        $dataOvertimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
-            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
-            ->groupBy('user_id')
-            ->paginate(config('app.pagination'));
-
-        $overTimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
-            ->paginate(config('app.pagination'));
-
-        $dataRollCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
-            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
-            ->groupBy('user_id')
-            ->paginate(config('app.pagination'));
-
-        $rolCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
-            ->paginate(config('app.pagination'));
 
         $dataNameRollMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
             ->select('user_id', DB::raw('SUM(total_time) as total_times'))
@@ -46,15 +31,29 @@ class SalaryController extends Controller
         $dataSumRollCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
             ->sum('total_time');
 
-        $dataNameOverMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+        $dataNameOverMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
             ->select('user_id', DB::raw('SUM(total_time) as total_times'))
             ->groupBy('user_id')
             ->paginate(config('app.pagination'));
 
+        $dataSumOvertimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->sum('total_time');
+
+        $total = User::join('overtimes', function ($join) {
+            $date = Carbon::now();
+            $dateTimeMonth = substr($date, 0, 7);
+            $join->on('users.id', '=', 'overtimes.user_id')
+                ->where('day', "LIKE", "%" . $dateTimeMonth . "%")
+                ->select('user_id', DB::raw('SUM(total_time) as total_times'));
+//                ->groupBy('user_id');
+        })->get();
+        dd($total);
         $data = [
             'dataNameRollMonth' => $dataNameRollMonth,
             'dataNameOverMonth' => $dataNameOverMonth,
             'dataSumRollCallMonth' => $dataSumRollCallMonth,
+            'dataSumOvertimeMonth' => $dataSumOvertimeMonth,
+            'total' => $total,
         ];
 
         return view('admin.salary.index', $data);
