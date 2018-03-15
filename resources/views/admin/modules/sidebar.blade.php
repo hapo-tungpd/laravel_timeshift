@@ -32,7 +32,7 @@
                 </a>
             </li>
 
-            <li><a href=""><i class="fa fa-user-plus"></i>Salary</a></li>
+            <li><a href="{{ route('admin.salary.index') }}"><i class="fa fa-user-plus"></i>Salary</a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

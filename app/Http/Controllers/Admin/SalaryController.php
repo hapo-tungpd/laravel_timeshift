@@ -20,7 +20,7 @@ class SalaryController extends Controller
      */
     public function index()
     {
-
+        return view('admin.salary.index');
     }
 
     /**
