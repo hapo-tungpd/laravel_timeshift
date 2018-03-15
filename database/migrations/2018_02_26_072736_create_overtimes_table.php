@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-
 class CreateOvertimesTable extends Migration
 {
     /**
@@ -20,7 +19,7 @@ class CreateOvertimesTable extends Migration
             $table->date('day');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->integer('total_time');
+            $table->double('total_time');
             $table->softDeletes();
             $table->timestamps();
         });

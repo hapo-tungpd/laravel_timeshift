@@ -33,6 +33,27 @@ Route::prefix('user')->group(function () {
          */
         Route::get('changePassword', 'HomeController@showChangePasswordForm')->name('user.changePassword');
         Route::post('changePassword', 'HomeController@changePassword')->name('changePassword');
+
+        /**
+         * User Report
+         */
+        Route::resource('report', 'User\UserReportController');
+
+        /**
+         * User Roll Call
+         */
+        Route::get('rollcall/showAllRollCall', 'User\UserRollCallController@showAllRollCall')
+            ->name('rollcall.showAllRollCall');
+        Route::get('rollcall/search', 'User\UserRollCallController@search')->name('rollcall.search');
+        Route::get('rollcall/statistic', 'User\UserRollCallController@statistic')->name('rollcall.statistic');
+        Route::resource('rollcall', 'User\UserRollCallController');
+
+        /**
+         * User Overtime
+         */
+        Route::get('overtime/search', 'User\UserOvertimeController@search')->name('overtime.search');
+        Route::get('overtime/statistic', 'User\UserOvertimeController@statistic')->name('overtime.statistic');
+        Route::resource('overtime', 'User\UserOvertimeController');
     });
 });
 
@@ -54,6 +75,25 @@ Route::prefix('admin')->group(function () {
         /**
          * change password admin
          */
+
+        /**
+         * Manage absence
+         */
+        Route::resource('absence', 'Admin\AbsenceController', ['as' => 'admin']);
+
+        /**
+         * Manage report
+         */
+        Route::resource('report', 'Admin\ManageReportController', ['as' => 'admin']);
+
+        /**
+         * Manage overtime
+         */
+        Route::get('overtime/showOvertime/{user_id}', 'Admin\OvertimeController@showOvertime')
+            ->name('admin.overtime.showOvertime');
+        Route::get('overtime/search', 'Admin\OvertimeController@search')->name('admin.overtime.search');
+        Route::get('overtime/statistic', 'Admin\OvertimeController@statistic')->name('admin.overtime.statistic');
+        Route::resource('overtime', 'Admin\OvertimeController', ['as' => 'admin']);
     });
     /**
      * admin reset password

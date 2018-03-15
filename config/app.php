@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Ho_Chi_Minh',
 
     /*
     |--------------------------------------------------------------------------
@@ -215,5 +215,6 @@ return [
      * Manage User Pagination
      */
     "user_pagination" => 10,
+    "report_pagination" => 10,
 
 ];

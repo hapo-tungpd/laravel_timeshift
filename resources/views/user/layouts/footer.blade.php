@@ -49,5 +49,7 @@
     $(".user-time-picker").datetimepicker({
         format: 'Y-m-d',
     });
+    $(".edit-over").datetimepicker({
+        format: 'Y-m-d',
+    });
 </script>
-
