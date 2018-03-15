@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Overtime
+            Over
         </h1>
     </section>
 
