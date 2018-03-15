@@ -26,27 +26,33 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                         <thead>
                         <tr role="row">
-                            <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
-                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Name</th>
-                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Date</th>
-                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Roll Call</th>
-                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Overtime</th>
-                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Insurance</th>
-                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Final Payment</th>
-                        </tr>
+                            <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
+                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
+                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Total time working</th>
+                        <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Final Payment</th></tr>
                         </thead>
-                        <tfoot>
-                        <tr>
-                            <th rowspan="1" colspan="1">Rendering engine</th>
-                            <th rowspan="1" colspan="1">Browser</th>
-                            <th rowspan="1" colspan="1">Platform(s)</th>
-                            <th rowspan="1" colspan="1">Engine version</th>
-                            <th rowspan="1" colspan="1">CSS grade</th>
-                        </tr>
-                        </tfoot>
+                        <tbody>
+                        @php
+                            $temp = 1;
+                        @endphp
+                        @foreach($dataNameRollMonth as $data)
+                            <tbody>
+                            <td class="text-center">{{ $temp++ }}</td>
+                            <td class="text-center">{{ $data->user->name }}</td>
+                            <td class="text-center">{{ $data->total_times }}</td>
+                            <td class="text-center">{{ $data->total_times * 50000 }} VNĐ</td>
+                            @endforeach
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th class="text-center" rowspan="1" colspan="1">Gereral: {{ --$temp }}</th>
+                                <th rowspan="1" colspan="1"></th>
+                                <th rowspan="1" colspan="1"></th>
+                                <th class="text-center" rowspan="1" colspan="1">Total: {{ $dataSumRollCallMonth * 50000  }} VNĐ</th></tr>
+                            </tfoot>
                     </table>
                 </div>
             </div>

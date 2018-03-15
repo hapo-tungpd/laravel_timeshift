@@ -20,7 +20,44 @@ class SalaryController extends Controller
      */
     public function index()
     {
-        return view('admin.salary.index');
+        $date = Carbon::now();
+        $dateTimeMonth = substr($date, 0, 7);
+        $dataOvertimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
+            ->groupBy('user_id')
+            ->paginate(config('app.pagination'));
+
+        $overTimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->paginate(config('app.pagination'));
+
+        $dataRollCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
+            ->groupBy('user_id')
+            ->paginate(config('app.pagination'));
+
+        $rolCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->paginate(config('app.pagination'));
+
+        $dataNameRollMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
+            ->groupBy('user_id')
+            ->paginate(config('app.pagination'));
+
+        $dataSumRollCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->sum('total_time');
+
+        $dataNameOverMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
+            ->groupBy('user_id')
+            ->paginate(config('app.pagination'));
+
+        $data = [
+            'dataNameRollMonth' => $dataNameRollMonth,
+            'dataNameOverMonth' => $dataNameOverMonth,
+            'dataSumRollCallMonth' => $dataSumRollCallMonth,
+        ];
+
+        return view('admin.salary.index', $data);
     }
 
     /**
