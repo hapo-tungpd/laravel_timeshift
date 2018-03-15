@@ -1,4 +1,4 @@
-@extends('user.layouts.master')
+@extends('admin.layouts.master')
 
 @section('content')
     <section class="content-header">
@@ -21,6 +21,7 @@
                         <thead>
                         <tr>
                             <th class="text-center">No.</th>
+                            <th class="text-center">Name</th>
                             <th class="text-center">Date</th>
                             <th class="text-center">Start time</th>
                             <th class="text-center">End time</th>
@@ -38,6 +39,7 @@
                             @foreach($employees as $data)
                                 <tr class="table-primary tr-show">
                                     <td class="text-center">{{ $temp++ }}</td>
+                                    <td class="text-center">{{ $data->user->name }}</td>
                                     <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
                                     <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
                                     <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
