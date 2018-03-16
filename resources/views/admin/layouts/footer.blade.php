@@ -23,6 +23,7 @@
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{asset('js/bootstrap3-wysihtml5.all.min.js')}}"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
 <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 
@@ -30,6 +31,11 @@
 <script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
 <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 >>>>>>> 48af67038de53fec4def11830c75cd0318470b5b
+=======
+{{--Bootstrap timepick--}}
+<script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
+>>>>>>> e46316f344baa7ca37d255559bdcf278a0c2e44b
 <script>
     $(function() {
         $('.fa-sign-out').parent().on('click', function() {

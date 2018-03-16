@@ -32,6 +32,7 @@
                     <i class="fa fa-calendar-minus-o"></i> <span>Absence</span>
                 </a>
             </li>
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user"></i> <span>Roll Call</span>
