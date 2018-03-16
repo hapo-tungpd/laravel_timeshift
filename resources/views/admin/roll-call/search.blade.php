@@ -25,7 +25,6 @@
                             <th class="text-center">Total time</th>
                             <th class="text-center"></th>
                             <th class="text-center"></th>
-                            <th class="text-center"></th>
                         </tr>
                         </thead>
                         <tbody class="tbody-show">
@@ -63,7 +62,7 @@
                             <th>{{ (count($employees)) }} day</th>
                             <th></th>
                             <th></th>
-                            <th>{{ $sum_time }} hour</th>
+                            <th>{{ $sumTime }} hour</th>
                         </tr>
                         </tbody>
                     </table>

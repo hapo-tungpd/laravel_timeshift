@@ -103,12 +103,12 @@ class RollCallController extends Controller
 
     public function search(Request $request)
     {
-        $from_time = $request->from_date;
-        $to_time = $request->to_date;
-        $employees = RollCall::whereBetween('day', [$from_time, $to_time])
+        $fromTime = $request->from_date;
+        $toTime = $request->to_date;
+        $employees = RollCall::whereBetween('day', [$fromTime, $toTime])
             ->paginate(config('app.user_pagination'));
-        $sum_time = RollCall::whereBetween('day', [$from_time, $to_time])->sum('total_time');
-        return view('admin.roll-call.search', compact('employees', 'sum_time'));
+        $sumTime = RollCall::whereBetween('day', [$fromTime, $toTime])->sum('total_time');
+        return view('admin.roll-call.search', compact('employees', 'sumTime'));
     }
 
     public function statistic()
@@ -135,7 +135,6 @@ class RollCallController extends Controller
             ->select('user_id', DB::raw('SUM(total_time) as total_times'))
             ->groupBy('user_id')
             ->paginate(config('app.pagination'));
-//        dd($dataNameMonth);
         $dataSumRollCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
             ->sum('total_time');
         $detail = RollCall::where('user_id', "LIKE", "%" . $rolCallMonth['user_id'] . "%")

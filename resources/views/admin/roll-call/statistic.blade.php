@@ -14,7 +14,22 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Roll call Today, @php echo date('d/m/Y'); @endphp</h3>
+                        <select class="selectpicker show-tick">
+                            <option>Tháng 1</option>
+                            <option>Tháng 2</option>
+                            <option>Tháng 3</option>
+                            <option>Tháng 4</option>
+                            <option>Tháng 5</option>
+                            <option>Tháng 6</option>
+                            <option>Tháng 7</option>
+                            <option>Tháng 8</option>
+                            <option>Tháng 9</option>
+                            <option>Tháng 10</option>
+                            <option>Tháng 11</option>
+                            <option>Tháng 12</option>
+                        </select>
                     </div>
+
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
