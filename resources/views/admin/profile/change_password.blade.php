@@ -1,13 +1,17 @@
 @extends('admin.layouts.master')
 
 @section('content')
-<div class="container">
+    <section class="content-header">
+        <h1>
+            Change password admin
+        </h1>
+    </section>
+
     <div class="row">
+        <div class="box">
+        </div>
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    Change Password for admin
-                </div>
                 <div class="panel-body">
                     @if(session('error'))
                         <div class="alert alert-danger">
@@ -66,12 +70,14 @@
                                 <button type="submit" class="btn btn-primary">
                                     Change Password
                                 </button>
+                                <a href="{{ route('admin.changepassword.index') }}" class="btn btn-success">Back</a>
                             </div>
+
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
