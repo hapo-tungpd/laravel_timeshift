@@ -78,9 +78,14 @@ Route::prefix('admin')->group(function () {
         Route::put('user/{id}/update-image', 'UserProfileController@updateImage')->name('admin.user.update.image');
 
         /**
-         * Manage report
+         * Manage absence
          */
         Route::resource('absence', 'Admin\AbsenceController', ['as' => 'admin']);
+
+        /**
+         * Manage report
+         */
+        Route::resource('report', 'Admin\ManageReportController', ['as' => 'admin']);
 
         /**
          * Manage overtime
