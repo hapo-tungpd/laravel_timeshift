@@ -47,7 +47,6 @@ class SalaryController extends Controller
                 ->select('user_id', DB::raw('SUM(total_time) as total_times'));
 //                ->groupBy('user_id');
         })->get();
-        dd($total);
         $data = [
             'dataNameRollMonth' => $dataNameRollMonth,
             'dataNameOverMonth' => $dataNameOverMonth,
