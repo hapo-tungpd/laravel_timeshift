@@ -78,6 +78,11 @@ Route::prefix('admin')->group(function () {
         Route::put('user/{id}/update-image', 'UserProfileController@updateImage')->name('admin.user.update.image');
 
         /**
+         * change password admin
+         */
+        Route::resource('changepassword', 'Admin\ChangePassword', ['as' => 'admin']);
+
+        /**
          * Manage absence
          */
         Route::resource('absence', 'Admin\AbsenceController', ['as' => 'admin']);
@@ -101,7 +106,7 @@ Route::prefix('admin')->group(function () {
      */
     Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')
         ->name('admin.password.email');
-    Route::get('/password/reset', 'Auth\AdminForgotPasswordController@formResetLinkEmail')
+    Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')
         ->name('admin.password.request');
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')
