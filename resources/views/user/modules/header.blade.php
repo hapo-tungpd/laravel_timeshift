@@ -31,5 +31,12 @@
                 </li>
             </ul>
         </div>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a>Welcome to ERP, {{ Auth::user()->name }}</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 </header>

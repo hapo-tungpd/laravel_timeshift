@@ -33,8 +33,7 @@
                                 <th class="text-center">Start time</th>
                                 <th class="text-center">End time</th>
                                 <th class="text-center">Total time</th>
-                                <th class="text-center">Show</th>
-                                <th class="text-center">Status</th>
+                                <th class="text-center"></th>
                             </tr>
                             </thead>
                             @php
@@ -51,13 +50,6 @@
                                     <a href="{{ route('rollcall.show', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">
                                             <i class="fa fa-th-list"></i>
-                                        </button>
-                                    </a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="{{ route('rollcall.edit', $data->id) }}">
-                                        <button class="btn btn-primary btn-sm">
-                                            <i class="">End working</i>
                                         </button>
                                     </a>
                                 </td>
