@@ -36,7 +36,7 @@ class UserRollCallController extends Controller
         $data = [
             'rollcall' => $rollcall,
         ];
-        return view("user.roll_call.index", $data);
+        return view("user.roll_call.show_all", $data);
     }
     /**
      * Show the form for creating a new resource.
@@ -66,17 +66,6 @@ class UserRollCallController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -101,28 +90,28 @@ class UserRollCallController extends Controller
     {
         $timeNow = Carbon::now();
         $timeMorning = $timeNow->hour(8)->minute(30)->second(0)->toDateTimeString();
-        $timeAffer = $timeNow->hour(18)->minute(0)->second(0)->toDateTimeString();
+        $timeAfternoon = $timeNow->hour(18)->minute(0)->second(0)->toDateTimeString();
         $request = RollCall::findOrFail($id);
         $request->end_time = Carbon::now()->toDateTimeString();
         $timeStartWorking = $request->start_time;
         $timeEndWorking = $request->end_time;
-        if (($timeStartWorking >= $timeMorning) && ($timeEndWorking <= $timeAffer)) {
+        if (($timeStartWorking >= $timeMorning) && ($timeEndWorking <= $timeAfternoon)) {
             $toTime = strtotime($request->end_time);
             $fromTime = strtotime($request->start_time);
             $hour = round(($toTime - $fromTime)/(60*60), 2);
             $request->total_time = $hour;
-        } elseif (($timeStartWorking < $timeMorning) && ($timeEndWorking <= $timeAffer)) {
+        } elseif (($timeStartWorking < $timeMorning) && ($timeEndWorking <= $timeAfternoon)) {
             $toTime = strtotime($request->end_time);
             $fromTime = strtotime($timeMorning);
             $hour = round(($toTime - $fromTime)/(60*60), 2);
             $request->total_time = $hour;
-        } elseif (($timeStartWorking < $timeMorning) && ($timeEndWorking > $timeAffer)) {
-            $toTime = strtotime($timeAffer);
+        } elseif (($timeStartWorking < $timeMorning) && ($timeEndWorking > $timeAfternoon)) {
+            $toTime = strtotime($timeAfternoon);
             $fromTime = strtotime($timeMorning);
             $hour = round(($toTime - $fromTime)/(60*60), 2);
             $request->total_time = $hour;
         } else {
-            $toTime = strtotime($timeAffer);
+            $toTime = strtotime($timeAfternoon);
             $fromTime = strtotime($request->start_time);
             $hour = round(($toTime - $fromTime)/(60*60), 2);
             $request->total_time = $hour;
@@ -144,28 +133,6 @@ class UserRollCallController extends Controller
         return redirect()->route('rollcall.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
     public function statistic()
     {
         $dateTime = RollCall::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day');

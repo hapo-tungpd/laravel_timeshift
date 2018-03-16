@@ -35,6 +35,11 @@ Route::prefix('user')->group(function () {
         Route::post('changePassword', 'HomeController@changePassword')->name('changePassword');
 
         /**
+         * User Absence
+         */
+        Route::resource('absence', 'User\UserAbsenceController');
+
+        /**
          * User Report
          */
         Route::resource('report', 'User\UserReportController');
@@ -73,7 +78,7 @@ Route::prefix('admin')->group(function () {
         Route::put('user/{id}/update-image', 'UserProfileController@updateImage')->name('admin.user.update.image');
 
         /**
-         * Manage report
+         * Manage absence
          */
         Route::resource('absence', 'Admin\AbsenceController', ['as' => 'admin']);
 
@@ -81,6 +86,20 @@ Route::prefix('admin')->group(function () {
          * Manage salary
          */
         Route::resource('salary', 'Admin\SalaryController', ['as' => 'admin']);
+
+        /**
+         * Manage report
+         */
+        Route::resource('report', 'Admin\ManageReportController', ['as' => 'admin']);
+
+        /**
+         * Manage overtime
+         */
+        Route::get('overtime/showOvertime/{user_id}', 'Admin\OvertimeController@showOvertime')
+            ->name('admin.overtime.showOvertime');
+        Route::get('overtime/search', 'Admin\OvertimeController@search')->name('admin.overtime.search');
+        Route::get('overtime/statistic', 'Admin\OvertimeController@statistic')->name('admin.overtime.statistic');
+        Route::resource('overtime', 'Admin\OvertimeController', ['as' => 'admin']);
     });
     /**
      * admin reset password
