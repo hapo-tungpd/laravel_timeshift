@@ -1,40 +1,13 @@
 @extends('admin.layouts.master')
 
 @section('content')
-    <section class="content-header">
-        <h1>
-            Roll Call
-        </h1>
-    </section>
     <section class="content">
-        <div class="box">
-        </div>
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Roll call Today, @php echo date('d/m/Y'); @endphp</h3>
-                        <form role="form" action="{{ route('admin.rollcall.updateStatistic') }}" method="post">
-                        {{ csrf_field() }}
-                            <select class="selectpicker show-tick" name="month">
-                                <option value="2018-01" {{ ($dateTimeMonth == '2018-01')?'selected':'' }}>Tháng 1</option>
-                                <option value="2018-02" {{ ($dateTimeMonth == '2018-02')?'selected':'' }}>Tháng 2</option>
-                                <option value="2018-03" {{ ($dateTimeMonth == '2018-03')?'selected':'' }}>Tháng 3</option>
-                                <option value="2018-04" {{ ($dateTimeMonth == '2018-04')?'selected':'' }}>Tháng 4</option>
-                                <option value="2018-05" {{ ($dateTimeMonth == '2018-05')?'selected':'' }}>Tháng 5</option>
-                                <option value="2018-06" {{ ($dateTimeMonth == '2018-06')?'selected':'' }}>Tháng 6</option>
-                                <option value="2018-07" {{ ($dateTimeMonth == '2018-07')?'selected':'' }}>Tháng 7</option>
-                                <option value="2018-08" {{ ($dateTimeMonth == '2018-08')?'selected':'' }}>Tháng 8</option>
-                                <option value="2018-09" {{ ($dateTimeMonth == '2018-09')?'selected':'' }}>Tháng 9</option>
-                                <option value="2018-10" {{ ($dateTimeMonth == '2018-10')?'selected':'' }}>Tháng 10</option>
-                                <option value="2018-11" {{ ($dateTimeMonth == '2018-11')?'selected':'' }}>Tháng 11</option>
-                                <option value="2018-12" {{ ($dateTimeMonth == '2018-12')?'selected':'' }}>Tháng 12</option>
-                            </select>
-                            <button class="btn btn-success" type="submit">Submit</button>
-                        </form>
-
+                        <h3 class="box-title">Overtime Today, @php echo date('d-m/Y'); @endphp</h3>
                     </div>
-
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -60,7 +33,7 @@
                                         @php
                                             $temp = 1;
                                         @endphp
-                                        @foreach($rollCallDay as $data)
+                                        @foreach($overTimeDay as $data)
                                             <tbody>
                                             <td class="text-center">{{ $temp++ }}</td>
                                             <td class="text-center">{{ $data->user->name }}</td>
@@ -76,11 +49,11 @@
                                             <th rowspan="1" colspan="1"></th>
                                             <th rowspan="1" colspan="1"></th>
                                             <th rowspan="1" colspan="1"></th>
-                                            <th class="text-center" rowspan="1" colspan="1">Total: {{ $sumRollCallToday }} hour</th>
+                                            <th class="text-center" rowspan="1" colspan="1">Total: {{ $sumOverTimeToday }} hour</th>
                                         </tr>
                                         </tfoot>
                                     </table>
-                                    {{ $rollCallDay->links() }}
+                                    {{ $overTimeDay->links() }}
                                 </div>
                             </div>
                         </div>
@@ -91,7 +64,7 @@
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Roll call Of Month, @php echo date('m/Y'); @endphp</h3>
+                        <h3 class="box-title">Overtime Of Month, @php echo date('m/Y'); @endphp</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -100,39 +73,42 @@
                                 <div class="col-sm-12">
                                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                         <thead>
-                                        <tr role="row">
-                                            <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 361px;">Date</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 322px;">Start time</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 257px;">End time</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Total time</th></tr>
+                                            <tr role="row">
+                                                <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 361px;">Date</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 322px;">Start time</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 257px;">End time</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Total time</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        @php
-                                            $temp = 1;
-                                        @endphp
-                                        @foreach($rolCallMonth as $data)
-                                            <tbody>
-                                            <td class="text-center">{{ $temp++ }}</td>
-                                            <td class="text-center">{{ $data->user->name }}</td>
-                                            <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
-                                            <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
-                                            <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
-                                            <td class="text-center">{{ $data->total_time }}</td>
+                                            @php
+                                                $temp = 1;
+                                            @endphp
+                                            @foreach($overTimeMonth as $data)
+                                                <tbody>
+                                                    <td class="text-center">{{ $temp++ }}</td>
+                                                    <td class="text-center">{{ $data->user->name }}</td>
+                                                    <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
+                                                    <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
+                                                    <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
+                                                    <td class="text-center">{{ $data->total_time }}</td>
+                                                </tbody>
                                             @endforeach
-                                            </tbody>
                                             <tfoot>
-                                            <tr>
-                                                <th class="text-center" rowspan="1" colspan="1">Gereral: {{ --$temp }}</th>
-                                                <th rowspan="1" colspan="1"></th>
-                                                <th rowspan="1" colspan="1"></th>
-                                                <th rowspan="1" colspan="1"></th>
-                                                <th rowspan="1" colspan="1"></th>
-                                                <th class="text-center" rowspan="1" colspan="1">Total: {{ $sumRollCallMonth }} hour</th></tr>
+                                                <tr>
+                                                    <th class="text-center" rowspan="1" colspan="1">Gereral: {{ --$temp }}</th>
+                                                    <th rowspan="1" colspan="1"></th>
+                                                    <th rowspan="1" colspan="1"></th>
+                                                    <th rowspan="1" colspan="1"></th>
+                                                    <th rowspan="1" colspan="1"></th>
+                                                    <th class="text-center" rowspan="1" colspan="1">Total: {{ $sumOverTimeMonth }} hour</th>
+                                                </tr>
                                             </tfoot>
+                                         </tbody>
                                     </table>
-                                    {{ $rolCallMonth->links() }}
+                                    {{ $overTimeMonth->links() }}
                                 </div>
                             </div>
                         </div>
@@ -149,7 +125,7 @@
                     <div class="box box-solid">
                         <div class="box-body">
                             <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                                STATISTIC ROLL CALL EMPLOYEE TODAY, @php echo date('d-m/Y'); @endphp
+                                STATISTIC OVERTIME EMPLOYEE TODAY, @php echo date('d-m/Y'); @endphp
                             </h4>
                             <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>
@@ -164,18 +140,20 @@
                                 @endphp
                                 @foreach($dataName as $data)
                                     <tbody>
-                                    <td class="text-center">{{ $temp++ }}</td>
-                                    <td class="text-center">{{ $data->user->name }}</td>
-                                    <td class="text-center">{{ $data->total_times }}</td>
-                                    @endforeach
+                                        <td class="text-center">{{ $temp++ }}</td>
+                                        <td class="text-center">{{ $data->user->name }}</td>
+                                        <td class="text-center">{{ $data->total_times }}</td>
                                     </tbody>
-                                    <tfoot>
+                                @endforeach
+                                <tfoot>
                                     <tr>
                                         <th class="text-center" rowspan="1" colspan="1">Gereral: {{ --$temp }}</th>
                                         <th rowspan="1" colspan="1"></th>
-                                        <th class="text-center" rowspan="1" colspan="1">Total: {{ $dataSumRollCallToDay }} hour</th></tr>
-                                    </tfoot>
+                                        <th class="text-center" rowspan="1" colspan="1">Total: {{ $dataSumRollCallToDay }} hour</th>
+                                    </tr>
+                                </tfoot>
                             </table>
+                            {{ $dataName->links() }}
                         </div>
                     </div>
                 </div>
@@ -183,15 +161,16 @@
                     <div class="box box-solid">
                         <div class="box-body">
                             <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                                STATISTIC ROLL CALL EMPLOYEE OF MONTH, @php echo date('m/Y'); @endphp
+                                STATISTIC OVERTIME EMPLOYEE OF MONTH, @php echo date('m/Y'); @endphp
                             </h4>
                             <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>
-                                <tr role="row">
-                                    <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
-                                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
-                                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Total time</th>
-                                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 25px;">Show</th></tr>
+                                    <tr role="row">
+                                        <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Total time</th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 25px;">Show</th></tr>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 @php
@@ -203,7 +182,7 @@
                                         <td class="text-center">{{ $data->user->name }}</td>
                                         <td class="text-center">{{ $data->total_times }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.rollcall.showRollCall', $data->user_id) }}">
+                                            <a href="{{ route('admin.overtime.showOvertime', $data->user_id) }}">
                                                 <button class="btn btn-primary btn-sm">
                                                     <i class="fa fa-th-list"></i>
                                                 </button>
@@ -219,6 +198,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
+                            {{ $dataNameMonth->links() }}
                         </div>
                     </div>
                 </div>

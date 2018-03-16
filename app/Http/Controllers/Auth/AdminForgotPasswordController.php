@@ -34,7 +34,7 @@ class AdminForgotPasswordController extends Controller
     /**
      * @return mixed
      */
-    protected function broker()
+    public function broker()
     {
         return Password::broker('admins');
     }
@@ -42,7 +42,7 @@ class AdminForgotPasswordController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function formResetLinkEmail()
+    public function showLinkRequestForm()
     {
         return view('auth.passwords.email-admin');
     }

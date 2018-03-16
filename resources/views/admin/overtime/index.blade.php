@@ -1,44 +1,41 @@
-@extends('user.layouts.master')
+@extends('admin.layouts.master')
 
 @section('content')
-    <div class="container">
+    <section class="content-header">
+        <h1>
+            Overtime
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="box">
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Welcome to Overtime, {{ Auth::user()->name }}</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form action="{{ route('overtime.create', Auth::user()->id) }}" method="GET">
-                            {{ csrf_field() }}
-                            <button type="submit" class="btn btn-primary ">
-                                <i class="fa fa-th-list"></i>
-                                Create new Overtime
-                            </button>
+
+                        <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('admin.overtime.search') }}" method="GET">
+                            <div class="col-md-3">
+                                <input type="text" name="from_date" id="from_date" class="form-control filter-overtime over-time-picker" placeholder="From Date" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="to_date" id="to_date" class="form-control filter-overtime over-time-picker" placeholder="To Date" />
+                            </div>
+                            <div class="col-md-5">
+                                <input type="submit" name="filter" id="filter" value="Search" class="btn btn-info" />
+                            </div>
                         </form>
-                        <div class="row">
-                            <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('overtime.search') }}" method="post">
-                                {{csrf_field()}}
-                                {{ method_field('GET') }}
-                                <div class="col-md-3">
-                                    <input type="text" name="from_date" id="from_date" class="form-control filter-overtime over-time-picker" placeholder="From Date" />
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="text" name="to_date" id="to_date" class="form-control filter-overtime over-time-picker" placeholder="To Date" />
-                                </div>
-                                <div class="col-md-5">
-                                    <input type="submit" name="filter" id="filter" value="Search" class="btn btn-info" />
-                                </div>
-                            </form>
-                        </div>
-                        <br>
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
                                 <th class="text-center">No.</th>
+                                <th class="text-center">Name</th>
                                 <th class="text-center">Date</th>
                                 <th class="text-center">Start time</th>
                                 <th class="text-center">End time</th>
@@ -51,24 +48,18 @@
                             @php
                                 $temp = 1;
                             @endphp
-                            @foreach($overtime as $data)
+                            @foreach($overTime as $data)
                                 <tbody>
                                 <td class="text-center">{{ $temp++ }}</td>
+                                <td class="text-center">{{ $data->user->name }}</td>
                                 <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
                                 <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
                                 <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
-                                <td class="text-center">{{ $data->total_time }} hours</td>
+                                <td class="text-center">{{ $data->total_time }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('overtime.show', $data->id) }}">
+                                    <a href="{{ route('admin.overtime.show', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">
                                             <i class="fa fa-th-list"></i>
-                                        </button>
-                                    </a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="{{ route('overtime.edit', $data->id) }}">
-                                        <button class="btn btn-warning btn-sm">
-                                            <i class="fa fa-edit"></i>
                                         </button>
                                     </a>
                                 </td>
@@ -83,13 +74,13 @@
                                 </tbody>
                             @endforeach
                         </table>
+                        {{ $overTime->links() }}
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
-
 @section('javascript')
     <script>
         $(function () {

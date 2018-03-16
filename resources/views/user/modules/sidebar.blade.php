@@ -19,7 +19,17 @@
             <li><a href="{{ route('user.index') }}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-book"></i> <span>Report</span>
+                    <i class="fa fa-calendar-o"></i> <span>Absence</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('absence.create') }}"><i class="fa fa-calculator"></i>Create Absence</a></li>
+                    <li><a href="{{ route('absence.index') }}"><i class="fa fa-calendar-times-o"></i>Your Absence</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-calendar-o"></i> <span>Report</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
@@ -37,6 +47,17 @@
                     <li><a href="{{ route('overtime.index') }}"><i class="fa fa-user-plus"></i>Your Overtime</a></li>
                     <li><a href="{{ route('overtime.statistic') }}"><i class="fa fa-user-plus"></i>Statistic Overtime</a></li>
                 </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>Roll call</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('rollcall.create') }}"><i class="fa fa-users"></i>Roll call now!</a></li>
+                    <li><a href="{{ route('rollcall.showAllRollCall') }}"><i class="fa fa-users"></i>Your Roll Call</a></li>
+                    <li><a href="{{ route('rollcall.statistic') }}"><i class="fa fa-users"></i>Statistic Roll Call</a></li>
+                </ul>>
             </li>
         </ul>
     </section>

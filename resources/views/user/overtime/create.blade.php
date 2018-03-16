@@ -38,7 +38,7 @@
                         @if ($errors->has('end_time'))
                             <p class="input-warning">{{ $errors->first('end_time') }}</p>
                         @endif
-                        <input type="time" class="form-control" id="" name="end_time" value="{{ \Carbon\Carbon::now()->format('H:i') }}">
+                        <input type="time" class="form-control" id="" name="end_time" value="{{ \Carbon\Carbon::createFromFormat('H:i', '23:00')->format('H:i') }}">
                     </div>
                 </div>
                 <div class="box-footer">

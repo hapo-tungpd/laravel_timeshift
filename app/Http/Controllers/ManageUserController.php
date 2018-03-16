@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Validator;
-use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
-use Mail;
 
-class ManageUserController extends Controller implements RegistrarContract
+class ManageUserController extends Controller
 {
     /**
      * Display a listing of the resource.
