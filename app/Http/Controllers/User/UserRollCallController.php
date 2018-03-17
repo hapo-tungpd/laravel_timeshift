@@ -100,7 +100,7 @@ class UserRollCallController extends Controller
             $fromTime = strtotime($request->start_time);
             $hour = round(($toTime - $fromTime)/(60*60), 2);
             $request->total_time = $hour;
-        } elseif (($timeStartWorking < $timeMorning) && ($timeEndWorking <= $timeAfternoon)) {
+        } elseif (($timeStartWorking < $timeMorning) && ($timeEndWorking < $timeAfternoon)) {
             $toTime = strtotime($request->end_time);
             $fromTime = strtotime($timeMorning);
             $hour = round(($toTime - $fromTime)/(60*60), 2);
@@ -110,11 +110,13 @@ class UserRollCallController extends Controller
             $fromTime = strtotime($timeMorning);
             $hour = round(($toTime - $fromTime)/(60*60), 2);
             $request->total_time = $hour;
-        } else {
+        } elseif (($timeStartWorking > $timeMorning) && ($timeEndWorking > $timeAfternoon)) {
             $toTime = strtotime($timeAfternoon);
             $fromTime = strtotime($request->start_time);
             $hour = round(($toTime - $fromTime)/(60*60), 2);
             $request->total_time = $hour;
+        } else {
+            $request->total_time = 0;
         }
         $data = [
             'user_id' => $request->user_id,

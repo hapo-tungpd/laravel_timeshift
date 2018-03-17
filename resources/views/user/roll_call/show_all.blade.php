@@ -33,7 +33,7 @@
                                 <th class="text-center">Start time</th>
                                 <th class="text-center">End time</th>
                                 <th class="text-center">Total time</th>
-                                <th class="text-center"></th>
+                                <th class="text-center">Show</th>
                             </tr>
                             </thead>
                             @php
