@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Welcome to Absence, {{ Auth::user()->name }}</div>
+                    <div class="alert card-header alert-success">Welcome to Roll Call, {{ Auth::user()->name }}</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
