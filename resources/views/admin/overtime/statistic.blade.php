@@ -7,6 +7,24 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Overtime Today, @php echo date('d-m/Y'); @endphp</h3>
+                        <form role="form" action="{{ route('admin.overtime.selectStatistic') }}" method="post">
+                            {{ csrf_field() }}
+                            <select class="selectpicker show-tick" name="month">
+                                <option value="2018-01" {{ ($dateTimeMonth == '2018-01')?'selected':'' }}>Tháng 1</option>
+                                <option value="2018-02" {{ ($dateTimeMonth == '2018-02')?'selected':'' }}>Tháng 2</option>
+                                <option value="2018-03" {{ ($dateTimeMonth == '2018-03')?'selected':'' }}>Tháng 3</option>
+                                <option value="2018-04" {{ ($dateTimeMonth == '2018-04')?'selected':'' }}>Tháng 4</option>
+                                <option value="2018-05" {{ ($dateTimeMonth == '2018-05')?'selected':'' }}>Tháng 5</option>
+                                <option value="2018-06" {{ ($dateTimeMonth == '2018-06')?'selected':'' }}>Tháng 6</option>
+                                <option value="2018-07" {{ ($dateTimeMonth == '2018-07')?'selected':'' }}>Tháng 7</option>
+                                <option value="2018-08" {{ ($dateTimeMonth == '2018-08')?'selected':'' }}>Tháng 8</option>
+                                <option value="2018-09" {{ ($dateTimeMonth == '2018-09')?'selected':'' }}>Tháng 9</option>
+                                <option value="2018-10" {{ ($dateTimeMonth == '2018-10')?'selected':'' }}>Tháng 10</option>
+                                <option value="2018-11" {{ ($dateTimeMonth == '2018-11')?'selected':'' }}>Tháng 11</option>
+                                <option value="2018-12" {{ ($dateTimeMonth == '2018-12')?'selected':'' }}>Tháng 12</option>
+                            </select>
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </form>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">

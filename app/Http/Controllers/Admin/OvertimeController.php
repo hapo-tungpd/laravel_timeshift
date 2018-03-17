@@ -93,6 +93,7 @@ class OvertimeController extends Controller
             'dataSumRollCallToDay' => $dataSumRollCallToDay,
             'dataNameMonth' => $dataNameMonth,
             'dataSumRollCallMonth' => $dataSumRollCallMonth,
+            'dateTimeMonth' => $dateTimeMonth,
         ];
         return view('admin.overtime.statistic', $data);
     }
@@ -122,5 +123,30 @@ class OvertimeController extends Controller
             'overTimeEmployee' => $overTimeEmployee,
         ];
         return view('admin.overtime.show-overtime', $data);
+    }
+
+    public function selectStatistic(Request $request)
+    {
+        $dateTimeMonth = $request->input('month'); //2018-02
+        //total time roll call of month
+        $sumOvertimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->sum('total_time');
+        //get user roll call of month
+        $overtimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->paginate(config('app.pagination'));
+        $dataNameMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
+            ->groupBy('user_id')
+            ->paginate(config('app.pagination'));
+        $dataSumOvertimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->sum('total_time');
+        $data = [
+            'dateTimeMonth' => $dateTimeMonth,
+            'sumOvertimeMonth' => $sumOvertimeMonth,
+            'overtimeMonth' => $overtimeMonth,
+            'dataNameMonth' => $dataNameMonth,
+            'dataSumOvertimeMonth' => $dataSumOvertimeMonth,
+        ];
+        return view('admin.overtime.select_statistic', $data);
     }
 }
