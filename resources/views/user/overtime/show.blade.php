@@ -15,19 +15,19 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Date</th>
-                                <th class="text-center">Start time</th>
-                                <th class="text-center">End time</th>
-                                <th class="text-center">Total time</th>
+                                <th width="10%" class="text-center">Date</th>
+                                <th width="15%" class="text-center">Start time</th>
+                                <th width="15%" class="text-center">End time</th>
+                                <th width="15%" class="text-center">Total time</th>
+                                <th class="text-center">Report</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <td class="text-center">{{ $overtime->id }}</td>
                             <td class="text-center">{{ $overtime->day->format('d/m/Y') }}</td>
                             <td class="text-center">{{ $overtime->start_time->format('H:s:i') }}</td>
                             <td class="text-center">{{ $overtime->end_time->format('H:s:i') }}</td>
                             <td class="text-center">{{ $overtime->total_time }} hours</td>
+                            <td>{{ $overtime->content }}</td>
                             </tbody>
                         </table>
                         <a href="{{ route('overtime.index') }}" class="btn btn-primary">Back</a>

@@ -27,6 +27,7 @@ class OvertimeUserRequest extends FormRequest
             "day" => "required|date",
             "start_time" => "required",
             "end_time" => "required",
+            "content" => "required",
         ];
     }
 
@@ -38,9 +39,10 @@ class OvertimeUserRequest extends FormRequest
     public function messages()
     {
         return [
-            "day.required" => "The date has rerequired",
-            "start_time.required" => "The Start time has rerequired",
-            "end_time.required" => "The End time has rerequired",
+            "day.required" => "The date has required",
+            "start_time.required" => "The Start time has required",
+            "end_time.required" => "The End time has required",
+            "content.required" => "The content has required",
         ];
     }
 }
