@@ -1,11 +1,6 @@
 @extends('admin.layouts.master')
 
 @section('content')
-    <section class="content-header">
-        <h1>
-            Overtime of {{ $dateTimeMonth }}
-        </h1>
-    </section>
     <section class="content">
         <div class="box">
         </div>
@@ -13,7 +8,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Overtime {{ $dateTimeMonth }}</h3>
+                        <h3 class="box-title"><strong>Overtime, </strong> {{ $dateTimeMonth }}</h3>
                         <form role="form" action="{{ route('admin.overtime.selectStatistic') }}" method="post">
                             {{ csrf_field() }}
                             <select class="selectpicker show-tick" name="month">
@@ -30,7 +25,7 @@
                                 <option value="2018-11" {{ ($dateTimeMonth == '2018-11')?'selected':'' }}>Tháng 11</option>
                                 <option value="2018-12" {{ ($dateTimeMonth == '2018-12')?'selected':'' }}>Tháng 12</option>
                             </select>
-                            <button class="btn btn-primary" type="submit">Submit</button>
+                            <button class="btn btn-primary" type="submit">Detail</button>
                         </form>
                     </div>
                     <!-- /.box-header -->
@@ -40,7 +35,7 @@
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Overtime Of Month, {{ $dateTimeMonth }}</h3>
+                        <h3 class="box-title"><strong>Overtime Of Month,</strong> {{ $dateTimeMonth }}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -51,11 +46,12 @@
                                         <thead>
                                         <tr role="row">
                                             <th width="5%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No.</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 297px;">Name</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 361px;">Date</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 322px;">Start time</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 257px;">End time</th>
-                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 190px;">Total time</th></tr>
+                                            <th width="15%" class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Name</th>
+                                            <th width="10%" class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Date</th>
+                                            <th width="10%" class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Start time</th>
+                                            <th width="10%" class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">End time</th>
+                                            <th width="10%" class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Total time</th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Report</th></tr>
                                         </thead>
                                         <tbody>
                                         @php
@@ -69,6 +65,7 @@
                                             <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
                                             <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
                                             <td class="text-center">{{ $data->total_time }}</td>
+                                            <td>{{ $data->content }}</td>
                                             @endforeach
                                             </tbody>
                                             <tfoot>

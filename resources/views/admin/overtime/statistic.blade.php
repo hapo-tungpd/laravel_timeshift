@@ -6,7 +6,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Overtime Today, @php echo date('d-m/Y'); @endphp</h3>
+                        <h3 class="box-title"><strong>Overtime Today,</strong> @php echo date('d-m/Y'); @endphp</h3>
                         <form role="form" action="{{ route('admin.overtime.selectStatistic') }}" method="post">
                             {{ csrf_field() }}
                             <select class="selectpicker show-tick" name="month">
@@ -23,7 +23,7 @@
                                 <option value="2018-11" {{ ($dateTimeMonth == '2018-11')?'selected':'' }}>Tháng 11</option>
                                 <option value="2018-12" {{ ($dateTimeMonth == '2018-12')?'selected':'' }}>Tháng 12</option>
                             </select>
-                            <button class="btn btn-success" type="submit">Submit</button>
+                            <button class="btn btn-success" type="submit">Detail</button>
                         </form>
                     </div>
                     <!-- /.box-header -->
@@ -82,7 +82,7 @@
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Overtime Of Month, @php echo date('m/Y'); @endphp</h3>
+                        <h3 class="box-title"><strong>Overtime Of Month,</strong> @php echo date('m/Y'); @endphp</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -143,7 +143,7 @@
                     <div class="box box-solid">
                         <div class="box-body">
                             <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                                STATISTIC OVERTIME EMPLOYEE TODAY, @php echo date('d-m/Y'); @endphp
+                                <strong>STATISTIC OVERTIME EMPLOYEE TODAY,</strong> @php echo date('d-m/Y'); @endphp
                             </h4>
                             <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>
@@ -179,7 +179,7 @@
                     <div class="box box-solid">
                         <div class="box-body">
                             <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                                STATISTIC OVERTIME EMPLOYEE OF MONTH, @php echo date('m/Y'); @endphp
+                                <strong>STATISTIC OVERTIME EMPLOYEE OF MONTH,</strong> @php echo date('m/Y'); @endphp
                             </h4>
                             <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>
