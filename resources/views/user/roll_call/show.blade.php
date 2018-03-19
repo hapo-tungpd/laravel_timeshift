@@ -1,11 +1,16 @@
 @extends('user.layouts.master')
 
 @section('content')
-    <div class="container">
+    <section class="content-header">
+        <h1>
+            Roll Call
+        </h1>
+    </section>
+    <section class="content">
+        <div class="box"></div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Your Roll Call</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -33,5 +38,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection

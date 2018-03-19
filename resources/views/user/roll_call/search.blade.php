@@ -1,12 +1,16 @@
 @extends('user.layouts.master')
 
 @section('content')
-
-    <div class="container">
+    <section class="content-header">
+        <h1>
+            Roll Call
+        </h1>
+    </section>
+    <section class="content">
+        <div class="box"></div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Welcome to Roll call, {{ Auth::user()->name }}</div>
                     <legend class="text-center">Roll call</legend>
                     @if(session('info'))
                         {{session('info')}}
@@ -60,7 +64,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    </body>
-    </html>
+    </section>
 @endsection

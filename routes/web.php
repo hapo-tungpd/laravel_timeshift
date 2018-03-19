@@ -47,6 +47,8 @@ Route::prefix('user')->group(function () {
         /**
          * User Roll Call
          */
+        Route::post('rollcall/selectStatistic', 'User\UserRollCallController@selectStatistic')
+            ->name('rollcall.selectStatistic');
         Route::get('rollcall/showAllRollCall', 'User\UserRollCallController@showAllRollCall')
             ->name('rollcall.showAllRollCall');
         Route::get('rollcall/search', 'User\UserRollCallController@search')->name('rollcall.search');

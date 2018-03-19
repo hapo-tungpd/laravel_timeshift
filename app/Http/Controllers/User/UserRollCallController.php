@@ -8,6 +8,7 @@ use Auth;
 use App\Models\RollCall;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class UserRollCallController extends Controller
 {
@@ -137,13 +138,20 @@ class UserRollCallController extends Controller
 
     public function statistic()
     {
+        $date = Carbon::now();
+        $dateTimeMonth = substr($date, 0, 7);
         $dateTime = RollCall::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day');
         $dateTimeDay = substr($dateTime, 0, 7);
         $sumRollcall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->sum('total_time');
         $rollcall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->paginate(config('app.pagination'));
-        return view('user.roll_call.statistic', ['rollcall' => $rollcall, 'sumRollcall' => $sumRollcall]);
+        $data = [
+            'dateTimeMonth' => $dateTimeMonth,
+            'rollcall' => $rollcall,
+            'sumRollcall' => $sumRollcall,
+        ];
+        return view('user.roll_call.statistic', $data);
     }
 
     public function search(Request $request)
@@ -152,8 +160,26 @@ class UserRollCallController extends Controller
         $toTime = $request->to_date;
         $employees = RollCall::whereBetween('day', [$fromTime, $toTime])
             ->where('user_id', Auth::user()->id)
+            ->orderby('updated_at', Auth::user()->updated_at)
             ->paginate(10);
         $sumTime = RollCall::whereBetween('day', [$fromTime, $toTime])->sum('total_time');
         return view('user.roll_call.search', compact('employees', 'sumTime'));
+    }
+
+    public function selectStatistic(Request $request)
+    {
+        $dateTimeMonth = $request->input('month');
+        $overtimeMonth = RollCall::where('user_id', Auth::user()->id)
+            ->where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->paginate(config('app.pagination'));
+        $sumOvertimeMonth = RollCall::where('user_id', Auth::user()->id)
+            ->where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->sum('total_time');
+        $data = [
+            'dateTimeMonth' => $dateTimeMonth,
+            'overtimeMonth' => $overtimeMonth,
+            'sumOvertimeMonth' => $sumOvertimeMonth,
+        ];
+        return view('user.roll_call.select_statistic', $data);
     }
 }

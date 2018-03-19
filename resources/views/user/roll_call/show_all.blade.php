@@ -1,27 +1,38 @@
 @extends('user.layouts.master')
 
 @section('content')
-    <div class="container">
+    <section class="content-header">
+        <h1>
+            Roll Call
+        </h1>
+    </section>
+    <section class="content">
+        <div class="box"></div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Welcome to Absence, {{ Auth::user()->name }}</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form class=" row form-inline my-2 my-lg-0" action="{{ route('rollcall.search') }}" method="post">
+                        <form class="form-inline" action="{{ route('rollcall.search') }}" method="post">
                             {{csrf_field()}}
                             {{ method_field('GET') }}
-                            <div class="col-md-3">
+                            <div class=" input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                 <input type="text" name="from_date" id="from_date" class="form-control filter-overtime" placeholder="From Date" />
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class=" input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                 <input type="text" name="to_date" id="to_date" class="form-control filter-overtime" placeholder="To Date" />
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="inline">
                                 <input type="submit" name="filter" id="filter" value="Search" class="btn btn-info" />
                             </div>
                         </form>
@@ -60,5 +71,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection

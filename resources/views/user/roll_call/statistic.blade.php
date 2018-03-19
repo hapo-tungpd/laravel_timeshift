@@ -1,27 +1,34 @@
 @extends('user.layouts.master')
 
 @section('content')
-    <div class="container">
+    <section class="content-header">
+        <h1>
+            Roll Call
+        </h1>
+    </section>
+    <section class="content">
+        <div class="box"></div>
+        <form role="form" action="{{ route('rollcall.selectStatistic') }}" method="post">
+            {{ csrf_field() }}
+            <select class="selectpicker show-tick" name="month">
+                <option value="2018-01" {{ ($dateTimeMonth == '2018-01')?'selected':'' }}>January</option>
+                <option value="2018-02" {{ ($dateTimeMonth == '2018-02')?'selected':'' }}>February</option>
+                <option value="2018-03" {{ ($dateTimeMonth == '2018-03')?'selected':'' }}>March</option>
+                <option value="2018-04" {{ ($dateTimeMonth == '2018-04')?'selected':'' }}>April</option>
+                <option value="2018-05" {{ ($dateTimeMonth == '2018-05')?'selected':'' }}>May</option>
+                <option value="2018-06" {{ ($dateTimeMonth == '2018-06')?'selected':'' }}>June</option>
+                <option value="2018-07" {{ ($dateTimeMonth == '2018-07')?'selected':'' }}>July</option>
+                <option value="2018-08" {{ ($dateTimeMonth == '2018-08')?'selected':'' }}>August</option>
+                <option value="2018-09" {{ ($dateTimeMonth == '2018-09')?'selected':'' }}>September</option>
+                <option value="2018-10" {{ ($dateTimeMonth == '2018-10')?'selected':'' }}>October</option>
+                <option value="2018-11" {{ ($dateTimeMonth == '2018-11')?'selected':'' }}>November</option>
+                <option value="2018-12" {{ ($dateTimeMonth == '2018-12')?'selected':'' }}>December</option>
+            </select>
+            <button class="btn btn-success" type="submit">Detail</button>
+        </form>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">
-                        {{--<select class="selectpicker show-tick">--}}
-                        {{--<option>Tháng 1</option>--}}
-                        {{--<option>Tháng 2</option>--}}
-                        {{--<option>Tháng 3</option>--}}
-                        {{--<option>Tháng 4</option>--}}
-                        {{--<option>Tháng 5</option>--}}
-                        {{--<option>Tháng 6</option>--}}
-                        {{--<option>Tháng 7</option>--}}
-                        {{--<option>Tháng 8</option>--}}
-                        {{--<option>Tháng 9</option>--}}
-                        {{--<option>Tháng 10</option>--}}
-                        {{--<option>Tháng 11</option>--}}
-                        {{--<option>Tháng 12</option>--}}
-                        {{--</select>--}}
-                        <h3 class="text-center">Time working month @php echo date('m/Y') @endphp</h3>
-                    </div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -56,5 +63,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
