@@ -9,6 +9,8 @@ use Auth;
 use App\Models\Overtime;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 class OvertimeController extends Controller
 {
@@ -119,8 +121,13 @@ class OvertimeController extends Controller
             ->whereMonth('day', Carbon::now()->format('m'))
             ->whereYear('day', Carbon::now()->format('Y'))
             ->paginate(config('app.pagination'));
+        $countOvertime = Overtime::where('user_id', $user_id)
+            ->whereMonth('day', Carbon::now()->format('m'))
+            ->whereYear('day', Carbon::now()->format('Y'))
+            ->distinct('day')->count('day');
         $data = [
             'overTimeEmployee' => $overTimeEmployee,
+            'countOvertime' => $countOvertime,
         ];
         return view('admin.overtime.show-overtime', $data);
     }
