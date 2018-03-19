@@ -17,6 +17,13 @@
         </a>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
                 <!-- Notifications: style can be found in dropdown.less -->
                 <!-- Tasks: style can be found in dropdown.less -->
@@ -38,5 +45,6 @@
                 </li>
             </ul>
         </div>
+        {{--@include('user.layouts.sidebar')--}}
     </nav>
 </header>

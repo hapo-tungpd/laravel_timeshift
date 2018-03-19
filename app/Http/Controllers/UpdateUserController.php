@@ -8,6 +8,10 @@ use App\Models\User;
 use Image;
 use Auth;
 use Carbon\Carbon;
+use App\Models\Overtime;
+use App\Models\RollCall;
+use App\Models\Report;
+use App\Models\Absence;
 
 class UpdateUserController extends Controller
 {
@@ -18,8 +22,29 @@ class UpdateUserController extends Controller
      */
     public function index()
     {
-//        dd(Auth::user());
-        return view('user.index');
+        $absence = Absence::where('user_id', Auth::user()->id)
+            ->orderBy('updated_at', 'DESC')
+            ->take(1)->get();
+
+//        $report = Report::where('user_id', Auth::user()->id)
+//            ->orderby('updated_at', Auth::user()->updated_at)
+//            ->limit(1)
+//            ->get();
+//        $rollcall = RollCall::where('user_id', Auth::user()->id)
+//            ->orderby('updated_at', Auth::user()->updated_at)
+//            ->limit(1)
+//            ->get();
+//        $overtime = Overtime::where('user_id', Auth::user()->id)
+//            ->orderby('updated_at', Auth::user()->updated_at)
+//            ->limit(1)
+//            ->get();
+        $data = [
+            'absence' => $absence[0],
+//            'report' => $report,
+//            'rollcall' => $rollcall,
+//            'overtime' => $overtime,
+        ];
+        return view('user.index', $data);
     }
 
     /**

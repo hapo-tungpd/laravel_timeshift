@@ -14,6 +14,8 @@
 
     <!-- Left side column. contains the sidebar -->
 @include('user.modules.sidebar')
+<!-- Right side column. contains the sidebar -->
+@include('user.layouts.sidebar')
 
 <!-- =============================================== -->
 
@@ -27,7 +29,6 @@
 <!-- ./wrapper -->
 
 @include('user.layouts.footer')
-
 @yield('javascript')
 
 </body>
