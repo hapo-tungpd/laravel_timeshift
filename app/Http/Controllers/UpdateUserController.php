@@ -24,25 +24,21 @@ class UpdateUserController extends Controller
     {
         $absence = Absence::where('user_id', Auth::user()->id)
             ->orderBy('updated_at', 'DESC')
-            ->take(1)->get();
-
-//        $report = Report::where('user_id', Auth::user()->id)
-//            ->orderby('updated_at', Auth::user()->updated_at)
-//            ->limit(1)
-//            ->get();
-//        $rollcall = RollCall::where('user_id', Auth::user()->id)
-//            ->orderby('updated_at', Auth::user()->updated_at)
-//            ->limit(1)
-//            ->get();
-//        $overtime = Overtime::where('user_id', Auth::user()->id)
-//            ->orderby('updated_at', Auth::user()->updated_at)
-//            ->limit(1)
-//            ->get();
+            ->first();
+        $report = Report::where('user_id', Auth::user()->id)
+            ->orderBy('day', 'DESC')
+            ->first();
+        $rollcall = RollCall::where('user_id', Auth::user()->id)
+            ->orderBy('updated_at', 'DESC')
+            ->first();
+        $overtime = Overtime::where('user_id', Auth::user()->id)
+            ->orderBy('updated_at', 'DESC')
+            ->first();
         $data = [
-            'absence' => $absence[0],
-//            'report' => $report,
-//            'rollcall' => $rollcall,
-//            'overtime' => $overtime,
+            'absence' => $absence,
+            'report' => $report,
+            'rollcall' => $rollcall,
+            'overtime' => $overtime,
         ];
         return view('user.index', $data);
     }

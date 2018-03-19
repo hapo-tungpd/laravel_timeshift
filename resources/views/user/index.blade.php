@@ -1,9 +1,6 @@
 @extends('user.layouts.master')
 
 @section('content')
-    <style>
-        html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
-    </style>
     <body class="w3-light-grey">
     <div class="box"></div>
 
@@ -47,76 +44,76 @@
             <div class="w3-twothird">
 
                 <div class="w3-container w3-card w3-white w3-margin-bottom">
-                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Absence</h2>
+                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-calendar-times-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Absence</h2>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('absence.create') }}"><i></i>Create Absence</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ $absence->created_at }} - <span class="w3-tag w3-teal w3-round">Important</span></h6>
-                        <p>Chức năng xin nghỉ cho phép bạn xin nghỉ cả ngày, nửa ngày và trong một khoảng thời gian trong ngày. Bạn cần xin nghỉ trước thời gian làm việc của ngày hôm sau.</p>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ Carbon\Carbon::now()->toFormattedDateString() }} - <span class="w3-tag w3-teal w3-round">Important</span></h6>
+                        <p>The absence function allows you to apply for a full day, half-day, and part-time absence. You need to take absence before the next working day.</p>
                         <hr>
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('absence.create') }}"><i></i>Your absence</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ Carbon\Carbon::now()->toFormattedDateString() }}</h6>
-                        <p>Thống kê những lần xin nghỉ phép của bạn.</p>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $absence->created_at->diffForHumans(Carbon\Carbon::now()) }}</h6>
+                        <p>Statistics of your time to take a vacation.</p>
                         <hr>
                     </div>
                 </div>
 
                 <div class="w3-container w3-card w3-white">
-                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Report</h2>
+                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-book fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Report</h2>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('report.create') }}"><i></i>Create report</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>
-                        <p>Trước khi rời khỏi văn phòng, bạn cần viết report cho một ngày làm việc.</p>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ Carbon\Carbon::now()->toFormattedDateString() }}</h6>
+                        <p>Before leaving the office, you need to write a report for a working day.</p>
                         <hr>
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('report.index') }}"><i></i>Your report</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>
-                        <p>Thống kê toàn bộ report mà bạn đã viết.</p>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $report->created_at->diffForHumans(Carbon\Carbon::now()) }}</h6>
+                        <p>Statistics the entire report that you wrote.</p>
                         <hr>
                     </div>
                 </div>
                 <br>
                 <div class="w3-container w3-card w3-white">
-                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Overtime</h2>
+                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-clock-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Overtime</h2>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('overtime.create') }}"><i></i>Create your overtime</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>
-                        <p>Khi overtime, bạn cần tạo một báo cáo, bao gồm thời gian OT, report OT.</p>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ Carbon\Carbon::now()->toFormattedDateString() }}</h6>
+                        <p>When overtime, you need to create a report, including OT time, OT report.</p>
                         <hr>
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('overtime.index') }}"><i></i>Your overtime</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>
-                        <p>Liệt kê những lần overtime của bạn.</p>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $overtime->created_at->diffForHumans(Carbon\Carbon::now()) }}</h6>
+                        <p>List your overtime.</p>
                         <hr>
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('overtime.statistic') }}"><i></i>Statistic Overtime</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2010 - 2013</h6>
-                        <p>Thống kê toàn bộ thông tin overtime của bạn theo tháng.</p><br>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ Carbon\Carbon::now()->format('m-Y') }}</h6>
+                        <p>Statistics entire information of your monthly overtime.</p><br>
                     </div>
                 </div>
                 <br>
                 <div class="w3-container w3-card w3-white">
-                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Roll Call</h2>
+                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-check-square-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Roll Call</h2>
                     <div class="w3-container">
-                        <h5 class="w3-opacity"><a href="{{ route('rollcall.create') }}"><i></i>Roll call now!</a>- <span class="w3-tag w3-teal w3-round">Important</span></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>
-                        <p>Bạn cần điểm danh vào thời điểm bắt đầu đến công ty và trước khi rời khỏi công ty.</p>
+                        <h5 class="w3-opacity"><a href="{{ route('rollcall.create') }}"><i></i>Roll call now!</a> - <span class="w3-tag w3-teal w3-round">Important</span></h5>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ Carbon\Carbon::now()->toFormattedDateString() }}</h6>
+                        <p>You need to roll call at the start of the company and before leaving the company.</p>
                         <hr>
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('rollcall.showAllRollCall') }}"><i></i>Your Roll Call</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>
-                        <p>Liệt kê những lần điểm danh của bạn.</p>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $rollcall->created_at->diffForHumans(Carbon\Carbon::now()) }}</h6>
+                        <p>List your roll call.</p>
                         <hr>
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('rollcall.showAllRollCall') }}"><i></i>Statistic Roll Call</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2010 - 2013</h6>
-                        <p>Thống kê toàn bộ thông tin điểm danh của bạn theo tháng.</p><br>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ Carbon\Carbon::now()->format('m-Y') }}</h6>
+                        <p>Statistical entire roll call your information by month.</p><br>
                     </div>
                 </div>
 
@@ -136,7 +133,7 @@
         <i class="fa fa-pinterest-p w3-hover-opacity"></i>
         <i class="fa fa-twitter w3-hover-opacity"></i>
         <i class="fa fa-linkedin w3-hover-opacity"></i>
-        <p>Design by <a href="https://haposoft.com/vi" target="_blank">Haposoft</a> INC.</p>
+        <p>Design by <a href="https://haposoft.com/vi" target="_blank">Haposoft</a> Inc.</p>
     </footer>
     </body>
 @endsection

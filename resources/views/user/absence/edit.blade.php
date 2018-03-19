@@ -29,7 +29,8 @@
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
-                        </div>                    </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="">Type</label>
                         <div class="radio">
