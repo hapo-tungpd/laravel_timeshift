@@ -1,11 +1,17 @@
 @extends('user.layouts.master')
 
 @section('content')
-    <div class="container">
+    <section class="content-header">
+        <h1>
+            Overtime
+        </h1>
+    </section>
+    <section class="content">
+        <div class="box">
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="alert card-header alert-success">Welcome to Overtime, {{ Auth::user()->name }}</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -43,9 +49,9 @@
                                 <th class="text-center">Start time</th>
                                 <th class="text-center">End time</th>
                                 <th class="text-center">Total time</th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
+                                <th class="text-center">Show</th>
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>
                             </tr>
                             </thead>
                             @php
@@ -87,7 +93,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
 
 @section('javascript')

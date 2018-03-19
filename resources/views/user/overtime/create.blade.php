@@ -41,6 +41,15 @@
                         <input type="time" class="form-control" id="" name="end_time" value="{{ \Carbon\Carbon::createFromFormat('H:i', '23:00')->format('H:i') }}">
                     </div>
                 </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="">Content</label>
+                        @if ($errors->has('content'))
+                            <p class="input-warning">{{ $errors->first('content') }}</p>
+                        @endif
+                        <textarea class="form-control" id="" name="content"></textarea>
+                    </div>
+                </div>
                 <div class="box-footer">
                     <a href="{{ route('overtime.index') }}" class="btn btn-success">Back</a>
                     <button type="submit" class="btn btn-primary" >Submit</button>
