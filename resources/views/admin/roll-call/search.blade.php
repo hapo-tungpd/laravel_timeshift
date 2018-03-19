@@ -6,73 +6,76 @@
             Roll Call
         </h1>
     </section>
-
+    <section class="content">
         <div class="row justify-content-center">
             <div class="box">
             </div>
             <div class="col-md-12">
                 <div class="card card-default">
-                    @if(session('info'))
-                        {{session('info')}}
-                    @endif
-                    <table class="table table-primary table-hover text-center table-show">
-                        <thead>
-                        <tr>
-                            <th class="text-center">No.</th>
-                            <th class="text-center">Date</th>
-                            <th class="text-center">Start time</th>
-                            <th class="text-center">End time</th>
-                            <th class="text-center">Total time</th>
-                            <th class="text-center"></th>
-                            <th class="text-center"></th>
-                        </tr>
-                        </thead>
-                        <tbody class="tbody-show">
-                        @php
-                            $temp = 1;
-                        @endphp
-                        @if(count($employees) > 0)
-                            @foreach($employees as $data)
-                                <tr class="table-primary tr-show">
-                                    <td class="text-center">{{ $temp++ }}</td>
-                                    <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
-                                    <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
-                                    <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
-                                    <td class="text-center">{{ $data->total_time }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('admin.rollcall.show', $data->id) }}">
-                                            <button class="btn btn-primary btn-sm">
-                                                <i class="fa fa-th-list"></i>
-                                            </button>
-                                        </a>
-                                    </td>
-                                    <td class="text-center">
-                                        <form action="#" method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button type="submit" data-id="{{ $data->id }}"
-                                            class="fa fa-trash-o btn btn-danger btn-sm"></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                    <div class="card-body">
+                        @if(session('info'))
+                            {{session('info')}}
                         @endif
-                        <tr>
-                            <th>General</th>
-                            <th>{{ (count($employees)) }} day</th>
-                            <th></th>
-                            <th></th>
-                            <th>{{ $sumTime }} hour</th>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <form action="{{ route('admin.rollcall.index') }}">
-                        {{ csrf_field() }}
-                        <button class="btn-sm btn btn-primary">BACK</button>
-                    </form>
+                        <table class="table table-primary table-hover text-center table-show">
+                            <thead>
+                            <tr>
+                                <th width="10%" class="text-center">No.</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Start time</th>
+                                <th class="text-center">End time</th>
+                                <th class="text-center">Total time</th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
+                            </tr>
+                            </thead>
+                            <tbody class="tbody-show">
+                            @php
+                                $temp = 1;
+                            @endphp
+                            @if(count($employees) > 0)
+                                @foreach($employees as $data)
+                                    <tr class="table-primary tr-show">
+                                        <td class="text-center">{{ $temp++ }}</td>
+                                        <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
+                                        <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
+                                        <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
+                                        <td class="text-center">{{ $data->total_time }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('admin.rollcall.show', $data->id) }}">
+                                                <button class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-th-list"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+                                        <td class="text-center">
+                                            <form action="#" method="POST">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" data-id="{{ $data->id }}"
+                                                class="fa fa-trash-o btn btn-danger btn-sm"></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                            <tr>
+                                <th>General</th>
+                                <th>{{ (count($employees)) }} day</th>
+                                <th></th>
+                                <th></th>
+                                <th>{{ $sumTime }} hour</th>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <form action="{{ route('admin.rollcall.index') }}">
+                            {{ csrf_field() }}
+                            <button class="btn-sm btn btn-primary">BACK</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 @endsection
 @section('javascript')
     <script>

@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Roll Call of {{ $dateTimeMonth }}
+            Roll Call
         </h1>
     </section>
     <section class="content">
@@ -13,7 +13,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Roll call {{ $dateTimeMonth }}</h3>
+                        <h3 class="box-title"><strong>Roll call</strong> {{ $dateTimeMonth }}</h3>
                         <form role="form" action="{{ route('admin.rollcall.updateStatistic') }}" method="post">
                             {{ csrf_field() }}
                             <select class="selectpicker show-tick" name="month">
@@ -40,7 +40,7 @@
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Roll call Of Month, {{ $dateTimeMonth }}</h3>
+                        <h3 class="box-title"><strong>Roll call Of Month,</strong> {{ $dateTimeMonth }}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -98,7 +98,7 @@
                     <div class="box box-solid">
                         <div class="box-body">
                             <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                                STATISTIC ROLL CALL EMPLOYEE OF MONTH, {{ $dateTimeMonth }}
+                                <strong>GENERAL ROLL CALL EMPLOYEE OF MONTH,</strong> {{ $dateTimeMonth }}
                             </h4>
                             <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>

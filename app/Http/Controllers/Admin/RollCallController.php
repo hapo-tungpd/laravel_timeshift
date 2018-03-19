@@ -165,8 +165,19 @@ class RollCallController extends Controller
             ->whereMonth('day', Carbon::now()->format('m'))
             ->whereYear('day', Carbon::now()->format('Y'))
             ->paginate(config('app.pagination'));
+
+        $countRollCall = RollCall::where('user_id', $user_id)
+            ->whereMonth('day', Carbon::now()->format('m'))
+            ->whereYear('day', Carbon::now()->format('Y'))
+            ->distinct('day')->count('day');
+        $dataSumRollCallMonth = RollCall::where('user_id', $user_id)
+            ->whereMonth('day', Carbon::now()->format('m'))
+            ->whereYear('day', Carbon::now()->format('Y'))
+            ->sum('total_time');
         $data = [
-           'rollCallEmployee' => $rollCallEmployee,
+            'dataSumRollCallMonth' => $dataSumRollCallMonth,
+            'countRollCall' => $countRollCall,
+            'rollCallEmployee' => $rollCallEmployee,
         ];
         return view('admin.roll-call.show-roll-call', $data);
     }
