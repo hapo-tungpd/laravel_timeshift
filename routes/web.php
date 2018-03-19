@@ -92,13 +92,13 @@ Route::prefix('admin')->group(function () {
         /**
          * Manage roll call
          */
-        Route::post('rollcall/updateStatistic', 'Admin\RollCallController@selectStatistic')
-            ->name('admin.rollcall.updateStatistic');
-        Route::get('rollcall/showRollCall/{user_id}', 'Admin\RollCallController@showRollCall')
-            ->name('admin.rollcall.showRollCall');
-        Route::get('rollcall/search', 'Admin\RollCallController@search')->name('admin.rollcall.search');
-        Route::get('rollcall/statistic', 'Admin\RollCallController@statistic')->name('admin.rollcall.statistic');
-        Route::resource('rollcall', 'Admin\RollCallController', ['as' => 'admin']);
+        Route::post('roll_call/update_statistic', 'Admin\RollCallController@selectStatistic')
+            ->name('admin.roll_call.update_statistic');
+        Route::get('roll_call/show_roll_call/{user_id}', 'Admin\RollCallController@showRollCall')
+            ->name('admin.roll_call.show_roll_call');
+        Route::get('roll_call/search', 'Admin\RollCallController@search')->name('admin.roll_call.search');
+        Route::get('roll_call/statistic', 'Admin\RollCallController@statistic')->name('admin.roll_call.statistic');
+        Route::resource('roll_call', 'Admin\RollCallController', ['as' => 'admin']);
 
         /**
          * Manage report

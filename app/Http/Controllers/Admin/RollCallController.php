@@ -23,7 +23,7 @@ class RollCallController extends Controller
         $data = [
             'rollCall' => $rollCall,
         ];
-        return view('admin.roll-call.index', $data);
+        return view('admin.roll_call.index', $data);
     }
 
     /**
@@ -61,7 +61,7 @@ class RollCallController extends Controller
             'rollCall' => $rollCall,
             'user' => $user,
         ];
-        return view('admin.roll-call.show', $data);
+        return view('admin.roll_call.show', $data);
     }
 
     /**
@@ -108,7 +108,7 @@ class RollCallController extends Controller
         $employees = RollCall::whereBetween('day', [$fromTime, $toTime])
             ->paginate(config('app.user_pagination'));
         $sumTime = RollCall::whereBetween('day', [$fromTime, $toTime])->sum('total_time');
-        return view('admin.roll-call.search', compact('employees', 'sumTime'));
+        return view('admin.roll_call.search', compact('employees', 'sumTime'));
     }
 
     public function statistic()
@@ -117,7 +117,7 @@ class RollCallController extends Controller
         //get time right now
         $date = Carbon::now();
         //get day right now d-m-Y
-        $dateTimeDay = substr($date, 0, 10);
+        $dateTimeDay = Carbon::now()->format('Y-m-d');
         //total time roll call today
         $sumRollCallToday = RollCall::where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->sum('total_time');
@@ -125,7 +125,7 @@ class RollCallController extends Controller
         $rollCallDay = RollCall::where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->paginate(config('app.pagination'));
         //get month right now m-Y
-        $dateTimeMonth = substr($date, 0, 7); //2018-03
+        $dateTimeMonth = Carbon::now()->format('Y-m'); //2018-03
         //total time roll call of month
         $sumRollCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
             ->sum('total_time');
@@ -156,7 +156,7 @@ class RollCallController extends Controller
             'dataNameMonth' => $dataNameMonth,
             'dataSumRollCallMonth' => $dataSumRollCallMonth,
         ];
-        return view('admin.roll-call.statistic', $data);
+        return view('admin.roll_call.statistic', $data);
     }
 
     public function showRollCall($user_id)
@@ -179,7 +179,7 @@ class RollCallController extends Controller
             'countRollCall' => $countRollCall,
             'rollCallEmployee' => $rollCallEmployee,
         ];
-        return view('admin.roll-call.show-roll-call', $data);
+        return view('admin.roll_call.show_roll_call', $data);
     }
 
     public function selectStatistic(Request $request)
@@ -204,6 +204,6 @@ class RollCallController extends Controller
             'dataNameMonth' => $dataNameMonth,
             'dataSumRollCallMonth' => $dataSumRollCallMonth,
         ];
-        return view('admin.roll-call.update_statistic', $data);
+        return view('admin.roll_call.update_statistic', $data);
     }
 }

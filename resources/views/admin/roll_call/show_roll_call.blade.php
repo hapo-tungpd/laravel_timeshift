@@ -56,7 +56,7 @@
                                 </tfoot>
                         </table>
                         {{ $rollCallEmployee->links() }}
-                        <a href="{{ route('admin.rollcall.statistic') }}"><button type="button" class="btn btn-success" ><i></i>Back</button></a>
+                        <a href="{{ route('admin.roll_call.statistic') }}"><button type="button" class="btn btn-success" ><i></i>Back</button></a>
                     </div>
                 </div>
             </div>

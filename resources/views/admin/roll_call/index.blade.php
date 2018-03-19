@@ -20,7 +20,7 @@
                             </div>
                         @endif
 
-                        <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('admin.rollcall.search') }}" method="post">
+                        <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('admin.roll_call.search') }}" method="post">
                             {{csrf_field()}}
                             {{ method_field('GET') }}
                             <div class="col-md-3 over-time-picker">
@@ -59,7 +59,7 @@
                                 <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
                                 <td class="text-center">{{ $data->total_time }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.rollcall.show', $data->id) }}">
+                                    <a href="{{ route('admin.roll_call.show', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">
                                             <i class="fa fa-th-list"></i>
                                         </button>
