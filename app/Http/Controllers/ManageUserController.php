@@ -63,7 +63,7 @@ class ManageUserController extends Controller
         $data = [
             'user' => $user,
         ];
-        return view('admin.user-manage.show2', $data);
+        return view('admin.user-manage.show', $data);
     }
 
     /**
