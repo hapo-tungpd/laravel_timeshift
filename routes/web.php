@@ -56,6 +56,8 @@ Route::prefix('user')->group(function () {
         /**
          * User Overtime
          */
+        Route::post('overtime/selectStatistic', 'User\UserOvertimeController@selectStatistic')
+            ->name('overtime.selectStatistic');
         Route::get('overtime/search', 'User\UserOvertimeController@search')->name('overtime.search');
         Route::get('overtime/statistic', 'User\UserOvertimeController@statistic')->name('overtime.statistic');
         Route::resource('overtime', 'User\UserOvertimeController');
@@ -95,6 +97,8 @@ Route::prefix('admin')->group(function () {
         /**
          * Manage overtime
          */
+        Route::post('overtime/selectStatistic', 'Admin\OvertimeController@selectStatistic')
+            ->name('admin.overtime.selectStatistic');
         Route::get('overtime/showOvertime/{user_id}', 'Admin\OvertimeController@showOvertime')
             ->name('admin.overtime.showOvertime');
         Route::get('overtime/search', 'Admin\OvertimeController@search')->name('admin.overtime.search');
