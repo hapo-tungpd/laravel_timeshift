@@ -64,7 +64,8 @@
                         @endif
                         <tr>
                             <th>General</th>
-                            <th>{{ (count($employees)) }} day</th>
+                            <th></th>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th>{{ $sumTime }} hour</th>
