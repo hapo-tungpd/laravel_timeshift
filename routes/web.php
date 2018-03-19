@@ -56,6 +56,8 @@ Route::prefix('user')->group(function () {
         /**
          * User Overtime
          */
+        Route::post('overtime/selectStatistic', 'User\UserOvertimeController@selectStatistic')
+            ->name('overtime.selectStatistic');
         Route::get('overtime/search', 'User\UserOvertimeController@search')->name('overtime.search');
         Route::get('overtime/statistic', 'User\UserOvertimeController@statistic')->name('overtime.statistic');
         Route::resource('overtime', 'User\UserOvertimeController');

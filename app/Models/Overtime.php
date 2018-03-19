@@ -10,7 +10,7 @@ class Overtime extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'day', 'start_time', 'end_time', 'total_time',
+        'user_id', 'day', 'start_time', 'end_time', 'total_time', 'content',
     ];
 
     protected $dates = [

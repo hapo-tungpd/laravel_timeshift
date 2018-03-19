@@ -15,5 +15,6 @@ $factory->define(\App\Models\Overtime::class, function (Faker $faker) {
         'end_time' => $endTime->toDateTimeString(),
         'day' => $overtimeDate,
         'total_time' => $endTime->diffInHours($startTime),
+        'content' => $faker->text($maxNbChars = 100),
     ];
 });

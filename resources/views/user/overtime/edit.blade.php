@@ -40,6 +40,13 @@
                         @endif
                         <input type="text" class="form-control" value="{{ $overtime->end_time->format('H:i') }}" name="end_time" required autocomplete="off">
                     </div>
+                    <div class="form-group">
+                        <label for="">Report</label>
+                        @if ($errors->has('content'))
+                            <p class="input-warning">{{ $errors->first('content') }}</p>
+                        @endif
+                        <textarea class="form-control" name="content" required autocomplete="off">{{ $overtime->content }}</textarea>
+                    </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
