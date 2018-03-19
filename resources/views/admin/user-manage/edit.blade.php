@@ -52,7 +52,7 @@
                         @if ($errors->has('birthday'))
                             <p class="input-warning">{{ $errors->first('birthday') }}</p>
                         @endif
-                        <input type="text" class="form-control user-time-picker" id="" value="{{ (Auth::user()->birthday != null) ? Auth::user()->birthday->format('d-m-Y') : "" }}" name="birthday" autocomplete="off">
+                        <input type="text" class="form-control user-time-picker" id="" value="{{ (Auth::user()->birthday != null) ? Auth::user()->birthday->format('Y-m-d') : "" }}" name="birthday" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="">Address</label>
