@@ -96,19 +96,13 @@
                 <div class="w3-container w3-card w3-white">
                     <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-check-square-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Roll Call</h2>
                     <div class="w3-container">
-                        <h5 class="w3-opacity"><a href="{{ route('rollcall.create') }}"><i></i>Roll call now!</a> - <span class="w3-tag w3-teal w3-round">Important</span></h5>
+                        <h5 class="w3-opacity"><a href="{{ route('roll_call.user_roll_call') }}"><i></i>Roll call now!</a> - <span class="w3-tag w3-teal w3-round">Important</span></h5>
                         <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ Carbon\Carbon::now()->toFormattedDateString() }}</h6>
                         <p>You need to roll call at the start of the company and before leaving the company.</p>
                         <hr>
                     </div>
                     <div class="w3-container">
-                        <h5 class="w3-opacity"><a href="{{ route('rollcall.showAllRollCall') }}"><i></i>Your Roll Call</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $rollcall->created_at->diffForHumans() }}</h6>
-                        <p>List your roll call.</p>
-                        <hr>
-                    </div>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><a href="{{ route('rollcall.showAllRollCall') }}"><i></i>Statistic Roll Call</a></h5>
+                        <h5 class="w3-opacity"><a href="{{ route('roll_call.select_statistic') }}"><i></i>Statistic Roll Call</a></h5>
                         <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ Carbon\Carbon::now()->format('m-Y') }}</h6>
                         <p>Statistical entire roll call your information by month.</p><br>
                     </div>

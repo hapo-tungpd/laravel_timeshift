@@ -17,6 +17,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
@@ -34,13 +35,13 @@
                             @endphp
                                 <tbody>
                                 <td class="text-center">{{ $temp++ }}</td>
-                                <td class="text-center">{{ $rollCalls->day->format('d/m/Y') }}</td>
-                                <td class="text-center">{{ $rollCalls->start_time->format('H:i:s') }}</td>
-                                <td class="text-center">{{ $rollCalls->end_time->format('H:i:s') }}</td>
-                                <td class="text-center">{{ $rollCalls->total_time }}</td>
+                                <td class="text-center">{{ $rollCallToDay->day->format('d/m/Y') }}</td>
+                                <td class="text-center">{{ $rollCallToDay->start_time->format('H:i:s') }}</td>
+                                <td class="text-center">{{ $rollCallToDay->end_time->format('H:i:s') }}</td>
+                                <td class="text-center">{{ $rollCallToDay->total_time }}</td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{ $rollCalls->id }}">Detail</button>
-                                    <div id="{{ $rollCalls->id }}" class="modal fade" role="dialog">
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{ $rollCallToDay->id }}">Detail</button>
+                                    <div id="{{ $rollCallToDay->id }}" class="modal fade" role="dialog">
                                         <div class="modal-dialog">
 
                                             <!-- Modal content-->
@@ -50,26 +51,26 @@
                                                     <h3 class="modal-title">Absence detail</h3>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h4><strong>{{ $rollCalls->user->name }}</strong></h4>
+                                                    <h4><strong>{{ $rollCallToDay->user->name }}</strong></h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>
-                                                        Date: {{ $rollCalls->day->format('d/m/Y') }}
+                                                        Date: {{ $rollCallToDay->day->format('d/m/Y') }}
                                                     </p>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>
-                                                        Start time: {{ $rollCalls->start_time->format('H:i:s') }}
+                                                        Start time: {{ $rollCallToDay->start_time->format('H:i:s') }}
                                                     </p>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>
-                                                        End time: {{ $rollCalls->end_time->format('H:i:s') }}
+                                                        End time: {{ $rollCallToDay->end_time->format('H:i:s') }}
                                                     </p>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>
-                                                        Total: {{ $rollCalls->total_time }}
+                                                        Total: {{ $rollCallToDay->total_time }}
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">
@@ -80,13 +81,70 @@
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('roll-call.edit', $rollCalls->id) }}">
+                                    <a href="{{ route('roll-call.edit', $rollCallToDay->id) }}">
                                         <button class="btn btn-primary btn-sm">
-                                            <i class="">End working</i>
+                                            <i class="">Roll Call Now</i>
                                         </button>
                                     </a>
                                 </td>
                                 </tbody>
+                            @foreach($rollCalls as $rollCall)
+                                <tbody>
+                                <td class="text-center">{{ $temp++ }}</td>
+                                <td class="text-center">{{ $rollCall->day->format('d/m/Y') }}</td>
+                                <td class="text-center">{{ $rollCall->start_time->format('H:i:s') }}</td>
+                                <td class="text-center">{{ $rollCall->end_time->format('H:i:s') }}</td>
+                                <td class="text-center">{{ $rollCall->total_time }}</td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{ $rollCall->id }}">Detail</button>
+                                    <div id="{{ $rollCall->id }}" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h3 class="modal-title">Absence detail</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h4><strong>{{ $rollCall->user->name }}</strong></h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        Date: {{ $rollCall->day->format('d/m/Y') }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        Start time: {{ $rollCall->start_time->format('H:i:s') }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        End time: {{ $rollCall->end_time->format('H:i:s') }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        Total: {{ $rollCall->total_time }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{ route('roll-call.edit', $rollCall->id) }}">
+                                        <button class="btn btn-danger btn-sm">
+                                            <i class="">End Roll Call</i>
+                                        </button>
+                                    </a>
+                                </td>
+                                </tbody>
+                            @endforeach
                         </table>
                     </div>
                 </div>

@@ -13,7 +13,8 @@
     </section>
     <section class="content">
         <div class="box"></div>
-        <form role="form" action="{{ route('roll_call.select_statistic') }}" method="post" class="form-inline">
+        <form role="form" action="{{ route('roll_call.statistic') }}" method="GET" class="form-inline">
+            <input type="hidden" name="_method" value="PUT">
             {{ csrf_field() }}
             <div class="input-group date datepicker fn" data-provide="datepicker">
                 <input type="text" class="form-control" name="month" data-date-format="yyyy/mm" value="{{ $dateTimeMonth }}">
@@ -42,11 +43,11 @@
                             @php
                                 $temp = 1;
                             @endphp
-                            @foreach ($rollCalls as $rollCalls)
+                            @foreach ($rollCalls as $rollCall)
                                 <tr>
                                     <td class="text-center">{{ $temp++ }}</td>
-                                    <td class="text-center">{{ $rollCalls->day->format('d/m/Y') }}</td>
-                                    <td class="text-center">{{ $rollCalls->total_time }} hour</td>
+                                    <td class="text-center">{{ $rollCall->day->format('d/m/Y') }}</td>
+                                    <td class="text-center">{{ $rollCall->total_time }} hour</td>
                                 </tr>
                             @endforeach
                             <tr>

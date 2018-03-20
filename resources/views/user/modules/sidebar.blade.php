@@ -63,10 +63,9 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('roll-call.create') }}"><i class="fa fa-users"></i>Roll call now!</a></li>
-                    <li><a href="{{ route('roll_call.show_all_roll_call') }}"><i class="fa fa-users"></i>Your Roll Call</a></li>
+                    <li><a href="{{ route('roll_call.user_roll_call') }}"><i class="fa fa-users"></i>Roll call now!</a></li>
                     <li><a href="{{ route('roll_call.statistic') }}"><i class="fa fa-users"></i>Statistic Roll Call</a></li>
-                </ul>>
+                </ul>
             </li>
         </ul>
     </section>
