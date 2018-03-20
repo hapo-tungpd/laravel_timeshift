@@ -29,10 +29,7 @@
                         <p><i class="fa fa-genderless fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ Auth::user()->gender?"Male":"Female" }}</p>
                         <p><i class="fa fa-book fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ Auth::user()->JLPT }}</p>
                         <hr>
-                        <form method="GET">
-                            {{ csrf_field() }}
-                            <a href="{{ route('edit', Auth::user()->id) }}" class="btn btn-primary btn-block"><b>Update profile</b></a>
-                        </form>
+                        <a href="{{ route('profile.edit', Auth::user()->id) }}" class="btn btn-primary btn-block"><b>Update profile</b></a>
                         <hr>
                     </div>
                 </div><br>

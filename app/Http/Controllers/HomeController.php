@@ -31,7 +31,7 @@ class HomeController extends Controller
 
     public function showChangePasswordForm()
     {
-        return view('user.usermanage.changepassword');
+        return view('user.user_manage.changepassword');
     }
 
     public function changePassword(Request $request)

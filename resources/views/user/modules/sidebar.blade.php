@@ -25,7 +25,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENU</li>
-            <li><a href="{{ route('index') }}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+            <li><a href="{{ route('profile.index') }}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-calendar-o"></i> <span>Absence</span>

@@ -13,6 +13,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', 'HomeController@index')->name('home');
+
 //manage user
 Route::prefix('user')->group(function () {
     Route::get('login', 'Auth\LoginController@loginForm')->name('user.login-form');
@@ -24,7 +26,7 @@ Route::prefix('user')->group(function () {
         /**
          * update user
          */
-        Route::resource('/', 'UpdateUserController');
+        Route::resource('/profile', 'UpdateUserController');
 
         /**
          * change password user
@@ -115,4 +117,3 @@ Route::prefix('admin')->group(function () {
         ->name('admin.password.reset');
 });
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');

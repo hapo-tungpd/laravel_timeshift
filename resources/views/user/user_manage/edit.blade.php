@@ -8,7 +8,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-create" role="form" action="{{ route('user.update', $user->id) }}" method="post" enctype="multipart/form-data">
+            <form class="form-create" role="form" action="{{ route('profile.update', $user->id) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
                 <div class="box-body">
@@ -57,13 +57,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Email address</label>
-                        @if ($errors->has('email'))
-                            <p class="input-warning">{{ $errors->first('email') }}</p>
-                        @endif
-                        <input type="email" class="form-control" id="" value="{{ $user->email }}" name="email" autocomplete="off" required>
-                    </div>
-                    <div class="form-group">
                         <label for="">Address</label>
                         @if ($errors->has('address'))
                             <p class="input-warning">{{ $errors->first('address') }}</p>
@@ -84,7 +77,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <a href="{{ route('user.index') }}" class="btn btn-primary">Back</a>
+                    <a href="{{ route('profile.index') }}" class="btn btn-primary">Back</a>
                     <button type="submit" class="btn btn-primary" >Submit</button>
                 </div>
             </form>
