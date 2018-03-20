@@ -47,13 +47,13 @@ Route::prefix('user')->group(function () {
         /**
          * User Roll Call
          */
-        Route::post('rollcall/selectStatistic', 'User\UserRollCallController@selectStatistic')
-            ->name('rollcall.selectStatistic');
-        Route::get('rollcall/showAllRollCall', 'User\UserRollCallController@showAllRollCall')
-            ->name('rollcall.showAllRollCall');
-        Route::get('rollcall/search', 'User\UserRollCallController@search')->name('rollcall.search');
-        Route::get('rollcall/statistic', 'User\UserRollCallController@statistic')->name('rollcall.statistic');
-        Route::resource('rollcall', 'User\UserRollCallController');
+        Route::post('roll-call/select_statistic', 'User\UserRollCallController@selectStatistic')
+            ->name('roll_call.select_statistic');
+        Route::get('roll-call/show_all_roll_call', 'User\UserRollCallController@showAllRollCall')
+            ->name('roll_call.show_all_roll_call');
+        Route::get('roll-call/search', 'User\UserRollCallController@search')->name('roll_call.search');
+        Route::get('roll-call/statistic', 'User\UserRollCallController@statistic')->name('roll_call.statistic');
+        Route::resource('roll-call', 'User\UserRollCallController');
 
         /**
          * User Overtime

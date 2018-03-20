@@ -17,7 +17,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form class="form-inline" action="{{ route('rollcall.search') }}" method="post">
+                        <form class="form-inline" action="{{ route('roll_call.search') }}" method="post">
                             {{csrf_field()}}
                             {{ method_field('GET') }}
                             <div class=" input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
@@ -58,7 +58,7 @@
                                 <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
                                 <td class="text-center">{{ $data->total_time }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('rollcall.show', $data->id) }}">
+                                    <a href="{{ route('roll-call.show', $data->id) }}">
                                         <button class="btn btn-primary btn-sm">
                                             <i class="fa fa-th-list"></i>
                                         </button>

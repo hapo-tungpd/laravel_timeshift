@@ -33,7 +33,7 @@
                             <td class="text-center">{{ $rollcall->total_time }}</td>
                             </tbody>
                         </table>
-                        <a href="{{ route('rollcall.index') }}"><button type="button" class="btn btn-success" ><i></i>Back</button></a>
+                        <a href="{{ route('roll_call.show_all_roll_call') }}"><button type="button" class="btn btn-success" ><i></i>Back</button></a>
                     </div>
                 </div>
             </div>

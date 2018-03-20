@@ -60,9 +60,9 @@ class UserRollCallController extends Controller
         $date = substr($rollcall->start_time, 0, 10);
         if (!($date === $dateTimeDay)) {
             $rollcall->save();
-            return redirect()->route('rollcall.index');
+            return redirect()->route('roll-call.index');
         } else {
-            return redirect()->route('rollcall.index');
+            return redirect()->route('roll-call.index');
         }
     }
 
@@ -131,16 +131,17 @@ class UserRollCallController extends Controller
         $date = substr($request->start_time, 0, 10);
         if ($date === $date_time_day) {
             RollCall::where('id', $id)->update($data);
-            return redirect()->route('rollcall.index');
+            return redirect()->route('roll-call.index');
         }
-        return redirect()->route('rollcall.index');
+        return redirect()->route('roll-call.index');
     }
 
     public function statistic()
     {
         $date = Carbon::now();
-        $dateTimeMonth = substr($date, 0, 7);
-        $dateTime = RollCall::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day');
+//        $dateTimeMonth = substr($date, 0, 7);
+        $dateTimeMonth = Carbon::now()->format('Y-m');
+        $dateTime = RollCall::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day')->format('Y-m');
         $dateTimeDay = substr($dateTime, 0, 7);
         $sumRollcall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->sum('total_time');

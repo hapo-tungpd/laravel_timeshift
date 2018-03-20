@@ -39,7 +39,7 @@
                                     <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
                                     <td class="text-center">{{ $data->total_time }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('rollcall.show', $data->id) }}">
+                                        <a href="{{ route('roll_call.show', $data->id) }}">
                                             <button class="btn btn-primary btn-sm">
                                                 <i class="fa fa-th-list"></i>
                                             </button>
@@ -57,7 +57,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <form action="{{ route('rollcall.index') }}">
+                    <form action="{{ route('roll_call.index') }}">
                         {{ csrf_field() }}
                         <button class="btn btn-primary">BACK</button>
                     </form>
