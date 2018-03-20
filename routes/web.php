@@ -13,12 +13,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', 'HomeController@index')->name('home');
 
 //manage user
 Route::prefix('user')->group(function () {
     Route::get('login', 'Auth\LoginController@loginForm')->name('user.login-form');
     Route::post('login', 'Auth\LoginController@login')->name('user.login');
-    Route::get('index', 'HomeController@index')->name('user.index');
 
     Route::middleware(['web.auth'])->group(function () {
         Route::post('logout', 'Auth\LoginController@logout')->name('user.logout');
@@ -26,7 +26,7 @@ Route::prefix('user')->group(function () {
         /**
          * update user
          */
-        Route::resource('user', 'UpdateUserController');
+        Route::resource('/profile', 'UpdateUserController');
 
         /**
          * change password user
@@ -117,4 +117,3 @@ Route::prefix('admin')->group(function () {
         ->name('admin.password.reset');
 });
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
