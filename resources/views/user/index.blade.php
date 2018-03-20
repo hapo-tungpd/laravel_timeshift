@@ -31,7 +31,7 @@
                         <hr>
                         <form method="GET">
                             {{ csrf_field() }}
-                            <a href="{{ route('user.edit', Auth::user()->id) }}" class="btn btn-primary btn-block"><b>Update profile</b></a>
+                            <a href="{{ route('edit', Auth::user()->id) }}" class="btn btn-primary btn-block"><b>Update profile</b></a>
                         </form>
                         <hr>
                     </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('absence.create') }}"><i></i>Your absence</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $absence->created_at->diffForHumans(Carbon\Carbon::now()) }}</h6>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $absence->created_at->diffForHumans() }}</h6>
                         <p>Statistics of your time to take a vacation.</p>
                         <hr>
                     </div>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('report.index') }}"><i></i>Your report</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $report->created_at->diffForHumans(Carbon\Carbon::now()) }}</h6>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $report->created_at->diffForHumans() }}</h6>
                         <p>Statistics the entire report that you wrote.</p>
                         <hr>
                     </div>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('overtime.index') }}"><i></i>Your overtime</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $overtime->created_at->diffForHumans(Carbon\Carbon::now()) }}</h6>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $overtime->created_at->diffForHumans() }}</h6>
                         <p>List your overtime.</p>
                         <hr>
                     </div>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('rollcall.showAllRollCall') }}"><i></i>Your Roll Call</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $rollcall->created_at->diffForHumans(Carbon\Carbon::now()) }}</h6>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $rollcall->created_at->diffForHumans() }}</h6>
                         <p>List your roll call.</p>
                         <hr>
                     </div>
