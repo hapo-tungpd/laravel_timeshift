@@ -1,7 +1,6 @@
 @extends('user.layouts.master')
 
 @section('content')
-
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
@@ -9,7 +8,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-create" role="form" action="{{ route('user.update', $user->id) }}" method="post" enctype="multipart/form-data">
+            <form class="form-create" role="form" action="{{ route('profile.update', $user->id) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
                 <div class="box-body">
@@ -47,20 +46,15 @@
                         @endif
                         <input type="text" class="form-control" id="" value="{{ $user->phone }}" name="phone" required autocomplete="off">
                     </div>
-
-                    <div class="form-group user-time-picker">
-                        <label for="">Birthday</label>
+                    <label for="">Birthday</label>
+                    <div class="form-group input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                         @if ($errors->has('birthday'))
                             <p class="input-warning">{{ $errors->first('birthday') }}</p>
                         @endif
-                        <input type="text" class="form-control user-time-picker" id="" value="{{ (Auth::user()->birthday != null) ? Auth::user()->birthday->format('d-m-Y') : "" }}" name="birthday" autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Email address</label>
-                        @if ($errors->has('email'))
-                            <p class="input-warning">{{ $errors->first('email') }}</p>
-                        @endif
-                        <input type="email" class="form-control" id="" value="{{ $user->email }}" name="email" autocomplete="off" required>
+                        <input type="text" class="form-control" id="" value="{{ (Auth::user()->birthday != null) ? Auth::user()->birthday->format('d-m-Y') : "" }}" name="birthday" autocomplete="off">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="">Address</label>
@@ -83,7 +77,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <a href="{{ route('user.index') }}" class="btn btn-primary">Back</a>
+                    <a href="{{ route('profile.index') }}" class="btn btn-primary">Back</a>
                     <button type="submit" class="btn btn-primary" >Submit</button>
                 </div>
             </form>

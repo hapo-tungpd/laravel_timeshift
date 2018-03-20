@@ -93,7 +93,7 @@ class ManageUserController extends Controller
         $data = $request->all();
         $data = array_slice($data, 2);
         User::findOrFail($id)->update($data);
-        return redirect()->route('admin.user.index');
+        return redirect()->route('admin.user.show', $id);
     }
 
     /**

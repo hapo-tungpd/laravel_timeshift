@@ -216,5 +216,6 @@ return [
      */
     "user_pagination" => 10,
     "report_pagination" => 10,
+    "report_limit" => 3,
 
 ];

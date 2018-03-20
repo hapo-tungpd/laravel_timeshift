@@ -9,6 +9,8 @@ use Auth;
 use App\Models\Overtime;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 class OvertimeController extends Controller
 {
@@ -93,6 +95,7 @@ class OvertimeController extends Controller
             'dataSumRollCallToDay' => $dataSumRollCallToDay,
             'dataNameMonth' => $dataNameMonth,
             'dataSumRollCallMonth' => $dataSumRollCallMonth,
+            'dateTimeMonth' => $dateTimeMonth,
         ];
         return view('admin.overtime.statistic', $data);
     }
@@ -118,9 +121,39 @@ class OvertimeController extends Controller
             ->whereMonth('day', Carbon::now()->format('m'))
             ->whereYear('day', Carbon::now()->format('Y'))
             ->paginate(config('app.pagination'));
+        $countOvertime = Overtime::where('user_id', $user_id)
+            ->whereMonth('day', Carbon::now()->format('m'))
+            ->whereYear('day', Carbon::now()->format('Y'))
+            ->distinct('day')->count('day');
         $data = [
             'overTimeEmployee' => $overTimeEmployee,
+            'countOvertime' => $countOvertime,
         ];
         return view('admin.overtime.show-overtime', $data);
+    }
+
+    public function selectStatistic(Request $request)
+    {
+        $dateTimeMonth = $request->input('month'); //2018-02
+        //total time roll call of month
+        $sumOvertimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->sum('total_time');
+        //get user roll call of month
+        $overtimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->paginate(config('app.pagination'));
+        $dataNameMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
+            ->groupBy('user_id')
+            ->paginate(config('app.pagination'));
+        $dataSumOvertimeMonth = Overtime::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->sum('total_time');
+        $data = [
+            'dateTimeMonth' => $dateTimeMonth,
+            'sumOvertimeMonth' => $sumOvertimeMonth,
+            'overtimeMonth' => $overtimeMonth,
+            'dataNameMonth' => $dataNameMonth,
+            'dataSumOvertimeMonth' => $dataSumOvertimeMonth,
+        ];
+        return view('admin.overtime.select_statistic', $data);
     }
 }
