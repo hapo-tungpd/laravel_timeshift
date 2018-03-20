@@ -41,14 +41,14 @@
                                 @php
                                     $temp = 1;
                                 @endphp
-                                @foreach($overtimeMonth as $data)
+                                @foreach($overtimeMonths as $overtimeMonth)
                                     <tbody>
                                     <td class="text-center">{{ $temp++ }}</td>
-                                    <td class="text-center">{{ $data->user->name }}</td>
-                                    <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
-                                    <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
-                                    <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
-                                    <td class="text-center">{{ $data->total_time }}</td>
+                                    <td class="text-center">{{ $overtimeMonth->user->name }}</td>
+                                    <td class="text-center">{{ $overtimeMonth->day->format('d/m/Y') }}</td>
+                                    <td class="text-center">{{ $overtimeMonth->start_time->format('H:i:s') }}</td>
+                                    <td class="text-center">{{ $overtimeMonth->end_time->format('H:i:s') }}</td>
+                                    <td class="text-center">{{ $overtimeMonth->total_time }}</td>
                                 @endforeach
                                 <tfoot>
                                 <tr>
@@ -61,7 +61,7 @@
                                 </tr>
                                 </tfoot>
                             </table>
-                            {{ $overtimeMonth->links() }}
+                            {{ $overtimeMonths->links() }}
                         </div>
                     </div>
                 </div>

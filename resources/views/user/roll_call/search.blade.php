@@ -31,15 +31,15 @@
                             $temp = 1;
                         @endphp
                         @if(count($employees) > 0)
-                            @foreach($employees as $data)
+                            @foreach($employees as $employee)
                                 <tr class="table-primary tr-show">
                                     <td class="text-center">{{ $temp++ }}</td>
-                                    <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
-                                    <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
-                                    <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
-                                    <td class="text-center">{{ $data->total_time }}</td>
+                                    <td class="text-center">{{ $employee->day->format('d/m/Y') }}</td>
+                                    <td class="text-center">{{ $employee->start_time->format('H:i:s') }}</td>
+                                    <td class="text-center">{{ $employee->end_time->format('H:i:s') }}</td>
+                                    <td class="text-center">{{ $employee->total_time }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('roll_call.show', $data->id) }}">
+                                        <a href="{{ route('roll-call.show', $employee->id) }}">
                                             <button class="btn btn-primary btn-sm">
                                                 <i class="fa fa-th-list"></i>
                                             </button>
@@ -57,7 +57,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <form action="{{ route('roll_call.index') }}">
+                    <form action="{{ route('roll-call.index') }}">
                         {{ csrf_field() }}
                         <button class="btn btn-primary">BACK</button>
                     </form>

@@ -42,22 +42,23 @@
                             @php
                                 $temp = 1;
                             @endphp
-                            @foreach ($rollcall as $data)
+                            @foreach ($rollCalls as $rollCalls)
                                 <tr>
                                     <td class="text-center">{{ $temp++ }}</td>
-                                    <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
-                                    <td class="text-center">{{ $data->total_time }} hour</td>
+                                    <td class="text-center">{{ $rollCalls->day->format('d/m/Y') }}</td>
+                                    <td class="text-center">{{ $rollCalls->total_time }} hour</td>
                                 </tr>
                             @endforeach
                             <tr>
                                 <th class="text-center">Total time working</th>
                                 <th class="text-center">{{ --$temp }} day</th>
-                                <th class="text-center">{{ $sumRollcall }} hour</th>
+                                <th class="text-center">{{ $sumRollCall }} hour</th>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <a class="btn btn-success" href="{{ route('roll-call.index') }}">Back</a>
             </div>
         </div>
     </section>

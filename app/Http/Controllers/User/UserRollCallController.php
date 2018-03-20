@@ -20,22 +20,22 @@ class UserRollCallController extends Controller
     public function index()
     {
         $createTimeNow = Carbon::now()->toDateString();
-        $rollcall = RollCall::where('user_id', Auth::user()->id)
+        $rollCalls = RollCall::where('user_id', Auth::user()->id)
             ->where('day', $createTimeNow)
-            ->paginate(config('app.user_report_pagination'));
+            ->first();
         $data = [
-            'rollcall' => $rollcall,
+            'rollCalls' => $rollCalls,
         ];
         return view("user.roll_call.index", $data);
     }
 
     public function showAllRollCall()
     {
-        $rollcall = RollCall::where('user_id', Auth::user()->id)
+        $rollCalls = RollCall::where('user_id', Auth::user()->id)
             ->orderby('updated_at', Auth::user()->updated_at)
             ->paginate(config('app.user_report_pagination'));
         $data = [
-            'rollcall' => $rollcall,
+            'rollCalls' => $rollCalls,
         ];
         return view("user.roll_call.show_all", $data);
     }
@@ -46,20 +46,20 @@ class UserRollCallController extends Controller
      */
     public function create()
     {
-        $rollcall = new RollCall();
-        $rollcall->user_id = Auth::user()->id;
-        $rollcall->day = Carbon::now()->format('Y-m-d');
-        $rollcall->start_time = Carbon::now()->toDateTimeString();
-        $rollcall->end_time = Carbon::now()->toDateTimeString();
-        $toTime = strtotime($rollcall->end_time);
-        $fromTime = strtotime($rollcall->start_time);
+        $rollCall = new RollCall();
+        $rollCall->user_id = Auth::user()->id;
+        $rollCall->day = Carbon::now()->format('Y-m-d');
+        $rollCall->start_time = Carbon::now()->toDateTimeString();
+        $rollCall->end_time = Carbon::now()->toDateTimeString();
+        $toTime = strtotime($rollCall->end_time);
+        $fromTime = strtotime($rollCall->start_time);
         $hour = round(($toTime - $fromTime)/(60*60), 2);
-        $rollcall->total_time = $hour;
+        $rollCall->total_time = $hour;
         $dateTime = RollCall::where('user_id', Auth::user()->id)->orderBy('start_time', 'desc')->value('start_time');
         $dateTimeDay = substr($dateTime, 0, 10);
-        $date = substr($rollcall->start_time, 0, 10);
+        $date = substr($rollCall->start_time, 0, 10);
         if (!($date === $dateTimeDay)) {
-            $rollcall->save();
+            $rollCall->save();
             return redirect()->route('roll-call.index');
         } else {
             return redirect()->route('roll-call.index');
@@ -76,7 +76,7 @@ class UserRollCallController extends Controller
     {
         $request = RollCall::findOrFail($id);
         $data = [
-            'rollcall' => $request,
+            'rollCall' => $request,
         ];
         return view('user.roll_call.show', $data);
     }
@@ -138,19 +138,17 @@ class UserRollCallController extends Controller
 
     public function statistic()
     {
-        $date = Carbon::now();
-//        $dateTimeMonth = substr($date, 0, 7);
         $dateTimeMonth = Carbon::now()->format('Y-m');
         $dateTime = RollCall::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day')->format('Y-m');
         $dateTimeDay = substr($dateTime, 0, 7);
-        $sumRollcall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
+        $sumRollCall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->sum('total_time');
         $rollcall = RollCall::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeDay . "%")
             ->paginate(config('app.pagination'));
         $data = [
             'dateTimeMonth' => $dateTimeMonth,
-            'rollcall' => $rollcall,
-            'sumRollcall' => $sumRollcall,
+            'rollCalls' => $rollcall,
+            'sumRollCall' => $sumRollCall,
         ];
         return view('user.roll_call.statistic', $data);
     }
@@ -178,7 +176,7 @@ class UserRollCallController extends Controller
             ->sum('total_time');
         $data = [
             'dateTimeMonth' => $dateTimeMonth,
-            'overtimeMonth' => $overtimeMonth,
+            'overtimeMonths' => $overtimeMonth,
             'sumOvertimeMonth' => $sumOvertimeMonth,
         ];
         return view('user.roll_call.select_statistic', $data);
