@@ -75,7 +75,6 @@ Route::prefix('admin')->group(function () {
        /**
         * Manage user
         */
-//        Route::get('mail', 'ManageUserController@mail')->name('admin.email');
         Route::resource('user', 'ManageUserController', ['as' => 'admin']);
         Route::put('user/{id}/update-image', 'ManageUserController@updateImage')->name('admin.user.update.image');
         Route::put('user/{id}/update-image', 'UserProfileController@updateImage')->name('admin.user.update.image');

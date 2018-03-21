@@ -120,9 +120,4 @@ class ManageUserController extends Controller
             'message' => 'Delete success'
         ]);
     }
-
-    public function mail()
-    {
-
-    }
 }
