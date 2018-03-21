@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Mail;
 
 class ManageUserController extends Controller
 {
@@ -47,6 +48,16 @@ class ManageUserController extends Controller
             $data["image"] = $imgLink;
         }
         $data['password'] = bcrypt($data['password']);
+        $emailData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+        Mail::send('admin.emails.mailEvent', ['data' => $emailData], function ($message) use ($data) {
+            $message->from('admin@gmail.com', 'Haposoft Inc');
+            $message->to($data['email'], 'TungPD');
+            $message->subject('Welcome to Haposoft');
+        });
         User::create($data);
         return redirect()->route('admin.user.index');
     }
