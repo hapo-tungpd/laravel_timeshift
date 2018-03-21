@@ -22,8 +22,8 @@
                     </div>
                     <div class="w3-container" style="margin-top: 20px;">
                         <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Employee</p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ Auth::user()->birthday->format('d-m-Y') }}</p>
-                        <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ Auth::user()->address }}</p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ (Auth::user()->birthday != null) ? Auth::user()->birthday->format('d-m-Y') : "" }}</p>
+                        <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ (Auth::user()->address != null) ? Auth::user()->address : "" }}</p>
                         <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ Auth::user()->email }}</p>
                         <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ Auth::user()->phone }}</p>
                         <p><i class="fa fa-genderless fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ Auth::user()->gender?"Male":"Female" }}</p>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('absence.create') }}"><i></i>Your absence</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $absence->created_at->diffForHumans() }}</h6>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ ($absence != null) ? $absence->created_at->diffForHumans() : "" }}</h6>
                         <p>Statistics of your time to take a vacation.</p>
                         <hr>
                     </div>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('report.index') }}"><i></i>Your report</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $report->created_at->diffForHumans() }}</h6>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ ($report != null) ? $report->created_at->diffForHumans() : "" }}</h6>
                         <p>Statistics the entire report that you wrote.</p>
                         <hr>
                     </div>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('overtime.index') }}"><i></i>Your overtime</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $overtime->created_at->diffForHumans() }}</h6>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ ($overtime != null) ? $overtime->created_at->diffForHumans() : "" }}</h6>
                         <p>List your overtime.</p>
                         <hr>
                     </div>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><a href="{{ route('rollcall.showAllRollCall') }}"><i></i>Your Roll Call</a></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ $rollcall->created_at->diffForHumans() }}</h6>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Created {{ ($rollcall != null) ? $rollcall->created_at->diffForHumans() : "" }}</h6>
                         <p>List your roll call.</p>
                         <hr>
                     </div>

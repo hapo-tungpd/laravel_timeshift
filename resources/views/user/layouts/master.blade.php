@@ -29,8 +29,8 @@
 <!-- ./wrapper -->
 
 @include('user.layouts.footer')
+
 @yield('javascript')
-@include('user.layouts.sidebar')
 
 </body>
 </html>
