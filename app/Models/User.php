@@ -65,7 +65,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Connect with overtimes table
+     * Connect with reports table
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -75,7 +75,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Connect with overtimes table
+     * Connect with roll calls table
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -85,12 +85,16 @@ class User extends Authenticatable
     }
 
     /**
-     * Connect with overtimes table
+     * Connect with salaries table
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function salaries()
     {
         return $this->hasMany(Salary::class);
+    }
+
+    public function authorizations() {
+        return $this->hasMany(Authorization::class);
     }
 }
