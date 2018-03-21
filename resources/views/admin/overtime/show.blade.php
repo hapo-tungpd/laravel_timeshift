@@ -15,50 +15,29 @@
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        <table class="table table-hover table-bordered">
-                            <div>
-                                <h3 class="text-center">Overtimer: {{ $user->name }}</h3>
-                            </div>
-                            <div>
-                                <h4>Date: {{ $overTime->day->format('d-m-Y') }}.</h4>
-                            </div>
-                            <thead>
-                            <tr>
-                                <th width="15%" class="text-center">Subject</th>
-                                <th class="text-center">Content</th>
-                            </tr>
-                            </thead>
-                            <tr>
-                                <tbody>
-                                <td class="text-center">Day</td>
-                                <td class="text-center">{{ $overTime->day->format('d-m-Y') }}</td>
-                                </tbody>
-                            </tr>
-                            <tr>
-                                <tbody>
-                                <td class="text-center">Start time</td>
-                                <td class="text-center">{{ $overTime->start_time->format('H:i d-m-Y') }}</td>
-                                </tbody>
-                            </tr>
-                            <tr>
-                                <tbody>
-                                <td class="text-center">End time</td>
-                                <td class="text-center">{{ $overTime->end_time->format('H:i d-m-Y') }}</td>
-                                </tbody>
-                            </tr>
-                            <tr>
-                                <tbody>
-                                <td class="text-center">Total time</td>
-                                <td class="text-center">{{ $overTime->total_time }}</td>
-                                </tbody>
-                            </tr>
-                        </table>
-                        <a href="{{ route('admin.overtime.index') }}"><button type="button" class="btn btn-success" ><i></i>Back</button></a>
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+                        <strong>{{ $user->name }}, </strong> {{ $overTime->day->format('d-m-Y') }}
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th width="10%" class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Start time</th>
+                                        <th width="10%" class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">End time</th>
+                                        <th width="10%" class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Total</th>
+                                        <th width="70%" class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Report</th>
+                                    </thead>
+                                    <tbody>
+                                        <tbody>
+                                        <td class="text-center">{{ $overTime->start_time->format('H:i:s') }}</td>
+                                        <td class="text-center">{{ $overTime->end_time->format('H:i:s') }}</td>
+                                        <td class="text-center">{{ $overTime->total_time }} hour</td>
+                                        <td class="">{{ $overTime->content }}</td>
+                                        </tbody>
+                                </table>
+                            <a href="{{ route('admin.overtime.index') }}"><button type="button" class="btn btn-success" ><i></i>Back</button></a>
                     </div>
                 </div>
             </div>

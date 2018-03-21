@@ -35,3 +35,7 @@
     height: 30px;
     border-radius: 50%;
 }
+
+.profile-user-img {
+    width: 180px;
+}

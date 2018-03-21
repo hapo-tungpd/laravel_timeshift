@@ -80,10 +80,6 @@
                     </table>
                     {{ $users->links() }}
                 </div>
-                <form class="box-footer" role="form" action="" method="get">
-                    {{ csrf_field() }}
-                    <button type="submit" class="btn btn-primary">Change Password</button>
-                </form>
                 <!-- /.box-body -->
                 {{--Trigger add new modal--}}
                 <a href="{{ route('admin.user.create') }}"><button type="button" class="btn btn-success" ><i class="fa fa-fw fa-plus"></i>Add new</button></a>

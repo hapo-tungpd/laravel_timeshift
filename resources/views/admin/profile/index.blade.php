@@ -16,15 +16,6 @@
                 <table class="table table-hover display" id="">
                     <tbody>
                     @foreach ($admin as $data)
-                        <tr>
-                            <td>
-                                <a href="{{ route('admin.changepassword.edit', $data->id) }}">
-                                    <button class="btn btn-warning btn-sm">
-                                        <i class="fa fa-edit">Change Password</i>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
                         <div class="col-sm-4 invoice-col">
                             <address>
                                 <strong>Admin, Inc.</strong><br>
@@ -38,8 +29,11 @@
                     </tbody>
                 </table>
             </div>
-            </form>
-        </div>
+            <a href="{{ route('admin.changepassword.edit', $data->id) }}">
+                <button class="btn btn-warning btn-sm">
+                    <i class="fa fa-edit">Change Password</i>
+                </button>
+            </a>        </div>
         <!-- /.box -->
     </div>
 </section>

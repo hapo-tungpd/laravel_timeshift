@@ -8,6 +8,10 @@ use App\Models\User;
 use Image;
 use Auth;
 use Carbon\Carbon;
+use App\Models\Overtime;
+use App\Models\RollCall;
+use App\Models\Report;
+use App\Models\Absence;
 
 class UpdateUserController extends Controller
 {
@@ -18,40 +22,25 @@ class UpdateUserController extends Controller
      */
     public function index()
     {
-//        dd(Auth::user());
-        return view('user.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $absence = Absence::where('user_id', Auth::user()->id)
+            ->orderBy('updated_at', 'DESC')
+            ->first();
+        $report = Report::where('user_id', Auth::user()->id)
+            ->orderBy('updated_at', 'DESC')
+            ->first();
+        $rollcall = RollCall::where('user_id', Auth::user()->id)
+            ->orderBy('updated_at', 'DESC')
+            ->first();
+        $overtime = Overtime::where('user_id', Auth::user()->id)
+            ->orderBy('updated_at', 'DESC')
+            ->first();
+        $data = [
+            'absence' => $absence,
+            'report' => $report,
+            'rollcall' => $rollcall,
+            'overtime' => $overtime,
+        ];
+        return view('user.index', $data);
     }
 
     /**
@@ -67,7 +56,7 @@ class UpdateUserController extends Controller
         $data = [
             'user' => $user,
         ];
-        return view('user.usermanage.edit', $data);
+        return view('user.user_manage.edit', $data);
     }
 
     /**
@@ -95,22 +84,9 @@ class UpdateUserController extends Controller
         $user -> gender = $request->input('gender');
         $user -> address = $request->input('address');
         $user -> JLPT = $request->input('JLPT');
-        $user -> email = $request->input('email');
-//        dd($user->all());
         $user->save();
-        return redirect()->route('user.index', [
+        return redirect()->route('profile.index', [
             'id' => $id,
         ]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
