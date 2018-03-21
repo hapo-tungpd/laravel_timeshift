@@ -6,6 +6,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
+{{--@include('user.layouts.sidebar')--}}
 
 {{--Main header--}}
 @include('user.modules.header')
@@ -14,6 +15,7 @@
 
     <!-- Left side column. contains the sidebar -->
 @include('user.modules.sidebar')
+<!-- Right side column. contains the sidebar -->
 
 <!-- =============================================== -->
 
@@ -27,8 +29,8 @@
 <!-- ./wrapper -->
 
 @include('user.layouts.footer')
-
 @yield('javascript')
+@include('user.layouts.sidebar')
 
 </body>
 </html>

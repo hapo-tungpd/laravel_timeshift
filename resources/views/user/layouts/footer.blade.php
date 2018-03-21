@@ -27,6 +27,7 @@
 <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 {{--Bootstrap date picker--}}
 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('bootstrap-notify.min.js') }}"></script>
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
