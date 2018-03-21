@@ -17,6 +17,18 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        <div class="row">
+                            <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('roll-call.index') }}" method="post">
+                                {{csrf_field()}}
+                                {{ method_field('GET') }}
+                                <div class="col-md-3">
+                                    <input type="text" name="search_time" id="from_date" class="form-control filter-overtime over-time-picker" placeholder="Enter Date" />
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="submit" name="filter" id="filter" value="Search" class="btn btn-info" />
+                                </div>
+                            </form>
+                        </div>
 
                         <table class="table table-hover table-bordered">
                             <thead>
@@ -48,7 +60,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h3 class="modal-title">Absence detail</h3>
+                                                    <h3 class="modal-title">Roll Call detail</h3>
                                                 </div>
                                                 <div class="modal-body">
                                                     <h4><strong>{{ $rollCallToDay->user->name }}</strong></h4>
@@ -137,11 +149,9 @@
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('roll-call.edit', $rollCall->id) }}">
-                                        <button class="btn btn-danger btn-sm">
-                                            <i class="">End Roll Call</i>
-                                        </button>
-                                    </a>
+                                    <button class="btn btn-danger btn-sm">
+                                        <i class="">End Roll Call</i>
+                                    </button>
                                 </td>
                                 </tbody>
                             @endforeach

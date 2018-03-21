@@ -35,9 +35,10 @@
                         @endif
                         <table class="table table-hover table-bordered">
                             <thead>
-                            <th class="text-center">No.</th>
+                            <th width="5%" class="text-center">No.</th>
                             <th class="text-center">Date</th>
                             <th class="text-center">Total Hours</th>
+                            <th class="text-center">Status</th>
                             </thead>
                             <tbody>
                             @php
@@ -48,12 +49,20 @@
                                     <td class="text-center">{{ $temp++ }}</td>
                                     <td class="text-center">{{ $rollCall->day->format('d/m/Y') }}</td>
                                     <td class="text-center">{{ $rollCall->total_time }} hour</td>
+                                    <td class="text-center">
+                                        @if($rollCall->total_time >= 8)
+                                            <a class="fa fa-check-square-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></a>
+                                        @else
+                                            <a class="fa fa-close fa-fw w3-margin-right w3-xxlarge w3-text-teal"></a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             <tr>
-                                <th class="text-center">Total time working</th>
+                                <th class="text-center">Total</th>
                                 <th class="text-center">{{ --$temp }} day</th>
                                 <th class="text-center">{{ $sumRollCall }} hour</th>
+                                <th></th>
                             </tr>
                             </tbody>
                         </table>
