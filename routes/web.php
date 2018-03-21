@@ -13,12 +13,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', 'HomeController@index')->name('home');
 
 //manage user
 Route::prefix('user')->group(function () {
     Route::get('login', 'Auth\LoginController@loginForm')->name('user.login-form');
     Route::post('login', 'Auth\LoginController@login')->name('user.login');
-    Route::get('index', 'HomeController@index')->name('user.index');
 
     Route::middleware(['web.auth'])->group(function () {
         Route::post('logout', 'Auth\LoginController@logout')->name('user.logout');
@@ -26,7 +26,7 @@ Route::prefix('user')->group(function () {
         /**
          * update user
          */
-        Route::resource('user', 'UpdateUserController');
+        Route::resource('/profile', 'UpdateUserController');
 
         /**
          * change password user
@@ -56,6 +56,8 @@ Route::prefix('user')->group(function () {
         /**
          * User Overtime
          */
+        Route::post('overtime/selectStatistic', 'User\UserOvertimeController@selectStatistic')
+            ->name('overtime.selectStatistic');
         Route::get('overtime/search', 'User\UserOvertimeController@search')->name('overtime.search');
         Route::get('overtime/statistic', 'User\UserOvertimeController@statistic')->name('overtime.statistic');
         Route::resource('overtime', 'User\UserOvertimeController');
@@ -79,6 +81,11 @@ Route::prefix('admin')->group(function () {
         Route::put('user/{id}/update-image', 'UserProfileController@updateImage')->name('admin.user.update.image');
 
         /**
+         * change password admin
+         */
+        Route::resource('changepassword', 'Admin\ChangePassword', ['as' => 'admin']);
+
+        /**
          * Manage absence
          */
         Route::resource('absence', 'Admin\AbsenceController', ['as' => 'admin']);
@@ -91,6 +98,8 @@ Route::prefix('admin')->group(function () {
         /**
          * Manage overtime
          */
+        Route::post('overtime/selectStatistic', 'Admin\OvertimeController@selectStatistic')
+            ->name('admin.overtime.selectStatistic');
         Route::get('overtime/showOvertime/{user_id}', 'Admin\OvertimeController@showOvertime')
             ->name('admin.overtime.showOvertime');
         Route::get('overtime/search', 'Admin\OvertimeController@search')->name('admin.overtime.search');
@@ -102,11 +111,10 @@ Route::prefix('admin')->group(function () {
      */
     Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')
         ->name('admin.password.email');
-    Route::get('/password/reset', 'Auth\AdminForgotPasswordController@formResetLinkEmail')
+    Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')
         ->name('admin.password.request');
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')
         ->name('admin.password.reset');
 });
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');

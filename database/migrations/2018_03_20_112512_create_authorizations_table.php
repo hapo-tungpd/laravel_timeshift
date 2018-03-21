@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOvertimesTable extends Migration
+class CreateAuthorizationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateOvertimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('overtimes', function (Blueprint $table) {
+        Schema::create('authorizations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->date('day');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
-            $table->double('total_time');
-            $table->string('content');
-            $table->softDeletes();
+            $table->integer('department_id');
+            $table->boolean('member_control');
+            $table->boolean('department_control');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateOvertimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('overtimes');
+        Schema::dropIfExists('authorizations');
     }
 }

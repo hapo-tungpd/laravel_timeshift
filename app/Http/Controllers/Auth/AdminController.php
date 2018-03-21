@@ -12,7 +12,7 @@ class AdminController extends Controller
     public function loginForm()
     {
         if (Auth::guard('admin')->check()) {
-            return redirect()->route('admin.index');
+            return redirect()->route('admin.user.index');
         }
         return view('admin.login');
     }
@@ -20,7 +20,7 @@ class AdminController extends Controller
     {
         $check = Auth::guard('admin')->attempt($request->only(['username', 'password']));
         if ($check) {
-            return redirect()->route('admin.index');
+            return redirect()->route('admin.user.index');
         } else {
             return redirect()->route('admin.login');
         }

@@ -26,12 +26,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('user.index');
+        return view('welcome');
     }
 
     public function showChangePasswordForm()
     {
-        return view('user.usermanage.changepassword');
+        return view('user.user_manage.changepassword');
     }
 
     public function changePassword(Request $request)
