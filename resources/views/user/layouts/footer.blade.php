@@ -27,7 +27,7 @@
 <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 {{--Bootstrap date picker--}}
 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
-<script src="{{ asset('bootstrap-notify.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
@@ -55,4 +55,18 @@
     $(".edit-over").datetimepicker({
         format: 'Y-m-d',
     });
+    @if(Session::has('success'))
+    $.notify(
+        {
+            icon: "notifications",
+            message: '{{ Session('success') }}',
+        }, {
+            type: 'success',
+            timer: 1000,
+            placement: {
+                from: 'bottom',
+                align: 'right'
+            }
+        });
+    @endif
 </script>

@@ -66,9 +66,8 @@ class UserRollCallController extends Controller
         //administrative time
         $timeMorning = Carbon::createFromTime(8, 0, 0);
         $timeAfternoon = Carbon::createFromTime(17, 30, 0);
-
-        $startHiru = Carbon::createFromTime(12, 0, 0);
-        $endHiru = Carbon::createFromTime(13, 30, 0);
+        $startNoon = Carbon::createFromTime(12, 0, 0);
+        $endNoon = Carbon::createFromTime(13, 30, 0);
 
         $rollCall = RollCall::findOrFail($id);
         $rollCall->end_time = Carbon::now();
@@ -93,12 +92,12 @@ class UserRollCallController extends Controller
         } else {
             $rollCall->total_time = 0;
         }
-        if (($toTime >= $startHiru) && ($toTime <= $endHiru)) {
-            $hour = round(($fromTime->diffInMinutes($startHiru))/60, 2);
-        } elseif ($toTime > $endHiru) {
-            $hour = round(($fromTime->diffInMinutes($startHiru))/60, 2)
-                + round(($endHiru->diffInMinutes($toTime))/60, 2);
-        } elseif ($toTime < $startHiru) {
+        if (($toTime >= $startNoon) && ($toTime <= $endNoon)) {
+            $hour = round(($fromTime->diffInMinutes($startNoon))/60, 2);
+        } elseif ($toTime > $endNoon) {
+            $hour = round(($fromTime->diffInMinutes($startNoon))/60, 2)
+                + round(($endNoon->diffInMinutes($toTime))/60, 2);
+        } elseif ($toTime < $startNoon) {
             $hour = round($fromTime->diffInMinutes($toTime)/60, 2);
         }
         $rollCall->total_time = $hour;
@@ -109,8 +108,9 @@ class UserRollCallController extends Controller
             'day' => $rollCall->day,
             'total_time' => $rollCall->total_time,
         ];
+        session()->flash('success', 'Bạn đã điểm danh thành công!');
         RollCall::where('id', $id)->update($data);
-        return redirect()->route('roll-call.index');
+        return redirect()->route('roll-call.index')->with('success');
     }
 
     public function statistic(Request $request)
