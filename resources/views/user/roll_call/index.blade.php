@@ -29,7 +29,6 @@
                                 </div>
                             </form>
                         </div>
-
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
@@ -95,7 +94,7 @@
                                 <td class="text-center">
                                     @if($errors->has('success'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('dsdssds') }}</strong>
+                                            <strong>{{ $errors->first('success') }}</strong>
                                         </span>
                                     @endif
                                     <a href="{{ route('roll-call.edit', $rollCallToDay->id) }}">

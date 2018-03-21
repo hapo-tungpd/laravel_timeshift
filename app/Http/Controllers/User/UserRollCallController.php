@@ -17,21 +17,32 @@ class UserRollCallController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-{
-        $createTimeNow = Carbon::now();
-        $rollCallToDay = RollCall::where('user_id', Auth::user()->id)
-            ->whereDay('day', $createTimeNow->format('d'))
-            ->first();
-        $rollCalls = RollCall::where('user_id', Auth::user()->id)
-            ->orderby('updated_at', 'DESC')
-            ->skip(1)->take(10)->get();
-        $data = [
-            'rollCallToDay' => $rollCallToDay,
-            'rollCalls' => $rollCalls,
-        ];
-        return view("user.roll_call.index", $data);
-}
+    public function index(Request $request)
+    {
+        if ($request->has('search_time')) {
+            $dateTimeMonth = $request->input('search_time');
+            $rollCallToDays = RollCall::whereDate('day', $dateTimeMonth)
+                ->where('user_id', Auth::user()->id)
+                ->get();
+            $data = [
+                'rollCallToDays' => $rollCallToDays,
+            ];
+            return view('user.roll_call.search', $data);
+        } else {
+            $createTimeNow = Carbon::now();
+            $rollCallToDay = RollCall::where('user_id', Auth::user()->id)
+                ->whereDay('day', $createTimeNow->format('d'))
+                ->first();
+            $rollCalls = RollCall::where('user_id', Auth::user()->id)
+                ->orderby('updated_at', 'DESC')
+                ->skip(1)->take(10)->get();
+            $data = [
+                'rollCallToDay' => $rollCallToDay,
+                'rollCalls' => $rollCalls,
+            ];
+            return view("user.roll_call.index", $data);
+        }
+    }
 
     public function userRollCall()
     {
@@ -49,7 +60,7 @@ class UserRollCallController extends Controller
         $date = substr($rollCall->start_time, 0, 10);
         if ($date !== $dateTimeDay) {
             $rollCall->save();
-            return redirect()->route('roll-call.index');
+            return redirect()->route('roll-call.index')->with('success', 'Roll Call successfully!');
         } else {
             return redirect()->route('roll-call.index');
         }
@@ -108,9 +119,8 @@ class UserRollCallController extends Controller
             'day' => $rollCall->day,
             'total_time' => $rollCall->total_time,
         ];
-        session()->flash('success', 'Bạn đã điểm danh thành công!');
         RollCall::where('id', $id)->update($data);
-        return redirect()->route('roll-call.index')->with('success');
+        return redirect()->route('roll-call.index')->with('success', 'Roll Call successfully!');
     }
 
     public function statistic(Request $request)
@@ -137,17 +147,5 @@ class UserRollCallController extends Controller
             'sumRollCall' => $sumRollCall,
         ];
         return view('user.roll_call.statistic', $data);
-    }
-
-    public function search(Request $request)
-    {
-        $fromTime = $request->from_date;
-        $toTime = $request->to_date;
-        $employees = RollCall::whereBetween('day', [$fromTime, $toTime])
-            ->where('user_id', Auth::user()->id)
-            ->orderby('updated_at', Auth::user()->updated_at)
-            ->paginate(10);
-        $sumTime = RollCall::whereBetween('day', [$fromTime, $toTime])->sum('total_time');
-        return view('user.roll_call.search', compact('employees', 'sumTime'));
     }
 }
