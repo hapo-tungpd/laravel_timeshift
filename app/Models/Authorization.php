@@ -10,11 +10,13 @@ class Authorization extends Model
         'user_id', 'department_id', 'member_control', 'department_control'
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function department() {
+    public function department()
+    {
         return $this->belongsTo(Department::class);
     }
 }

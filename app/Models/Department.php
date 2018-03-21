@@ -10,7 +10,8 @@ class Department extends Model
         'name', 'description'
     ];
 
-    public function authorizations() {
+    public function authorizations()
+    {
         return $this->hasMany(Authorization::class);
     }
 }
