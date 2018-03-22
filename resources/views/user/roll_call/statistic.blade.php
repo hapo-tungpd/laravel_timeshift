@@ -1,27 +1,32 @@
 @extends('user.layouts.master')
 
 @section('content')
-    <div class="container">
+    <style>
+        .ui-datepicker-calendar {
+            display: none;
+        }
+    </style>
+    <section class="content-header">
+        <h1>
+            Roll Call
+        </h1>
+    </section>
+    <section class="content">
+        <div class="box"></div>
+        <form role="form" action="{{ route('roll_call.statistic') }}" method="GET" class="form-inline">
+            <input type="hidden" name="_method" value="PUT">
+            {{ csrf_field() }}
+            <div class="input-group date datepicker fn" data-provide="datepicker">
+                <input type="text" class="form-control" name="month" data-date-format="yyyy/mm" value="{{ $dateTimeMonth }}">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+            <button class="btn btn-success" type="submit">Detail</button>
+        </form>
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card card-default">
-                    <div class="alert card-header alert-success">
-                        {{--<select class="selectpicker show-tick">--}}
-                        {{--<option>Tháng 1</option>--}}
-                        {{--<option>Tháng 2</option>--}}
-                        {{--<option>Tháng 3</option>--}}
-                        {{--<option>Tháng 4</option>--}}
-                        {{--<option>Tháng 5</option>--}}
-                        {{--<option>Tháng 6</option>--}}
-                        {{--<option>Tháng 7</option>--}}
-                        {{--<option>Tháng 8</option>--}}
-                        {{--<option>Tháng 9</option>--}}
-                        {{--<option>Tháng 10</option>--}}
-                        {{--<option>Tháng 11</option>--}}
-                        {{--<option>Tháng 12</option>--}}
-                        {{--</select>--}}
-                        <h3 class="text-center">Time working month @php echo date('m/Y') @endphp</h3>
-                    </div>
+                <div class="box box-body">
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -30,31 +35,52 @@
                         @endif
                         <table class="table table-hover table-bordered">
                             <thead>
-                            <th class="text-center">No.</th>
+                            <th width="5%" class="text-center">No.</th>
                             <th class="text-center">Date</th>
                             <th class="text-center">Total Hours</th>
+                            <th class="text-center">Status</th>
                             </thead>
                             <tbody>
                             @php
                                 $temp = 1;
                             @endphp
-                            @foreach ($rollcall as $data)
+                            @foreach ($rollCalls as $rollCall)
                                 <tr>
                                     <td class="text-center">{{ $temp++ }}</td>
-                                    <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
-                                    <td class="text-center">{{ $data->total_time }} hour</td>
+                                    <td class="text-center">{{ $rollCall->day->format('d/m/Y') }}</td>
+                                    <td class="text-center">{{ $rollCall->total_time }} hour</td>
+                                    <td class="text-center">
+                                        @if($rollCall->total_time >= 8)
+                                            <a class="fa fa-check-square-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></a>
+                                        @else
+                                            <a class="fa fa-close fa-fw w3-margin-right w3-xxlarge w3-text-teal"></a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             <tr>
-                                <th class="text-center">Total time working</th>
+                                <th class="text-center">Total</th>
                                 <th class="text-center">{{ --$temp }} day</th>
-                                <th class="text-center">{{ $sumRollcall }} hour</th>
+                                <th class="text-center">{{ $sumRollCall }} hour</th>
+                                <th></th>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <a class="btn btn-success" href="{{ route('roll-call.index') }}">Back</a>
             </div>
         </div>
-    </div>
+    </section>
+@endsection
+@section('javascript')
+    <script>
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm',
+            // todayHighlight: true,
+            startView: "months",
+            minViewMode: "months",
+        });
+    </script>
+
 @endsection

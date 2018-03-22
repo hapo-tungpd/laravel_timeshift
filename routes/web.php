@@ -46,12 +46,10 @@ Route::prefix('user')->group(function () {
 
         /**
          * User Roll Call
-         */
-        Route::get('rollcall/showAllRollCall', 'User\UserRollCallController@showAllRollCall')
-            ->name('rollcall.showAllRollCall');
-        Route::get('rollcall/search', 'User\UserRollCallController@search')->name('rollcall.search');
-        Route::get('rollcall/statistic', 'User\UserRollCallController@statistic')->name('rollcall.statistic');
-        Route::resource('rollcall', 'User\UserRollCallController');
+         */Route::get('roll-call/user-roll-call', 'User\UserRollCallController@userRollCall')
+            ->name('roll_call.user_roll_call');
+        Route::get('roll-call/statistic', 'User\UserRollCallController@statistic')->name('roll_call.statistic');
+        Route::resource('roll-call', 'User\UserRollCallController');
 
         /**
          * User Overtime
@@ -92,8 +90,7 @@ Route::prefix('admin')->group(function () {
         /**
          * Manage roll call
          */
-        Route::post('roll_call/update_statistic', 'Admin\RollCallController@selectStatistic')
-            ->name('admin.roll_call.update_statistic');
+
         Route::get('roll_call/show_roll_call/{user_id}', 'Admin\RollCallController@showRollCall')
             ->name('admin.roll_call.show_roll_call');
         Route::get('roll_call/search', 'Admin\RollCallController@search')->name('admin.roll_call.search');

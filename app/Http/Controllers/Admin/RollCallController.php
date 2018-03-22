@@ -17,74 +17,27 @@ class RollCallController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rollCall = RollCall::orderBy('updated_at', 'desc')->paginate(config('app.user_pagination'));
-        $data = [
-            'rollCall' => $rollCall,
-        ];
+        if ($request->has('rollcall')) {
+            $dateTimeMonth = $request->input('rollcall');
+            $rollCall = RollCall::whereDate('day', $dateTimeMonth)
+                ->paginate(config('app.pagination'));
+            $data = [
+                'rollCall' => $rollCall,
+                'dateTimeMonth' => $dateTimeMonth,
+            ];
+        } else {
+            $dateTimeMonth = Carbon::now()->format('Y-m-d');
+            $rollCall = RollCall::whereDate('day', $dateTimeMonth)
+                ->paginate(config('app.pagination'));
+            $data = [
+                'rollCall' => $rollCall,
+                'dateTimeMonth' => $dateTimeMonth,
+            ];
+        }
+
         return view('admin.roll_call.index', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $rollCall = RollCall::findOrFail($id);
-        $user = User::findOrFail($rollCall->user_id);
-        $data = [
-            'rollCall' => $rollCall,
-            'user' => $user,
-        ];
-        return view('admin.roll_call.show', $data);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -111,49 +64,67 @@ class RollCallController extends Controller
         return view('admin.roll_call.search', compact('employees', 'sumTime'));
     }
 
-    public function statistic()
+    public function statistic(Request $request)
     {
+        if ($request->has('month')) {
+            $dateTimeMonth = $request->input('month'); //2018-02
+            $month =substr($dateTimeMonth, 5, 7);
+            $year =substr($dateTimeMonth, 0, 4);
+            $sumRollCallMonth = RollCall::whereMonth('day', $month)
+                ->whereYear('day', $year)
+                ->sum('total_time');
+            $rolCallMonths = RollCall::whereMonth('day', $month)
+                ->whereYear('day', $year)
+                ->orderBy('day')
+                ->paginate(config('app.pagination'));
+            $statisticRollCallMonths = RollCall::whereMonth('day', $month)
+                ->whereYear('day', $year)
+                ->select('user_id', DB::raw('SUM(total_time) as total_times'))
+                ->groupBy('user_id')
+                ->paginate(config('app.pagination'));
+            $dataSumRollCallMonth = RollCall::whereMonth('day', $month)
+                ->whereYear('day', $year)
+                ->sum('total_time');
+            $data = [
+                'dateTimeMonth' => $dateTimeMonth,
+                'sumRollCallMonth' => $sumRollCallMonth,
+                'rolCallMonths' => $rolCallMonths,
+                'statisticRollCallMonths' => $statisticRollCallMonths,
+                'dataSumRollCallMonth' => $dataSumRollCallMonth,
+            ];
+            return view('admin.roll_call.update_statistic', $data);
+        }
         $rollCall = RollCall::orderBy('updated_at', 'desc')->paginate(config('app.user_pagination'));
-        //get time right now
-        $date = Carbon::now();
-        //get day right now d-m-Y
         $dateTimeDay = Carbon::now()->format('Y-m-d');
-        //total time roll call today
-        $sumRollCallToday = RollCall::where('day', "LIKE", "%" . $dateTimeDay . "%")
-            ->sum('total_time');
-        //get user roll call today
-        $rollCallDay = RollCall::where('day', "LIKE", "%" . $dateTimeDay . "%")
+        $rollCallDays = RollCall::whereDate('day', $dateTimeDay)//roll call today
+            ->orderBy('start_time', 'DESC')
             ->paginate(config('app.pagination'));
-        //get month right now m-Y
+        $sumRollCallToday = RollCall::whereDate('day', $dateTimeDay)->sum('total_time');
         $dateTimeMonth = Carbon::now()->format('Y-m'); //2018-03
-        //total time roll call of month
-        $sumRollCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+        $sumRollCallMonth = RollCall::whereMonth('day', Carbon::now()->format('m')) //roll coll of month
+            ->whereYear('day', Carbon::now()->format('Y'))
             ->sum('total_time');
-        //get user roll call of month
-        $rolCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+        $rolCallMonths = RollCall::whereMonth('day', Carbon::now()->format('m'))
+            ->whereYear('day', Carbon::now()->format('Y'))
+            ->orderBy('day', 'DESC')
             ->paginate(config('app.pagination'));
-        $dataName = RollCall::where('day', "LIKE", "%" . $dateTimeDay . "%")
+        $statisticRollCallMonths = RollCall::whereMonth('day', Carbon::now()->format('m'))
+            ->whereYear('day', Carbon::now()->format('Y'))
             ->select('user_id', DB::raw('SUM(total_time) as total_times'))
             ->groupBy('user_id')
+            ->orderBy('day', 'DESC')
             ->paginate(config('app.pagination'));
-        $dataSumRollCallToDay = RollCall::where('day', "LIKE", "%" . $dateTimeDay . "%")
-            ->sum('total_time');
-        $dataNameMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
-            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
-            ->groupBy('user_id')
-            ->paginate(config('app.pagination'));
-        $dataSumRollCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
+        $dataSumRollCallMonth = RollCall::whereMonth('day', Carbon::now()->format('m'))
+            ->whereYear('day', Carbon::now()->format('Y'))
             ->sum('total_time');
         $data = [
             'dateTimeMonth' => $dateTimeMonth,
-            'rollCallDay' => $rollCallDay,
+            'rollCallDays' => $rollCallDays,
             'sumRollCallToday' => $sumRollCallToday,
-            'rolCallMonth' => $rolCallMonth,
+            'rolCallMonths' => $rolCallMonths,
             'sumRollCallMonth' => $sumRollCallMonth,
             'rollCall' => $rollCall,
-            'dataName' => $dataName,
-            'dataSumRollCallToDay' => $dataSumRollCallToDay,
-            'dataNameMonth' => $dataNameMonth,
+            'statisticRollCallMonths' => $statisticRollCallMonths,
             'dataSumRollCallMonth' => $dataSumRollCallMonth,
         ];
         return view('admin.roll_call.statistic', $data);
@@ -180,30 +151,5 @@ class RollCallController extends Controller
             'rollCallEmployee' => $rollCallEmployee,
         ];
         return view('admin.roll_call.show_roll_call', $data);
-    }
-
-    public function selectStatistic(Request $request)
-    {
-        $dateTimeMonth = $request->input('month'); //2018-02
-        //total time roll call of month
-        $sumRollCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
-            ->sum('total_time');
-        //get user roll call of month
-        $rolCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
-            ->paginate(config('app.pagination'));
-        $dataNameMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
-            ->select('user_id', DB::raw('SUM(total_time) as total_times'))
-            ->groupBy('user_id')
-            ->paginate(config('app.pagination'));
-        $dataSumRollCallMonth = RollCall::where('day', "LIKE", "%" . $dateTimeMonth . "%")
-            ->sum('total_time');
-        $data = [
-            'dateTimeMonth' => $dateTimeMonth,
-            'sumRollCallMonth' => $sumRollCallMonth,
-            'rolCallMonth' => $rolCallMonth,
-            'dataNameMonth' => $dataNameMonth,
-            'dataSumRollCallMonth' => $dataSumRollCallMonth,
-        ];
-        return view('admin.roll_call.update_statistic', $data);
     }
 }

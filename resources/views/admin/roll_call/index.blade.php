@@ -13,38 +13,35 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="card-body">
+                    <div class="box box-body">
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('admin.roll_call.search') }}" method="post">
-                            {{csrf_field()}}
-                            {{ method_field('GET') }}
-                            <div class="col-md-3 over-time-picker">
-                                <input type="text" name="from_date" id="from_date" class="form-control filter-overtime over-time-picker" placeholder="From Date" />
-                            </div>
-                            <div class="col-md-3 over-time-picker">
-                                <input type="text" name="to_date" id="to_date" class="form-control filter-overtime over-time-picker" placeholder="To Date" />
-                            </div>
-                            <div class="col-md-5">
-                                <input type="submit" name="filter" id="filter" value="Search" class="btn btn-info" />
-                            </div>
-                        </form>
+                        <div class="row">
+                            <form role="form" action="{{ route('admin.roll_call.index') }}" method="GET" class="form-inline">
+                                <input type="hidden" name="_method" value="PUT">
+                                {{ csrf_field() }}
+                                <div class="input-group date datepicker fn" data-provide="datepicker">
+                                    <input type="text" class="form-control" name="rollcall" data-date-format="Y-m-d" value="{{ $dateTimeMonth }}">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-success" type="submit">Detail</button>
+                            </form>
+                        </div>
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
                                 <th class="text-center">No.</th>
                                 <th class="text-center">Name</th>
                                 <th class="text-center">Date</th>
-                                <th class="text-center">Start time</th>
-                                <th class="text-center">End time</th>
-                                <th class="text-center">Total time</th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
+                                <th class="text-center">Roll Call</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Show</th>
+                                <th class="text-center">Delete</th>
                             </tr>
                             </thead>
                             @php
@@ -55,15 +52,60 @@
                                 <td class="text-center">{{ $temp++ }}</td>
                                 <td class="text-center">{{ $data->user->name }}</td>
                                 <td class="text-center">{{ $data->day->format('d/m/Y') }}</td>
-                                <td class="text-center">{{ $data->start_time->format('H:i:s') }}</td>
-                                <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
-                                <td class="text-center">{{ $data->total_time }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.roll_call.show', $data->id) }}">
-                                        <button class="btn btn-primary btn-sm">
-                                            <i class="fa fa-th-list"></i>
-                                        </button>
-                                    </a>
+                                    @if($data->start_time != null)
+                                        <a class="fa fa-check-square-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></a>
+                                    @else
+                                        <a class="fa fa-close fa-fw w3-margin-right w3-xxlarge w3-text-teal"></a>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if($data->total_time >= 8)
+                                        <a class="fa fa-check-square-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></a>
+                                    @else
+                                        <a class="fa fa-close fa-fw w3-margin-right w3-xxlarge w3-text-teal"></a>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{ $data->id }}">Detail</button>
+                                    <div id="{{ $data->id }}" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h3 class="modal-title">Roll Call detail</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h4><strong>{{ $data->user->name }}</strong></h4>
+                                                </div>
+                                                <div class="">
+                                                    <p>
+                                                        Date: {{ $data->day->format('d/m/Y') }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        Start time: {{ $data->start_time->format('H:i:s') }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        End time: {{ $data->end_time->format('H:i:s') }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        Total: {{ $data->total_time }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td class="text-center">
                                     <form action="#" method="POST">
@@ -122,6 +164,11 @@
                 ;
             });
             // END AJAX
+        });
+
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            todayHighlight: true,
         });
     </script>
 
