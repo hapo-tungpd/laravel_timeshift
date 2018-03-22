@@ -35,6 +35,16 @@
 
             <li class="treeview">
                 <a href="#">
+                    <i class="fa fa-user"></i> <span>Roll Call</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('admin.roll_call.index') }}"><i class="fa fa-users"></i>Roll call</a></li>
+                    <li><a href="{{ route('admin.roll_call.statistic') }}"><i class="fa fa-user-plus"></i>Statistic Roll call</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-clock-o"></i> <span>Overtime</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>

@@ -59,6 +59,9 @@ class ManageUserController extends Controller
             $message->subject('Welcome to Haposoft');
         });
         User::create($data);
+
+
+
         return redirect()->route('admin.user.index');
     }
 

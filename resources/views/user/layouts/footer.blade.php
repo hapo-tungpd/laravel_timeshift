@@ -55,4 +55,18 @@
     $(".edit-over").datetimepicker({
         format: 'Y-m-d',
     });
+    @if(Session::has('success'))
+    $.notify(
+        {
+            icon: "notifications",
+            message: '{{ Session('success') }}',
+        }, {
+            type: 'success',
+            timer: 1000,
+            placement: {
+                from: 'bottom',
+                align: 'right'
+            }
+        });
+    @endif
 </script>

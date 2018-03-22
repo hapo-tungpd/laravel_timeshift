@@ -22,6 +22,8 @@
 {{--bootstrap time picker--}}
 <link rel="stylesheet" href="{{ asset('css/bootstrap-timepicker.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.min.css') }}">
+{{--Bootstrap date picker--}}
+<link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,5 +34,6 @@
 
 <!-- Google Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
