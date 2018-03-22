@@ -17,11 +17,25 @@ class UserOvertimeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $overtime = Overtime::where('user_id', Auth::user()->id)
-            ->orderby('updated_at', Auth::user()->updated_at)
-            ->paginate(config('app.user_report_pagination'));
+        if (($request->has('from_date')) && ($request->has('to_date'))) {
+            $fromTime = $request->from_date;
+            $toTime = $request->to_date;
+            $overtime = Overtime::whereBetween('day', [$fromTime, $toTime])
+                ->where('user_id', Auth::user()->id)
+                ->paginate(config('app.user_pagination'));
+        }
+        if ($request->has('from_date')) {
+            $fromTime = $request->from_date;
+            $overtime = Overtime::whereDate('day', $fromTime)
+                ->where('user_id', Auth::user()->id)
+                ->paginate(config('app.user_pagination'));
+        } else {
+            $overtime = Overtime::where('user_id', Auth::user()->id)
+                ->orderby('updated_at', 'DESC')
+                ->paginate(config('app.user_report_pagination'));
+        }
         $data = [
             'overtime' => $overtime,
         ];
@@ -120,32 +134,22 @@ class UserOvertimeController extends Controller
         ]);
     }
 
-    public function search(Request $request)
-    {
-        $fromTime = $request->from_date;
-        $toTime = $request->to_date;
-        $employees = Overtime::whereBetween('day', [$fromTime, $toTime])
-            ->where('user_id', Auth::user()->id)
-            ->paginate(config('app.user_pagination'));
-        $sumTime = Overtime::whereBetween('day', [$fromTime, $toTime])->sum('total_time');
-        return view('user.overtime.search', compact('employees', 'sumTime'));
-    }
-
     public function statistic()
     {
-        $date = Carbon::now();
-        $dateTimeMonth = substr($date, 0, 7);
-//        $dateTime = Overtime::where('user_id', Auth::user()->id)->orderBy('day', 'desc')->value('day');
-//        $dateTimeDay = $dateTime->format('Y-m');
-        $sumOvertime = Overtime::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeMonth . "%")
+        $dateTimeMonth = Carbon::now()->format('Y-m');
+        $sumOvertime = Overtime::where('user_id', Auth::user()->id)
+            ->whereMonth('day', Carbon::now()->format('m'))
+            ->whereYear('day', Carbon::now()->format('Y'))
             ->sum('total_time');
-        $sumDayMonth = Overtime::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeMonth . "%")
-//            ->select('name', 'day as days')
-//            ->groupBy('day')
+        $sumDayMonth = Overtime::where('user_id', Auth::user()->id)
+            ->whereMonth('day', Carbon::now()->format('m'))
+            ->whereYear('day', Carbon::now()->format('Y'))
             ->count('day');
-        $overtime = Overtime::where('user_id', Auth::user()->id)->where('day', "LIKE", "%" . $dateTimeMonth . "%")
+        $overtime = Overtime::where('user_id', Auth::user()->id)
+            ->whereMonth('day', Carbon::now()->format('m'))
+            ->whereYear('day', Carbon::now()->format('Y'))
+            ->orderBy('day', 'DESC')
             ->paginate(config('app.pagination'));
-//        dd($sumDayMonth);
         $data = [
             'overtime' => $overtime,
             'sumOvertime' => $sumOvertime,
@@ -158,26 +162,27 @@ class UserOvertimeController extends Controller
     public function selectStatistic(Request $request)
     {
         $dateTimeMonth = $request->input('month');
+        $month =substr($dateTimeMonth, 5, 7);
+        $year =substr($dateTimeMonth, 0, 4);
         $overtimeMonth = Overtime::where('user_id', Auth::user()->id)
-            ->where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->whereMonth('day', $month)
+            ->whereYear('day', $year)
             ->paginate(config('app.pagination'));
         $sumOvertimeMonth = Overtime::where('user_id', Auth::user()->id)
-            ->where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->whereMonth('day', $month)
+            ->whereYear('day', $year)
             ->sum('total_time');
         $dataNameMonth = Overtime::where('user_id', Auth::user()->id)
-            ->where('day', "LIKE", "%" . $dateTimeMonth . "%")
+            ->whereMonth('day', $month)
+            ->whereYear('day', $year)
             ->select('day', DB::raw('SUM(total_time) as total_times'))
             ->groupBy('day')
             ->paginate(config('app.pagination'));
-        $dataSumOvertimeMonth = Overtime::where('user_id', Auth::user()->id)
-            ->where('day', "LIKE", "%" . $dateTimeMonth . "%")
-            ->sum('total_time');
         $data = [
             'dateTimeMonth' => $dateTimeMonth,
             'overtimeMonth' => $overtimeMonth,
             'sumOvertimeMonth' => $sumOvertimeMonth,
             'dataNameMonth' => $dataNameMonth,
-            'dataSumOvertimeMonth' => $dataSumOvertimeMonth,
         ];
         return view('user.overtime.select_statistic', $data);
     }

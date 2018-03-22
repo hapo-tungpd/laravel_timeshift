@@ -26,7 +26,7 @@
                             </button>
                         </form>
                         <div class="row">
-                            <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('overtime.search') }}" method="post">
+                            <form class="form-inline my-2 my-lg-0 table table-hover table-bordered" action="{{ route('overtime.index') }}" method="post">
                                 {{csrf_field()}}
                                 {{ method_field('GET') }}
                                 <div class="col-md-3">
@@ -65,11 +65,49 @@
                                 <td class="text-center">{{ $data->end_time->format('H:i:s') }}</td>
                                 <td class="text-center">{{ $data->total_time }} hours</td>
                                 <td class="text-center">
-                                    <a href="{{ route('overtime.show', $data->id) }}">
-                                        <button class="btn btn-primary btn-sm">
-                                            <i class="fa fa-th-list"></i>
-                                        </button>
-                                    </a>
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{ $data->id }}">Detail</button>
+                                    <div id="{{ $data->id }}" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h3 class="modal-title">Overtime detail</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h4><strong>{{ $data->user->name }}</strong></h4>
+                                                </div>
+                                                <div class="">
+                                                    <p>
+                                                        Date: {{ $data->day->format('d/m/Y') }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        Start time: {{ $data->start_time->format('H:i:s') }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        End time: {{ $data->end_time->format('H:i:s') }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        Total: {{ $data->total_time }}
+                                                    </p>
+                                                </div><div class="modal-body">
+                                                    <p>
+                                                        Report: {{ $data->content }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('overtime.edit', $data->id) }}">
