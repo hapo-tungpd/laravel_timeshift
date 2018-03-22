@@ -150,7 +150,7 @@
                     if(willDelete) {
                         $.ajax({
                             type: 'delete',
-                            url: 'rollcall/' + id,
+                            url: 'roll_call/' + id,
                             success: function (response) {
                                 btn.parent().parent().parent().fadeOut('slow');
                             },
